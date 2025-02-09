@@ -1,0 +1,63 @@
+/*----- ContentHome ------ */
+.ContentHome__ContainerCard {
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+    margin: 20px 0 20px 0;
+  }
+  
+  .ContentHome__Card {
+    width: calc(20% - 20px);
+    background-color: #fff;
+    border-radius: 10px;
+    background-color: #121212;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .ContentHome__Card--Artists{
+    background-color: #121212;
+  }
+  
+  .ContentHome__Card--Image {
+    width: 100%;
+    border-radius: 10px;
+    height: 200px;
+    background-size: cover;
+    /* border-bottom: 1px solid #f1f1f1; */
+  }
+  
+  .ContentHome__Card--Avatar{
+    border-radius: 50%;
+    width: 80%;
+    padding: 20px;
+    border: none;
+    display: flex;
+    margin: 0 auto;
+  }
+  
+  .ContentHome__Card--Body {
+    padding: 10px;
+    /* background-color: #f1f1f1; */
+    border-radius: 10px;
+  }
+  
+  .ContentHome__Card--Title {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #f1f1f1;
+    margin: 0;
+    text-align: center;
+  }
+  
+  @media screen and (max-width: 768px) {
+    .ContentHome__Card {
+      width: calc(50% - 20px);
+    }
+  }
+  
+  @media screen and (max-width: 480px) {
+    .ContentHome__Card {
+      width: 100%;
+    }
+  }
+  

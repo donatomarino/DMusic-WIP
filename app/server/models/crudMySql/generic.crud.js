@@ -1,0 +1,27 @@
+import sql from '../../database/mysql.connection.js';
+
+const connection = await sql.mySQLConnection();
+
+export default {
+    getArtists: async (value) => {
+        const query = 'SELECT * FROM ??';
+        const [result] = await connection.query(query, value);
+        
+        return result;
+    },
+    getSongs: async(values) => {
+        // SELECT a.full_name, s.title, s.score, s.image FROM Songs s INNER JOIN Artists a ON a.id_artist = s.id_artist;
+        const query = 'SELECT ??, ??, ??, ?? FROM ?? AS ?? INNER JOIN ?? AS ?? ON ?? = ??';
+		const [result] = await connection.query(query, [...values])
+
+        return result;
+    },
+    getFavoritesSongs: async(values) => {
+        // SELECT s.image, s.title, a.full_name FROM users_songs us JOIN Users u ON u.id_user = us.id_user JOIN Songs s ON s.id_song = us.id_song JOIN artists a ON a.id_artist = s.id_artist WHERE us.id_user = ? ;
+        const query = 'SELECT ??, ??, ??, ?? FROM ?? AS ?? INNER JOIN ?? AS ?? ON ?? = ?? INNER JOIN ?? AS ?? ON ?? = ?? INNER JOIN ?? AS ?? ON ?? = ? WHERE ?? = ?';
+		const [result] = await connection.query(query, [...values]);
+        console.log(result)
+
+        return result;
+    }
+}

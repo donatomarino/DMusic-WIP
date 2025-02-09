@@ -1,0 +1,241 @@
+/* ----- HomePage ----- */
+.HomePage__Container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100vw;
+}
+
+.HomePage__Main {
+  display: flex;
+  flex: 1;
+  height: calc(100vh - 80px);
+  overflow: hidden;
+}
+
+.HomePage__Content {
+  background-color: #1e1e1e;
+  flex: 1;
+  padding: 25px;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Ajustes para el iframe */
+.HomePage__Iframe {
+  background-color: #181818;
+  padding: 20px;
+  position: absolute;
+  bottom: 0;
+  left: 0; /* Asegura que el iframe empiece desde el borde izquierdo */
+  width: 100%; /* El iframe ocupa todo el ancho disponible en pantallas pequeñas */
+  height: 80px;
+  box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Ajustes en pantallas pequeñas */
+@media screen and (max-width: 768px) {
+  .HomePage__Iframe {
+    left: 0; /* Asegura que el iframe no tenga margen */
+    width: 100%; /* El iframe ocupa todo el ancho en pantallas pequeñas */
+    height: 60px; /* Ajuste la altura para pantallas pequeñas */
+  }
+}
+
+/* Ajustes en pantallas grandes */
+@media screen and (min-width: 769px) {
+  .HomePage__Iframe {
+    left: 250px; /* Empuja el iframe hacia la derecha, después del menú lateral */
+    width: calc(100% - 250px); /* Asegura que el iframe ocupe el espacio restante */
+    height: 80px;
+  }
+}
+
+/* ----- HeaderHomeComponent -----*/
+.HeaderHome__Container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px;
+  background-color: #181818;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.HeaderHome__Logo {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #1668d4;
+  letter-spacing: 1px;
+  cursor: pointer;
+}
+
+.HeaderHome__SearchBar {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.HeaderHome__InputContainer {
+  display: flex;
+  align-items: center;
+  background-color: #121212;
+  border-radius: 20px;
+  padding: 5px 15px;
+  width: 400px;
+  position: relative;
+}
+
+.HeaderHome__InputContainer input {
+  background-color: transparent;
+  border: none;
+  color: #f1f1f1;
+  padding: 8px 15px;
+  width: 100%;
+  border-radius: 15px;
+  font-size: 14px;
+  outline: none;
+}
+
+.HeaderHome__InputContainer i {
+  position: absolute;
+  right: 10px;
+  color: #b3b3b3;
+  font-size: 18px;
+}
+
+.HeaderHome__Buttons {
+  display: flex;
+  gap: 15px;
+}
+
+.HeaderHome__Buttons button {
+  padding: 8px 20px;
+  background-color: #1668d4;
+  border: none;
+  border-radius: 25px;
+  color: white;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.HeaderHome__Buttons button:hover {
+  background-color: #1668d4;
+}
+
+.HeaderHome__Buttons button:disabled {
+  background-color: #b3b3b3;
+  cursor: not-allowed;
+}
+
+@media screen and (max-width: 768px) {
+  .HeaderHome__SearchBar {
+    justify-content: flex-end;
+  }
+
+  .HeaderHome__InputContainer {
+    width: 300px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .HeaderHome__Container {
+    padding: 10px 20px;
+  }
+
+  .HeaderHome__InputContainer {
+    width: 200px;
+  }
+
+  .HeaderHome__Logo {
+    font-size: 1.5rem;
+  }
+
+  .HeaderHome__Buttons {
+    gap: 10px;
+  }
+
+  .HeaderHome__Buttons button {
+    font-size: 12px;
+    padding: 5px 15px;
+  }
+}
+
+/* ----- SideMenuComponent ----- */
+.SideMenu__Container {
+  background-color: #121212;
+  width: 250px;
+  height: 100vh;
+  padding: 20px;
+  box-shadow: 2px 0 4px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+}
+
+.SideMenu__Ul {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.SideMenu__Menu {
+  display: flex;
+  align-items: center;
+  padding: 15px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.SideMenu__Menu:hover {
+  background-color: #1668d4;
+}
+
+.SideMenu__Menu--icon {
+  font-size: 20px;
+  margin-right: 15px;
+  color: #b3b3b3;
+}
+
+.SideMenu__Menu div {
+  font-size: 16px;
+  font-weight: 500;
+  color: inherit;
+}
+
+.SideMenu__End {
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  color: #b3b3b3;
+  padding-top: 20px;
+  border-top: 1px solid #333;
+  cursor: pointer;
+  margin-top: auto;
+}
+
+.SideMenu__End:hover {
+  color: white;
+  background-color: #1db954;
+  border-top: 1px solid #1db954;
+}
+
+.SideMenu__Container.collapsed {
+  width: 60px;
+}
+
+.SideMenu__Container.collapsed .SideMenu__Menu div {
+  display: none;
+}
+
+.SideMenu__Container.collapsed .SideMenu__Menu--icon {
+  margin-right: 0;
+}
