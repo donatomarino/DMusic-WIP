@@ -11,7 +11,7 @@ export default {
                 res.status(200).json(response);
             }
         } catch (error) {
-            res.status(500).json({message : 'Error inesperado al obtener los artistas', error: e});
+            res.status(500).json({message : 'Error inesperado al obtener los artistas', error: error});
         }
     },
     getSongs: async (req, res) => {
@@ -42,6 +42,21 @@ export default {
             }
         } catch(e) {
             res.status(500).json({message : 'Error inesperado al obtener las canciones favoritas', error: e});
+        }
+    },
+    searchSong: async(req, res) => {
+        try {
+            // SELECT s.image, s.title, a.full_name FROM songs s JOIN artists a ON s.id_artist = a.id_artist WHERE title = 'Despacito';
+            const values = ['s.image', 's.title', 'a.full_name', 'songs', 's', 'artists', 'a', 's.id_artist', 'a.id_artist', req.body.song];
+            const response = await genericCrudMySQL.searchSong(values);
+            
+            if(response) {
+                res.status(200).json(response);
+            } else {
+                res.status(400).json({error: 'No existen canciones o artistas con este titulo/nombre'});
+            }
+        } catch(e) {
+            res.status(500).json({message: 'Error en la busqueda', e})
         }
     }
 }

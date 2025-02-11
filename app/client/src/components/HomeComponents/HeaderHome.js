@@ -3,10 +3,12 @@ import Button from "../GeneralComponents/Button";
 import { LoginContext } from "../../utils/contexto/LoginContext";
 import { useNavigation } from "../../utils/hooks/useNavigation";
 import {ComponentContext} from '../../utils/contexto/ComponentContext';
+import 'font-awesome/css/font-awesome.min.css';
 
 export const HeaderHome = () => {
     const { login } = useContext(LoginContext);
     const { toggleComponent } = useContext(ComponentContext);
+    const [search, setSearch] = useState('');
     const navigate = useNavigation();
 
     return (

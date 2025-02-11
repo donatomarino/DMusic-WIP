@@ -26,5 +26,6 @@ router.get('/dmusic/songs', generic.getSongs);
 // Ruta para sacar canciones favoritas MySQL
 router.get('/dmusic/favoritesongs', generic.getFavoritesSongs)
 
-
+// Endpoint buscar por cancion o artista
+router.post('/dmusic/search', generic.searchSong);
 export {router};
