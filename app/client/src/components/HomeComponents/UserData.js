@@ -49,7 +49,7 @@ export const UserData = () => {
 
                 <div className="UserData__Content--Item">
                     <Label>Fecha de nacimiento</Label>
-                    <div className="UserData__Content--div">{datos.birthdate.slice(0,10)}</div>
+                    <div className="UserData__Content--div">{datos.birthdate.slice(0,10).split('-').reverse().join('-')}</div>
                 </div>
 
                 <div className="UserData__Content--Item">

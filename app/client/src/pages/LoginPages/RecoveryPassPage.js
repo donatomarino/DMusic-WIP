@@ -65,7 +65,7 @@ export const RecoveryPassPage = () => {
             </div>
 
             <div>
-                <Button className='Login__Button--Routes' onClick={() => navigate('/login')}>
+                <Button className='Login__Button--Routes' onClick={() => {navigate('/login'); localStorage.removeItem('token')}}>
                     Volver al login
                 </Button>
             </div>

@@ -34,7 +34,7 @@ export const FirstRegister = () => {
             </div>
 
             <div className="RegisterPage__Container">
-                <div className="RegisterPage__Container--Emotion" onClick={() => navigate('/login')}>◀️</div>
+                <div className="RegisterPage__Container--Emotion" onClick={() => {navigate('/login'); localStorage.removeItem('token')}}>◀️</div>
                 <div className="RegisterPage__Options">
                     <div className="RegisterPage__Options--Routes">Paso 1 de 2</div>
                     <div className="RegisterPage__Options--Description">Crea usuario</div>

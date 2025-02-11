@@ -3,18 +3,18 @@ import { useState, useEffect } from 'react';
 import '../../styles/home/Explore.css';
 
 export const Trends = () => {
-    const [songs, setSongs] = useState([]);
-    const { fetchData, fetchError } = useFetch();
+    const [playlist, setPlaylist] = useState([]);
+    const {fetchData, fetchError} = useFetch();
 
     useEffect(() => {
         const fetchPlaylist = async () => {
             try {
                 const response = await fetchData({
-                    endpoint: '/songs'
+                    endpoint: '/playlist'
                 })
 
                 if (response && response.length > 0) {
-                    setSongs(response)
+                    setPlaylist(response)
                 } else {
                     console.log('Ha habido un problema en la solicitud de las playlist: ', fetchError);
                 }
@@ -26,23 +26,26 @@ export const Trends = () => {
     }, [])
 
     return (
-        <div className="Explore__Container">
+        <div className = "Explore__Container">
 
             <div className='Explore__Section'>
-                <img src="https://i.pinimg.com/736x/8f/3b/1e/8f3b1eaa982f4f6d179e92c07cee99ea.jpg" className='Explore__Section--Image' />
-                <h3 className='Explore__Section--Title Trends__Section--Title'>2025 | TOP HITS TENDENCIAS NUEVAS</h3>
+                <img src="https://i.pinimg.com/736x/86/e8/b8/86e8b85d661ad48df253371dca9de3ec.jpg" className='Explore__Section--Image'/>
+                <h3 className='Explore__Section--Title'>2025 | TOP HITS TENDENCIAS NUEVAS</h3>
             </div>
 
-            <div className="Trends__ContainerCard">
-                {songs
-                    .sort((a, b) => (b.score - a.score))
+            <div className="ContentHome__Playlist">
+                <h3>Playlist</h3>
+            </div>
+
+            <div className="ContentHome__ContainerCard">
+                {playlist
+                    .slice(0, 5)
                     .map((e) => {
                         return (
-                            <div className="ContentHome__Card Trends__Card">
+                            <div className="ContentHome__Card">
                                 <img className="ContentHome__Card--Image" src={e.image} alt="Card image cap" />
                                 <div className="ContentHome__Card--Body">
-                                    <p className='Trends__Card--NameArtist'>{e.full_name}</p>
-                                    <p className="ContentHome__Card--Title Trends__Card--Title">{e.title}</p>
+                                    <p className="ContentHome__Card--Title">{e.title}</p>
                                 </div>
                             </div>
                         );
@@ -51,3 +54,4 @@ export const Trends = () => {
         </div>
     )
 }
+
