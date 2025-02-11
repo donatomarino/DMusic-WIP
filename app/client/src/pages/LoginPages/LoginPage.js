@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import Button from '../../components/LoginComponents/Button';
+import Button from '../../components/GeneralComponents/Button';
 import FormField from '../../components/LoginComponents/FormField';
 import { useNavigation } from '../../utils/hooks/useNavigation';
 import { LoginContext } from '../../utils/contexto/LoginContext';
@@ -48,7 +48,7 @@ export const LoginPage = () => {
                 localStorage.setItem('token', dataToSave);
 
                 toggleLogin();
-                navigate('/home');
+                navigate('/');
             } else {
                 setIsMatch(true);
                 console.log('Error en la solicitud', response.statusText);
@@ -61,7 +61,7 @@ export const LoginPage = () => {
     return (
         <form className='Login__Form' onSubmit={handleSubmit} method='POST'>
             <div className='Login__HeaderContainer'>
-                <h1 className='Login__HeaderContainer--Title'>DMusic</h1>
+                <h1 className='Login__HeaderContainer--Title' onClick={() => navigate('/')}>DMusic</h1>
                 <h2 id='Login_HeaderContainer--Description'>Inicia sesión en DMusic</h2>
             </div>
 

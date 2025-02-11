@@ -8,7 +8,7 @@ export default {
 	  * @param {Array} values - valores para la consulta
 	  * @returns {*} - un registro de la tabla
 	  */
-	loginAlumn: async (values) => {
+	loginUser: async (values) => {
 		const query = 'SELECT * FROM ?? WHERE ?? = ? AND ?? = ?';
 		const result = await connection.query(query, [...values])
 		return result

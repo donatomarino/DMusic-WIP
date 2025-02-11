@@ -9,7 +9,6 @@
 .HomePage__Main {
   display: flex;
   flex: 1;
-  height: calc(100vh - 80px);
   overflow: hidden;
 }
 
@@ -18,18 +17,19 @@
   flex: 1;
   padding: 25px;
   height: 100%;
-  position: relative;
-  overflow: hidden;
+  overflow-y: auto; /* Permite el desplazamiento vertical */
+  margin-top: 80px; /* Deja espacio para el header fijo */
+  margin-left: 250px; /* Deja espacio para el sidemenu fijo */
 }
 
 /* Ajustes para el iframe */
 .HomePage__Iframe {
   background-color: #181818;
   padding: 20px;
-  position: absolute;
+  position: fixed; /* Fijo en la parte inferior */
   bottom: 0;
   left: 0; /* Asegura que el iframe empiece desde el borde izquierdo */
-  width: 100%; /* El iframe ocupa todo el ancho disponible en pantallas pequeñas */
+  width: 100%; /* El iframe ocupa todo el ancho disponible */
   height: 80px;
   box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.5);
 }
@@ -37,7 +37,6 @@
 /* Ajustes en pantallas pequeñas */
 @media screen and (max-width: 768px) {
   .HomePage__Iframe {
-    left: 0; /* Asegura que el iframe no tenga margen */
     width: 100%; /* El iframe ocupa todo el ancho en pantallas pequeñas */
     height: 60px; /* Ajuste la altura para pantallas pequeñas */
   }
@@ -60,6 +59,11 @@
   padding: 20px 40px;
   background-color: #181818;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  position: fixed; /* Fijo en la parte superior */
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000; /* Asegura que el header esté por encima de otros elementos */
 }
 
 .HeaderHome__Logo {
@@ -130,6 +134,17 @@
   cursor: not-allowed;
 }
 
+.HeaderHome__Button--Profile{
+  padding: 10px;
+  background-color: #1668d4;
+  border-radius: 50%;
+}
+
+.HeaderHome__Button--Profile:hover{
+  background-color: #1668d4;
+  cursor: pointer;
+}
+
 @media screen and (max-width: 768px) {
   .HeaderHome__SearchBar {
     justify-content: flex-end;
@@ -170,10 +185,14 @@
   height: 100vh;
   padding: 20px;
   box-shadow: 2px 0 4px rgba(0, 0, 0, 0.5);
+  position: fixed; /* Fijo en el lado izquierdo */
+  top: 80px; /* Deja espacio para el header fijo */
+  left: 0;
+  z-index: 1000; /* Asegura que el menú esté por encima del contenido */
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  overflow: hidden;
+  overflow-y: auto; /* Permite desplazamiento si el contenido es largo */
 }
 
 .SideMenu__Ul {
@@ -216,16 +235,7 @@
   font-weight: bold;
   text-align: center;
   color: #b3b3b3;
-  padding-top: 20px;
-  border-top: 1px solid #333;
   cursor: pointer;
-  margin-top: auto;
-}
-
-.SideMenu__End:hover {
-  color: white;
-  background-color: #1db954;
-  border-top: 1px solid #1db954;
 }
 
 .SideMenu__Container.collapsed {

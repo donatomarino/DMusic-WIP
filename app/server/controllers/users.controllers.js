@@ -16,13 +16,14 @@ export default {
 			}
 
 			const values = ['users', 'email', email, 'pass', pass];
-			const result = await userCrudMySQL.loginAlumn(values);
+			const result = await userCrudMySQL.loginUser(values);
 			
 			if (result[0].length === 0) {
 				res.status(400).json({message: `El usuario no está registrado`});
 			} else {
 				//Configuramos el objeto con el que construiremos el token
 				const tokenFrom = { ...result[0][0]};
+				console.log(tokenFrom)
 
 				//Llamamos a la función para generar el token
 				const token = await createAccessToken(tokenFrom);

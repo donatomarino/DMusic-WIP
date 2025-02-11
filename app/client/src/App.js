@@ -38,7 +38,7 @@ function App() {
         </RegisterProvider>
         <ComponentProvider>
           <Routes>
-            <Route path='/home' element={<HomePage />} />
+            <Route path='/' element={<HomePage />} />
           </Routes>
         </ComponentProvider>
       </LoginProvider>

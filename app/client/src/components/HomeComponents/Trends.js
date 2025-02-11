@@ -29,7 +29,7 @@ export const Trends = () => {
         <div className="Explore__Container">
 
             <div className='Explore__Section'>
-                <img src="https://i.pinimg.com/736x/86/e8/b8/86e8b85d661ad48df253371dca9de3ec.jpg" className='Explore__Section--Image' />
+                <img src="https://i.pinimg.com/736x/8f/3b/1e/8f3b1eaa982f4f6d179e92c07cee99ea.jpg" className='Explore__Section--Image' />
                 <h3 className='Explore__Section--Title Trends__Section--Title'>2025 | TOP HITS TENDENCIAS NUEVAS</h3>
             </div>
 

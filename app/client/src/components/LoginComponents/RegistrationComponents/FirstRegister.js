@@ -1,5 +1,5 @@
 import { useState, useContext } from "react";
-import Button from "../Button";
+import Button from "../../GeneralComponents/Button";
 import FormField from "../FormField";
 import { useNavigation } from "../../../utils/hooks/useNavigation";
 import { RegisterContext } from "../../../utils/contexto/RegisterContext";

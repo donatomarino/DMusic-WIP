@@ -1,5 +1,5 @@
 import React from 'react';
-import Button from '../../components/LoginComponents/Button';
+import Button from '../../components/GeneralComponents/Button';
 import FormField from '../../components/LoginComponents/FormField'
 import { useLopd } from '../../utils/hooks/useLopd';
 import '../../styles/login/lopd.css';

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Button from "../../components/LoginComponents/Button";
+import Button from "../../components/GeneralComponents/Button";
 import { useNavigation } from "../../utils/hooks/useNavigation";
 import "../../styles/login/login.css";
 import FormField from "../../components/LoginComponents/FormField";

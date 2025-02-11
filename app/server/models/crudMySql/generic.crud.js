@@ -18,10 +18,19 @@ export default {
     },
     getFavoritesSongs: async(values) => {
         // SELECT s.image, s.title, a.full_name FROM users_songs us JOIN Users u ON u.id_user = us.id_user JOIN Songs s ON s.id_song = us.id_song JOIN artists a ON a.id_artist = s.id_artist WHERE us.id_user = ? ;
-        const query = 'SELECT ??, ??, ??, ?? FROM ?? AS ?? INNER JOIN ?? AS ?? ON ?? = ?? INNER JOIN ?? AS ?? ON ?? = ?? INNER JOIN ?? AS ?? ON ?? = ? WHERE ?? = ?';
+        const query = 'SELECT ??, ??, ??, ?? FROM ?? AS ?? JOIN ?? AS ?? ON ?? = ?? JOIN ?? AS ?? ON ?? = ?? JOIN ?? AS ?? ON ?? = ?? WHERE ?? = ?';
 		const [result] = await connection.query(query, [...values]);
         console.log(result)
 
-        return result;
+        return [result];
     }
+
+    // getFavoritesSongs: async(values) => {
+    //     // SELECT s.image, s.title, a.full_name FROM users_songs us JOIN Users u ON u.id_user = us.id_user JOIN Songs s ON s.id_song = us.id_song JOIN Artists a ON s.id_artist = a.id_artist WHERE us.id_user = ?;
+    //     const query = 'SELECT ??, ??, ??, ?? FROM ?? ?? JOIN ?? ?? ON ?? = ?? JOIN ?? ?? ON ?? = ?? JOIN ?? ?? ON ?? = ?? WHERE ?? = ?;'
+	// 	const [result] = await connection.query(query, [...values]);
+    //     console.log(result)
+
+    //     return [result];
+    // }
 }

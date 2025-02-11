@@ -1,9 +1,9 @@
 import { useState, useContext } from "react";
 import Label from "../../GeneralComponents/Label";
 import Input from "../../GeneralComponents/Input";
-import Button from "../Button";
 import { RegisterContext } from "../../../utils/contexto/RegisterContext";
 import Checkbox from "../Checkbox";
+import Button from "../../GeneralComponents/Button";
 import { DataContext } from "../../../utils/contexto/DataContext";
 import { useNavigation } from "../../../utils/hooks/useNavigation";
 import FormField from "../FormField";
@@ -70,7 +70,7 @@ export const SecondRegister = () => {
                     placeholder={'Introduce tu correo electrónico'}
                     value={datos.email}
                     onChange={(e) => toggleDatos({ ...datos, email: e.target.value })}
-                    required
+                    required = 'true'
                 />
             </div>
 
@@ -82,7 +82,7 @@ export const SecondRegister = () => {
                     placeholder={'Introduce tu fecha de nacimiento'}
                     value={datos.birthdate}
                     onChange={(e) => toggleDatos({ ...datos, birthdate: e.target.value })}
-                    required
+                    required = 'true'
                 />
             </div>
 

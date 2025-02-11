@@ -8,9 +8,17 @@ export const SideMenu = () => {
     const { toggleComponent } = useContext(ComponentContext);
     const navigate = useNavigation();
 
+    useEffect(() => {
+        const login = localStorage.getItem('token');
+
+        if(login){
+            toggleLogin(1);
+        }
+    }, [])
+
     const handleSubmit = () => {
         localStorage.removeItem('token');
-        toggleLogin()
+        toggleLogin(0);
         navigate('/login');
     }
 
@@ -33,14 +41,14 @@ export const SideMenu = () => {
                     <div>Tendencias</div>
                 </div>
 
-                {login &&
+                {login === 1 &&
                     <div className="SideMenu__Menu" onClick={() => toggleComponent('library')}>
                         <i className="SideMenu__Menu--icon"></i>
                         <div>Mi Biblioteca</div>
                     </div>
                 }
 
-                {login &&
+                {login === 1 &&
                     <div className="SideMenu__Menu" onClick = {handleSubmit}>
                         <div className="SideMenu__End">Cerrar Sesión</div>
                     </div>

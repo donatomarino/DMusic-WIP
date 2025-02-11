@@ -1,10 +1,12 @@
 import { useContext, useState } from "react";
-import Button from "../LoginComponents/Button";
+import Button from "../GeneralComponents/Button";
 import { LoginContext } from "../../utils/contexto/LoginContext";
 import { useNavigation } from "../../utils/hooks/useNavigation";
+import {ComponentContext} from '../../utils/contexto/ComponentContext';
 
 export const HeaderHome = () => {
     const { login } = useContext(LoginContext);
+    const { toggleComponent } = useContext(ComponentContext);
     const navigate = useNavigation();
 
     return (
@@ -20,13 +22,13 @@ export const HeaderHome = () => {
                 </div>
             </div>
 
-            {!login ? (
+            {login === 0 ? (
                 <div className="HeaderHome__Buttons">
                     <Button onClick={() => navigate('/user/register')}>Registrate</Button>
                     <Button onClick={() => navigate('/login')}>Iniciar Sesión</Button>
                 </div>
             ) : (
-                <div>D</div>
+                <div className="HeaderHome__Button--Profile" onClick={() => {toggleComponent('user-data')}}>D</div>
             )}
         </header>
     )

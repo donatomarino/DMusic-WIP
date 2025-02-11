@@ -1,0 +1,85 @@
+.UserData__Container {
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.UserData__Header {
+    margin-bottom: 20px;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.UserData__Header--h2 {
+    font-size: 24px;
+}
+
+.UserData__Header--h2::after {
+    content: "\1F60A"; /* Emoji de sonrisa */
+    margin-left: 5px;
+}
+
+.UserData__Content {
+    min-height: 450px;
+    max-width: 1000px;
+    min-width: 500px;
+    max-height: 600px;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: rgba(141, 141, 156, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Simplificado a repeat */
+    grid-gap: 15px;
+    align-items: center; /* Centra verticalmente los items */
+    justify-items: center; /* Centra horizontalmente los items */
+}
+
+.UserData__Content--Item {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centra los elementos dentro del item */
+    justify-content: center; /* Centra verticalmente los elementos dentro del item */
+    width: 100%;
+    text-align: center;
+}
+
+.UserData__Content--div {
+    background-color: #393939;
+    width: 100%;
+    max-width: 300px;
+    height: 40px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto; /* Centra el div horizontalmente */
+}
+
+.UserData__Content--Item Label {
+    font-weight: bolder;
+    margin-bottom: 5px;
+    color: #a7a7a7;
+    text-align: center;
+}
+
+
+.UserData__Button {
+    grid-column: span 2; /* Hace que el botón ocupe las dos columnas */
+    margin-top: 20px;
+    width: 500px;
+    background-color: #1668d4;
+    color: white;
+    border-radius: 25px;
+    padding: 12px 25px;
+    font-size: 1rem;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    text-align: center;
+    justify-self: center; /* Asegura que el botón se alinee al centro en la cuadrícula */
+}
+
+.UserData__Button:hover {
+    background-color: #0a4a8b;
+}

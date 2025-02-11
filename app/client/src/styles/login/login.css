@@ -30,6 +30,11 @@ body {
     margin-bottom: 10px;
 }
 
+.Login__HeaderContainer--Title:hover{
+    cursor: pointer;
+}
+
+
 #Login_HeaderContainer--Description {
     border-bottom: 1px solid #282828;
     padding-bottom: 20px;
