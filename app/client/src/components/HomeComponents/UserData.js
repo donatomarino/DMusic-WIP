@@ -17,16 +17,18 @@ export const UserData = () => {
 
     useEffect(() => {
         const user = localStorage.getItem('token');
-
-        const UserDatos = {
-            full_name: jwtDecode(user).full_name,
-            email: jwtDecode(user).email,
-            pass: jwtDecode(user).pass,
-            birthdate: jwtDecode(user).birthdate,
-            gender: jwtDecode(user).gender
+        
+        if(user) {
+            const UserDatos = {
+                full_name: jwtDecode(user).full_name,
+                email: jwtDecode(user).email,
+                pass: jwtDecode(user).pass,
+                birthdate: jwtDecode(user).birthdate,
+                gender: jwtDecode(user).gender
+            }
+    
+            setDatos(UserDatos);
         }
-
-        setDatos(UserDatos);
     }, [])
 
 

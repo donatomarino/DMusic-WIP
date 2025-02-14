@@ -1,5 +1,5 @@
 #DROP DATABASE DMusic;
-#CREATE DATABASE DMusic;
+CREATE DATABASE DMusic;
 USE DMusic;
 
 -- Creamos la tabla User
@@ -8,7 +8,7 @@ id_user INT AUTO_INCREMENT PRIMARY KEY,
 full_name VARCHAR(255) NOT NULL,
 email VARCHAR(255) NOT NULL,
 pass VARCHAR(255) NOT NULL,
-birtdate DATE NOT NULL,
+birthdate DATE NOT NULL,
 gender VARCHAR(10) NOT NULL
 );
 

@@ -1,6 +1,7 @@
 import jwt from "jsonwebtoken";
 import userCrudMySQL from '../models/crudMySql/user.crud.js';
 import { createAccessToken } from "../utils/createAccessToken.js";
+import bcrypt from 'bcryptjs';
 import { TOKEN_SECRET } from "../utils/config.js";
 const { sign, verify } = jwt;
 
@@ -96,7 +97,7 @@ export default {
 			if (!email || !full_name || !password || !birthdate || !gender) {
 				res.status(400).json({ message: 'Faltan datos obligatorios' });
 			}
-	
+			
 			// Verificamos si el usuario ya existe
 			const values = ['users', 'email', email];
 			const verifyIfExist = await userCrudMySQL.getUser(values);
@@ -106,8 +107,11 @@ export default {
 			if (verifyIfExist[0].length > 0) {
 				res.status(401).json({ message: "El usuario ya está registrado" });
 			} else {
+				// Incriptamos la password
+				const passHash = await bcrypt.hash(password, 10);
+
 				// Valores para insertar en la base de datos
-				const createValues = ['users', 'full_name', 'email', 'pass', 'birthdate', 'gender', full_name, email, password, birthdate, gender];
+				const createValues = ['users', 'full_name', 'email', 'pass', 'birthdate', 'gender', full_name, email, passHash, birthdate, gender];
 				await userCrudMySQL.createUser(createValues);
 	
 				res.status(200).json({ message: `${email} registrado correctamente!` });

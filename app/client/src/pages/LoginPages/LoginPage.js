@@ -47,7 +47,7 @@ export const LoginPage = () => {
                 // Pintamos el token en el LocalStorage
                 localStorage.setItem('token', dataToSave);
 
-                toggleLogin();
+                toggleLogin(1);
                 navigate('/');
             } else {
                 setIsMatch(true);

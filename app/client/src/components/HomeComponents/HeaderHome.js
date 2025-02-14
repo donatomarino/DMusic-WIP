@@ -22,9 +22,9 @@ export const HeaderHome = () => {
 
     useEffect(() => {
             const user = localStorage.getItem('token');
-
+            console.log(user);
             // Sacamos el nombre del token para settar la initial
-            setInit(jwtDecode(user).full_name)
+            if (user) setInit(jwtDecode(user).full_name);
     }, [])
 
     useEffect(() => {

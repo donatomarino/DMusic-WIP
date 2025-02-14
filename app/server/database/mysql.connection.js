@@ -2,7 +2,7 @@ import * as mysql from 'mysql2/promise'
 
 const my_host = "127.0.0.1";
 const my_user = 'root';
-const my_pass = 'root1234';
+const my_pass = 'root';
 const my_db = "DMusic"; // Nombre datebase
 
 export default {
