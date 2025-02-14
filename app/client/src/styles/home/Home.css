@@ -90,6 +90,11 @@
   position: relative;
 }
 
+.HeaderHome__InputContainer--Input:hover {
+  border: 1px solid #1668d4;
+  padding: 5px;
+}
+
 .HeaderHome__InputContainer input {
   background-color: transparent;
   border: none;
@@ -101,11 +106,17 @@
   outline: none;
 }
 
-.HeaderHome__InputContainer i {
-  position: absolute;
-  right: 10px;
-  color: #b3b3b3;
-  font-size: 18px;
+.HeaderHome__InputContainer--Icon {
+  background-color: transparent;
+  border: none;
+  padding: 5px;
+}
+
+.HeaderHome__InputContainer--Icon:hover{
+  padding: 4px;
+  cursor: pointer;
+  border: 1px solid #1668d4;
+  border-radius: 50%;
 }
 
 .HeaderHome__Buttons {
@@ -141,7 +152,7 @@
 }
 
 .HeaderHome__Button--Profile:hover{
-  background-color: #1668d4;
+  background-color: #0d4a9b;
   cursor: pointer;
 }
 
@@ -246,6 +257,6 @@
   display: none;
 }
 
-.SideMenu__Container.collapsed .SideMenu__Menu--icon {
-  margin-right: 0;
+.SideMenu__Icon{
+  margin-right: 10px;
 }

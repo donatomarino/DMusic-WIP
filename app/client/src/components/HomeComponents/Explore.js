@@ -10,7 +10,7 @@ export const Explore = () => {
     const { fetchData, fetchError } = useFetch();
 
     useEffect(() => {
-        const fetchPlaylist = async () => {
+        const fetchSongs = async () => {
             try {
                 const response = await fetchData({
                     endpoint: '/songs'
@@ -25,7 +25,7 @@ export const Explore = () => {
                 console.log('Error en la solicitud: ', e)
             }
         }
-        fetchPlaylist();
+        fetchSongs();
     }, [])
 
     return (

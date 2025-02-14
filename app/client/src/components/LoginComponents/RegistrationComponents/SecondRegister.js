@@ -27,8 +27,6 @@ export const SecondRegister = () => {
             "gender": datos.gender
         }
 
-        console.log(datos);
-
         try {
             const response = await fetch('http://localhost:5001/dmusic/register', {
                 method: 'POST',
@@ -45,6 +43,11 @@ export const SecondRegister = () => {
         } catch (e) {
             setMessage("Ha habido un problema en el registro: ", e);
         }
+    }
+
+    const handlePage = () => {
+        nextPage(0);
+        navigate('/login');
     }
 
     return (
@@ -97,8 +100,8 @@ export const SecondRegister = () => {
                                 id="man"
                                 name="gender"
                                 value="man"
-                                checked={datos.gender === "man"}
-                                onChange={() => toggleDatos({ ...datos, gender: "man" })}
+                                checked={datos.gender === "hombre"}
+                                onChange={() => toggleDatos({ ...datos, gender: "hombre" })}
                             />
                             <Label htmlFor="man">Hombre</Label>
                         </div>
@@ -109,8 +112,8 @@ export const SecondRegister = () => {
                                 id="woman"
                                 name="gender"
                                 value="woman"
-                                checked={datos.gender === "woman"}
-                                onChange={() => toggleDatos({ ...datos, gender: "woman" })}
+                                checked={datos.gender === "mujer"}
+                                onChange={() => toggleDatos({ ...datos, gender: "mujer" })}
                             />
                             <Label htmlFor="woman">Mujer</Label>
                         </div>
@@ -121,10 +124,10 @@ export const SecondRegister = () => {
                                 id="others"
                                 name="gender"
                                 value="others"
-                                checked={datos.gender === "others"}
-                                onChange={() => toggleDatos({ ...datos, gender: "others" })}
+                                checked={datos.gender === "prefiero no decirlo"}
+                                onChange={() => toggleDatos({ ...datos, gender: "prefiero no decirlo" })}
                             />
-                            <Label htmlFor="others">Otros</Label>
+                            <Label htmlFor="others">Prefiero no decirlo</Label>
                         </div>
                     </div>
                 </div>
@@ -136,7 +139,7 @@ export const SecondRegister = () => {
 
             {isRegistred ?
                 <div>
-                    <Button type='submit' className='Login__Button--Submit' onClick={() => navigate('/login')}>¡Conéctate ahora!</Button>
+                    <Button type='submit' className='Login__Button--Submit' onClick={() => handlePage()}>¡Conéctate ahora!</Button>
                 </div> :
                 <div>
                     <Button type='submit' className='Login__Button--Submit'>Regístrate</Button>

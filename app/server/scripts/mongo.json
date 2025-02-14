@@ -1,0 +1,47 @@
+{
+    {
+    "_id": {
+      "$oid": "67a3dbe8850ba6ce709c77ff"
+    },
+    "title": "Top 50 Italia",
+    "url": "https://www.youtube.com/watch?v=LESn4LFOfes&list=PLgzTt0k8mXzGHbWRpS5QCqNpq0JAiMe0I&ab_channel=CesareCremoniniVEVO",
+    "score": 5,
+    "image": "https://img.youtube.com/vi/0kzbZgrtOzY/maxresdefault.jpg"
+  },
+  {
+    "_id": {
+      "$oid": "67a3dbf7fdfb272751b5e274"
+    },
+    "title": "Top 50 Global",
+    "url": "https://www.youtube.com/watch?v=yqoaJ8bf8g8&ab_channel=YAYLISTS-Italy",
+    "score": 4.3,
+    "image": "https://i.ytimg.com/vi/yqoaJ8bf8g8/maxresdefault.jpg"
+  },
+  {
+    "_id": {
+      "$oid": "67a3dc019fc7574b95d75f35"
+    },
+    "title": "Latin Pop",
+    "url": "https://www.youtube.com/watch?v=Us2ZvSRUB1k&ab_channel=DJPHILLIP",
+    "score": 4.2,
+    "image": "https://img.youtube.com/vi/Us2ZvSRUB1k/maxresdefault.jpg"
+  },
+  {
+    "_id": {
+      "$oid": "67a3dc0a18681fd01f3f9632"
+    },
+    "title": "Summer Vibes Deep House Mix",
+    "url": "https://www.youtube.com/watch?v=PJxxfilLnGI&ab_channel=Rammor",
+    "score": 4.6,
+    "image": "https://img.youtube.com/vi/PJxxfilLnGI/maxresdefault.jpg"
+  },
+  {
+    "_id": {
+      "$oid": "67a3dc13d859dcc6983b2472"
+    },
+    "title": "Mix Canzoni Sanremo 2025",
+    "url": "https://www.youtube.com/watch?v=9KNi8y3Vceo&ab_channel=YAYLISTS-Italy",
+    "score": 4.1,
+    "image": "https://img.youtube.com/vi/9KNi8y3Vceo/maxresdefault.jpg"
+  }
+}

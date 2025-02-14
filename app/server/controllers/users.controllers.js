@@ -55,11 +55,11 @@ export default {
 			// Configuramos el objeto con el que construiremos el token
 			sign({ email }, TOKEN_SECRET, { expiresIn: '1h' }, (err, token) => {
 				if (err) {
-					return res.status(401).json({ message: 'Error al generar el token' })
+					res.status(401).json({ message: 'Error al generar el token' })
 				}
 
 				// Devolver el token
-				return res.status(200).json({message: 'Token generado correctamente', token: `Bearer: ${token}` });
+				res.status(200).json({message: 'Token generado correctamente', token: `Bearer: ${token}` });
 			});
 
 		} catch (e) {
@@ -72,7 +72,7 @@ export default {
 
 				// Si hay un error respondemos con el
 				if (err) {
-					return res.status(401).json({ message: 'Error al validar el token', error: err });
+					res.status(401).json({ message: 'Error al validar el token', error: err });
 				} else {
 					// Extraemos el mail del payload
 					const { email } = decoded;
@@ -94,7 +94,7 @@ export default {
 			const { full_name, email, password, birthdate, gender } = req.body;
 	
 			if (!email || !full_name || !password || !birthdate || !gender) {
-				return res.status(400).json({ message: 'Faltan datos obligatorios' });
+				res.status(400).json({ message: 'Faltan datos obligatorios' });
 			}
 	
 			// Verificamos si el usuario ya existe
@@ -104,7 +104,7 @@ export default {
 	
 			// Si el usuario ya existe, devuelve un error
 			if (verifyIfExist[0].length > 0) {
-				return res.status(401).json({ message: "El usuario ya está registrado" });
+				res.status(401).json({ message: "El usuario ya está registrado" });
 			} else {
 				// Valores para insertar en la base de datos
 				const createValues = ['users', 'full_name', 'email', 'pass', 'birthdate', 'gender', full_name, email, password, birthdate, gender];

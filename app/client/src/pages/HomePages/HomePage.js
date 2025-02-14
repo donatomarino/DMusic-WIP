@@ -8,6 +8,7 @@ import { Trends } from '../../components/HomeComponents/Trends';
 import { Library } from '../../components/HomeComponents/Library';
 import { UserData } from '../../components/HomeComponents/UserData';
 import '../../styles/home/Home.css';
+import { Search } from "../../components/HomeComponents/Search";
 
 export const HomePage = () => {
     const { component, toggleComponent } = useContext(ComponentContext);
@@ -33,6 +34,7 @@ export const HomePage = () => {
                     {component === 'trends' && <Trends />}
                     {component === 'library' && <Library />}
                     {component === 'user-data' && <UserData />}
+                    {component === 'search' && <Search />}
                 </div>
             </div>
 

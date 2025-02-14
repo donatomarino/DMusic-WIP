@@ -9,7 +9,8 @@ import { MessageProvider } from "./utils/contexto/MessageContext.js";
 import { DataProvider } from './utils/contexto/DataContext.js'
 import { LopdProvider } from "./utils/contexto/LopdContext.js";
 import { HomePage } from "./pages/HomePages/HomePage.js";
-import { Header } from "./components/GeneralComponents/Header.js"
+import { SongProvider } from "./utils/contexto/SongContext.js";
+// import { Header } from "./components/GeneralComponents/Header.js"
 import { LoginProvider } from './utils/contexto/LoginContext.js'
 import { ComponentProvider } from './utils/contexto/ComponentContext.js'
 import Lopd from "./pages/LoginPages/LopdPage.js";
@@ -18,9 +19,9 @@ import './styles/general/General.css';
 function App() {
   return (
     <Router>
-      <LoginProvider>
-        <RegisterProvider>
-          <MessageProvider>
+      <MessageProvider>
+        <LoginProvider>
+          <RegisterProvider>
             <DataProvider>
               <LopdProvider>
                 {/* <Header> */}
@@ -34,14 +35,16 @@ function App() {
                 {/* </Header> */}
               </LopdProvider>
             </DataProvider>
-          </MessageProvider>
-        </RegisterProvider>
-        <ComponentProvider>
-          <Routes>
-            <Route path='/' element={<HomePage />} />
-          </Routes>
-        </ComponentProvider>
-      </LoginProvider>
+          </RegisterProvider>
+          <ComponentProvider>
+            <SongProvider>
+              <Routes>
+                <Route path='/' element={<HomePage />} />
+              </Routes>
+            </SongProvider>
+          </ComponentProvider>
+        </LoginProvider>
+      </MessageProvider>
     </Router>
   );
 }
