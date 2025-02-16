@@ -10,8 +10,8 @@ export default {
         return result;
     },
     getSongs: async(values) => {
-        // SELECT a.full_name, s.title, s.score, s.image FROM Songs s INNER JOIN Artists a ON a.id_artist = s.id_artist;
-        const query = 'SELECT ??, ??, ??, ?? FROM ?? AS ?? INNER JOIN ?? AS ?? ON ?? = ??';
+        // SELECT a.full_name, s.title, s.score, s.image, s.url FROM Songs s INNER JOIN Artists a ON a.id_artist = s.id_artist;
+        const query = 'SELECT ??, ??, ??, ??, ?? FROM ?? AS ?? INNER JOIN ?? AS ?? ON ?? = ??';
 		const [result] = await connection.query(query, [...values])
 
         return result;
@@ -37,4 +37,12 @@ export default {
         
     //     return [result];
     // }
+    getPlaySongs: async(values) => {
+        // SELECT s.url, CONCAT (a.full_name, ' - ', s.title), s.genre FROM songs s JOIN artists a ON a.id_artist = s.id_artist;
+        const query = `SELECT ??, CONCAT(??, ' - ', ??) ??, ?? ?? FROM ?? ?? JOIN ?? ?? ON ?? = ??
+    `;
+            const [result] = await connection.query(query, [...values]);
+
+        return [result];
+    }
 }

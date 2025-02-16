@@ -2,9 +2,11 @@
 .HomePage__Container {
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  height: 100vh; /* Asegura que ocupe toda la pantalla */
   width: 100vw;
+  overflow: hidden;
 }
+
 
 .HomePage__Main {
   display: flex;
@@ -13,25 +15,87 @@
 }
 
 .HomePage__Content {
-  background-color: #1e1e1e;
   flex: 1;
+  overflow-y: auto; /* Agrega scroll si el contenido es largo */
   padding: 25px;
-  height: 100%;
-  overflow-y: auto; /* Permite el desplazamiento vertical */
-  margin-top: 80px; /* Deja espacio para el header fijo */
-  margin-left: 250px; /* Deja espacio para el sidemenu fijo */
+  background-color: #1e1e1e;
+  margin-top: 80px; /* Espacio para el header */
+  margin-left: 250px; /* Espacio para el menú lateral */
+  height: calc(100vh - 80px - 80px); /* Resta header y player */
 }
 
-/* Ajustes para el iframe */
+.HomePage__Content::-webkit-scrollbar {
+  height: 7px;
+  width: 10px;
+  /* Ancho de la barra de desplazamiento */
+}
+
+.HomePage__Content::-webkit-scrollbar-track {
+  background-color: #f1f1f1;
+  /* Color de fondo de la pista de la barra */
+}
+
+.HomePage__Content::-webkit-scrollbar-thumb {
+  background-color: #696969;
+}
+
+.HomePage__Content::-webkit-scrollbar-thumb:hover {
+  background-color: #555;
+}
+
+
 .HomePage__Iframe {
   background-color: #181818;
-  padding: 20px;
-  position: fixed; /* Fijo en la parte inferior */
+  padding: 10px;
+  position: fixed;
   bottom: 0;
-  left: 0; /* Asegura que el iframe empiece desde el borde izquierdo */
-  width: 100%; /* El iframe ocupa todo el ancho disponible */
-  height: 80px;
+  left: 0;
+  width: 100%; /* Ocupa todo el ancho */
+  height: 120px !important; /* Ajusta la altura del reproductor */
   box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.5);
+}
+
+._wrapper_l8wb1_1 {
+  margin: 5px 0 20px !important;
+}
+
+._wrapper_1sefb_1 {
+  padding: 5px 20px !important;
+  padding-bottom: 10px !important;
+}
+
+._wrapper_exo6z_1{
+  margin-bottom: 150px !important;
+}
+
+._wrapper_1er3w_1{
+  height: 20px !important;
+}
+
+._title_1ldbx_1 {
+  font-size: 14px !important;
+}
+
+._time_ac0au_1{
+  font-size: 12px !important;
+}
+
+._play_rfl62_1, ._previous_1mino_1, ._next_147p5_1, ._pause_1talx_1{
+  height: 18px !important;
+  width: 18px !important;
+}
+
+._play_rfl62_1:hover, ._previous_1mino_1:hover, ._next_147p5_1:hover, ._pause_1talx_1:hover {
+  cursor: pointer !important;
+}
+
+._loop_1v4pf_1, ._shuffle_15ul3_1 {
+  width: 14px !important;
+  height: 14px !important;
+}
+
+._slider_1kekm_13, ._slider_1er3w_13{
+  height: 1px !important;
 }
 
 /* Ajustes en pantallas pequeñas */

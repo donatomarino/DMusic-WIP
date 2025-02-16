@@ -9,6 +9,8 @@ import { Library } from '../../components/HomeComponents/Library';
 import { UserData } from '../../components/HomeComponents/UserData';
 import '../../styles/home/Home.css';
 import { Search } from "../../components/HomeComponents/Search";
+import { PlayerComponent } from "../../components/HomeComponents/PlayerComponent";
+import { Player1 } from "../../components/HomeComponents/Player";
 
 export const HomePage = () => {
     const { component, toggleComponent } = useContext(ComponentContext);
@@ -38,7 +40,9 @@ export const HomePage = () => {
                 </div>
             </div>
 
-            <div className="HomePage__Iframe"></div>
+            <div className="HomePage__Iframe">
+                <Player1 />
+            </div>
         </div>
     )
 }
