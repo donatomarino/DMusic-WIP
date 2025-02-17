@@ -4,33 +4,43 @@ import Player from "@madzadev/audio-player";
 import "@madzadev/audio-player/dist/index.css";
 
 export const PlayerComponent = () => {
-    const [tracks, setTracks] = useState([]);
-    const {fetchData, fetchError} = useFetch();
+    const [tracks, setTracks] = useState();
+    const { fetchData, fetchError } = useFetch();
 
     useEffect(() => {
-        const fetchSongs = async() => {
-            try{
+        const fetchSongs = async () => {
+            try {
                 const response = await fetchData({
-                    endpoint: '/play'
+                    endpoint: '/songs'
                 })
 
-                if(response && response.length > 0){
-                    const formattedTracks = Array.isArray(response[0]) ? response[0] : response;
-
+                if (response && response.length > 0) {
+                    // Construimos el formato que quiere recibir la libreria del reproductor
+                    const formattedTracks = await response.map(e => ({
+                        url: `http://localhost:5001/${e.url}`,
+                        title: `${e.full_name} - ${e.title}`,
+                        tags: ["music"]
+                    }));
+                    
                     setTracks(formattedTracks);
-        
-                    console.log(tracks);
+
                 } else {
                     console.log('Ha habido un problema en sacar las canciones: ', fetchError);
                 }
-            } catch (e) {
-                console.log('Error en la solicitud: ', e );
+            } catch (e) {
+                console.log('Error en la solicitud: ', e);
             }
         }
         fetchSongs();
     }, []);
 
     return (
-       <Player trackList = {tracks} />
-    )
+        <Player
+            trackList={tracks}
+            includeTags={false}
+            includeSearch={false}
+            showPlaylist={false}
+            sortTracks={false}
+            autoPlayNextTrack={false}
+        />)
 }

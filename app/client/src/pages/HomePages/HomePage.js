@@ -41,7 +41,7 @@ export const HomePage = () => {
             </div>
 
             <div className="HomePage__Iframe">
-                <Player1 />
+                <PlayerComponent />
             </div>
         </div>
     )

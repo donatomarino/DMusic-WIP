@@ -21,7 +21,7 @@
   background-color: #1e1e1e;
   margin-top: 80px; /* Espacio para el header */
   margin-left: 250px; /* Espacio para el menú lateral */
-  height: calc(100vh - 80px - 80px); /* Resta header y player */
+  height: calc(100vh - 80px - 100px); /* Ajustar altura con el reproductor */
 }
 
 .HomePage__Content::-webkit-scrollbar {
@@ -69,7 +69,8 @@
 }
 
 ._wrapper_1er3w_1{
-  height: 20px !important;
+  min-height: 20px !important;
+  max-height: 20px !important;
 }
 
 ._title_1ldbx_1 {

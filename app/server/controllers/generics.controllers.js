@@ -69,12 +69,12 @@ export default {
             if(response.length === 0) {
                 res.status(400).json({message: 'No hay canciones en la base de datos'} )
             } else {
-                // res.status(200).json([{
-                //     url: response.url,
-                //     title: response.full_name + ' - ' + response.title,
-                //     tags: '[' + response.genre + ']'
-                // }]);
-                res.status(200).json(response)
+                res.status(200).json([{
+                    url: response.url,
+                    title: response.full_name + ' - ' + response.title,
+                    tags: '[' + response.genre + ']'
+                }]);
+                // res.status(200).json(response)
             }
         } catch(e) {
             res.status(500).json({message : 'Error inesperado al obtener las canciones', error: e});
