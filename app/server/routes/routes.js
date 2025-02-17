@@ -28,7 +28,8 @@ router.get('/dmusic/favoritesongs', generic.getFavoritesSongs)
 
 // Endpoint buscar por cancion o artista
 router.post('/dmusic/search', generic.searchSong);
-export {router};
 
-// Endpoint para reproducir musica
-router.get('/dmusic/play', generic.getPlaySongs)
+// Endpoint para reproducir cancion
+router.post('/dmusic/play-song', generic.playSong);
+
+export {router};

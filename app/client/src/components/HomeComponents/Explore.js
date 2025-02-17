@@ -2,11 +2,14 @@
 
 
 import useFetch from '../../utils/hooks/useFetch';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import '../../styles/home/Explore.css';
+import { SongContext } from '../../utils/contexto/SongContext';
 
 export const Explore = () => {
     const [songs, setSongs] = useState([]);
+    const { toggleSong} = useContext(SongContext);
+
     const { fetchData, fetchError } = useFetch();
 
     useEffect(() => {
@@ -28,6 +31,29 @@ export const Explore = () => {
         fetchSongs();
     }, [])
 
+    const handleSong = async (id) => {
+
+        try{
+            const response = await fetchData({
+                endpoint: '/play-song',
+                method: 'POST',
+                body: {id}
+            })
+
+            if(response[0].length > 0){
+                const formattedTracks = [{
+                    url: `http://localhost:5001/${response[0][0].url}`,
+                    title: `${response[0][0].title}`,
+                    tags: ["music"]
+                }];
+
+                toggleSong(formattedTracks);
+            }
+        } catch (e){
+            console.log('Ha habido un problema en la solicitud: ', e);
+        }
+    }
+
     return (
         <div className="Explore__Container">
 
@@ -38,10 +64,10 @@ export const Explore = () => {
 
             <div className="Trends__ContainerCard">
                 {songs
-                    .sort((a, b) => (b.score - a.score))
-                    .map((e) => {
+                    .sort((a,b) => a.id_song - b.id_song)
+                    .map((e, i) => {
                         return (
-                            <div className="ContentHome__Card Trends__Card">
+                            <div className="ContentHome__Card Trends__Card" onClick={() => handleSong(i+1)}>
                                 <img className="ContentHome__Card--Image" src={e.image} alt="Card image cap" />
                                 <div className="ContentHome__Card--Body">
                                     <p className='Trends__Card--NameArtist'>{e.full_name}</p>

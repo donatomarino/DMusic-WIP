@@ -68,6 +68,11 @@
     margin-top: 40px;
 }
 
+.ContentHome__Card:hover{
+    transform: scale(1.03);  /* Le da un pequeño zoom cuando se pasa el cursor */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
 .Trends__Card--NameArtist {
     text-align: center;
     font-weight: bold;

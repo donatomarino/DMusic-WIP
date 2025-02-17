@@ -17,7 +17,7 @@ export default {
     getSongs: async (req, res) => {
         try {
             //SELECT a.full_name, s.title, s.score, s.image FROM Songs s INNER JOIN Artists a ON a.id_artist = s.id_artist;
-            const values = ['a.full_name', 's.title', 's.score', 's.image', 's.url', 'Songs', 's', 'artists', 'a', 'a.id_artist', 's.id_artist'];
+            const values = ['a.full_name', 's.id_song', 's.title', 's.score', 's.image', 's.url', 'Songs', 's', 'artists', 'a', 'a.id_artist', 's.id_artist'];
             const response = await genericCrudMySQL.getSongs(values);
 
             if(response.length === 0) {
@@ -59,22 +59,17 @@ export default {
             res.status(500).json({message: 'Error en la busqueda', e})
         }
     },
-    getPlaySongs: async (req, res) => {
+    playSong: async (req, res) => {
         try {
-            // SELECT s.url, CONCAT (a.full_name, ' - ', s.title), s.genre FROM songs s JOIN artists a ON a.id_artist = s.id_artist;
-            const values = ['s.url', 'a.full_name', 's.title', 'title', 's.genre', 'tags', 'songs', 's', 'artists', 'a', 'a.id_artist', 's.id_artist'];
-            const response = await genericCrudMySQL.getPlaySongs(values);
+            // SELECT s.url, CONCAT (a.full_name, ' - ', s.title), s.genre FROM songs s JOIN artists a ON a.id_artist = s.id_artist WHERE s.id_song = 1;
+            const values = ['s.url', 'a.full_name', 's.title', 'title', 's.genre', 'tags', 'songs', 's', 'artists', 'a', 'a.id_artist', 's.id_artist', 's.id_song', req.body.id];
+            const response = await genericCrudMySQL.playSong(values);
             console.log(response);
 
             if(response.length === 0) {
                 res.status(400).json({message: 'No hay canciones en la base de datos'} )
             } else {
-                res.status(200).json([{
-                    url: response.url,
-                    title: response.full_name + ' - ' + response.title,
-                    tags: '[' + response.genre + ']'
-                }]);
-                // res.status(200).json(response)
+                res.status(200).json(response)
             }
         } catch(e) {
             res.status(500).json({message : 'Error inesperado al obtener las canciones', error: e});
