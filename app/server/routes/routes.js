@@ -32,4 +32,7 @@ router.post('/dmusic/search', generic.searchSong);
 // Endpoint para reproducir cancion
 router.post('/dmusic/play-song', generic.playSong);
 
+// Endpoint para reproducir canciones de un artista singolo
+router.post('/dmusic/play-artist', generic.playArtist);
+
 export {router};

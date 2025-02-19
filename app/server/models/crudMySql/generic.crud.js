@@ -39,10 +39,9 @@ export default {
     // }
     playSong: async(values) => {
         // SELECT s.url, CONCAT (a.full_name, ' - ', s.title), s.genre FROM songs s JOIN artists a ON a.id_artist = s.id_artist WHERE s.id_song = 1;
-        const query = `SELECT ??, CONCAT(??, ' - ', ??) ??, ?? ?? FROM ?? ?? JOIN ?? ?? ON ?? = ?? WHERE ?? = ?;
-    `;
+        const query = `SELECT ??, CONCAT(??, ' - ', ??) ??, ?? ?? FROM ?? ?? JOIN ?? ?? ON ?? = ?? WHERE ?? = ?;`;
             const [result] = await connection.query(query, [...values]);
 
         return [result];
-    }
+    },
 }

@@ -1,11 +1,13 @@
 import useFetch from '../../utils/hooks/useFetch';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import '../../styles/home/ContentHomeExplore.css';
+import { SongContext } from '../../utils/contexto/SongContext';
 
 export const ContentHome = () => {
     const [playlist, setPlaylist] = useState([]);
     const [artists, setartists] = useState([]);
     const { fetchData, fetchError } = useFetch();
+    const { toggleSong } = useContext(SongContext);
 
     useEffect(() => {
         const fetchs = async () => {
@@ -37,6 +39,58 @@ export const ContentHome = () => {
         fetchs();
     }, [])
 
+    const handlePlaylist = async (id) => {
+        try {
+            const response = await fetchData({
+                endpoint: '/playlist',
+                // method: 'POST',
+                // body: {id}
+            })
+
+            console.log(response[0][0]);
+
+            console.log(response);
+            if (response[0].length > 0) {
+                const formattedTracks = [{
+                    url: `http://localhost:5001/${response[0][0].url}`,
+                    title: `${response[0][0].title}`,
+                    tags: ["music"]
+                }];
+
+                toggleSong(formattedTracks);
+            }
+        } catch (e) {
+            console.log('Ha habido un problema en la solicitud: ', e);
+        }
+    }
+
+    const handleSong = async (id) => {
+        try {
+            const response = await fetchData({
+                endpoint: '/play-artist',
+                method: 'POST',
+                body: { id }
+            })
+
+            if (response.length > 0) {
+                const formattedTracks = [];
+                response.map(e => {
+                    e.map(e => {
+                        formattedTracks.push({
+                            url: `http://localhost:5001/${e.url}`,
+                            title: `${e.title}`,
+                            tags: ["music"]
+                        });
+                    });
+                });
+
+                toggleSong(formattedTracks);
+            }
+        } catch (e) {
+            console.log('Ha habido un problema en la solicitud: ', e);
+        }
+    }
+
     return (
         <div className="ContentHome__Container">
             <div className="ContentHome__Playlist">
@@ -49,7 +103,7 @@ export const ContentHome = () => {
                     .slice(0, 5)
                     .map((e) => {
                         return (
-                            <div class="ContentHome__Card">
+                            <div class="ContentHome__Card" onClick={() => handlePlaylist(e._id)}>
                                 <img className="ContentHome__Card--Image" src={e.image} alt="Card image cap" />
                                 <div className="ContentHome__Card--Body">
                                     <p className="ContentHome__Card--Title">{e.title}</p>
@@ -64,13 +118,13 @@ export const ContentHome = () => {
             </div>
 
             <div className="ContentHome__ContainerCard">
-            {artists
+                {artists
                     .sort((a, b) => b.score - a.score)
                     .slice(0, 5)
                     .map((e) => {
                         return (
-                            <div className="ContentHome__Card ContentHome__Card--Artists">
-                                <img className="ContentHome__Card--Image ContentHome__Card--Avatar" src={e.avatar} alt="Card image cap"/>
+                            <div className="ContentHome__Card ContentHome__Card--Artists" onClick={() => handleSong(e.id_artist)}>
+                                <img className="ContentHome__Card--Image ContentHome__Card--Avatar" src={e.avatar} alt="Card image cap" />
                                 <div className="ContentHome__Card--Body">
                                     <p className="ContentHome__Card--Title">{e.full_name}</p>
                                 </div>

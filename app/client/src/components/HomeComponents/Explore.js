@@ -32,7 +32,6 @@ export const Explore = () => {
     }, [])
 
     const handleSong = async (id) => {
-
         try{
             const response = await fetchData({
                 endpoint: '/play-song',
@@ -45,7 +44,7 @@ export const Explore = () => {
                     url: `http://localhost:5001/${response[0][0].url}`,
                     title: `${response[0][0].title}`,
                     tags: ["music"]
-                }];
+                }];                
 
                 toggleSong(formattedTracks);
             }
@@ -64,10 +63,10 @@ export const Explore = () => {
 
             <div className="Trends__ContainerCard">
                 {songs
-                    .sort((a,b) => a.id_song - b.id_song)
+                    .sort((a,b) => b.score - a.score)
                     .map((e, i) => {
                         return (
-                            <div className="ContentHome__Card Trends__Card" onClick={() => handleSong(i+1)}>
+                            <div className="ContentHome__Card Trends__Card" onClick={() => handleSong(e.id_song)} key={i}>
                                 <img className="ContentHome__Card--Image" src={e.image} alt="Card image cap" />
                                 <div className="ContentHome__Card--Body">
                                     <p className='Trends__Card--NameArtist'>{e.full_name}</p>

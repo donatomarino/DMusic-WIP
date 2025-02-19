@@ -18,7 +18,9 @@ app.use(cors());
 
 app.use(router);
 
+// Escuchar canciones desde local
 app.use('/music', express.static(path.join(__dirname, 'music')));
+app.use('/playlist', express.static(path.join(__dirname, 'playlist')));
 
 const port = process.env.PORT || 5001;
 
