@@ -61,8 +61,8 @@ export default {
     },
     playSong: async (req, res) => {
         try {
-            // SELECT s.url, CONCAT (a.full_name, ' - ', s.title), s.genre FROM songs s JOIN artists a ON a.id_artist = s.id_artist WHERE s.id_song = 1;
-            const values = ['s.url', 'a.full_name', 's.title', 'title', 's.genre', 'tags', 'songs', 's', 'artists', 'a', 'a.id_artist', 's.id_artist', 's.id_song', req.body.id];
+            // SELECT s.url, CONCAT (a.full_name, ' - ', s.title) title FROM songs s JOIN artists a ON a.id_artist = s.id_artist ORDER BY s.id_song = 3 DESC, s.id_song;
+            const values = ['s.url', 'a.full_name', 's.title', 'title', 'songs', 's', 'artists', 'a', 'a.id_artist', 's.id_artist', 's.id_song', req.body.id, 's.id_song'];
             const response = await genericCrudMySQL.playSong(values);
             console.log(response);
 

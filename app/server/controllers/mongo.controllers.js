@@ -6,6 +6,7 @@ export default {
 		try {
 			const result = await genericMongoCrud.getAll('playlists');
 
+
 			res.json(result)
 		} finally {
 			await mongo.closeClient()
@@ -14,10 +15,19 @@ export default {
     getLopd: async (req, res) => {
         try{
 			const result = await genericMongoCrud.getAll('lopd');
-		
+			
             res.json(result);
         } finally {
             await mongo.closeClient();
         }
-    }
+    },
+	getPlaylist: async(req, res) => {
+		try {
+			const result = await genericMongoCrud.getOne('playlists', req.body.id);
+
+			res.json(result);
+		} finally {
+			await mongo.closeClient()
+		}
+	}
 }

@@ -1,16 +1,18 @@
 import useFetch from '../../utils/hooks/useFetch';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
+import { SongContext } from '../../utils/contexto/SongContext';
 import '../../styles/home/Explore.css';
 
 export const Trends = () => {
     const [playlist, setPlaylist] = useState([]);
     const {fetchData, fetchError} = useFetch();
+    const {toggleSong} = useContext(SongContext);
 
     useEffect(() => {
         const fetchPlaylist = async () => {
             try {
                 const response = await fetchData({
-                    endpoint: '/playlist'
+                    endpoint: '/playlists'
                 })
 
                 if (response && response.length > 0) {
@@ -24,6 +26,28 @@ export const Trends = () => {
         }
         fetchPlaylist();
     }, [])
+
+    const handlePlaylist = async (id) => {
+        try {
+            const response = await fetchData({
+                endpoint: '/playlist',
+                method: 'POST',
+                body: {id}
+            })
+
+            if (response.length > 0) {
+                const formattedTracks = [{
+                    url: `http://localhost:5001/${response[0].url}`,
+                    title: `${response[0].title}`,
+                    tags: ["music"]
+                }];
+
+                toggleSong(formattedTracks);
+            }
+        } catch (e) {
+            console.log('Ha habido un problema en la solicitud: ', e);
+        }
+    }
 
     return (
         <div className = "Explore__Container">
@@ -42,7 +66,7 @@ export const Trends = () => {
                     .slice(0, 5)
                     .map((e) => {
                         return (
-                            <div className="ContentHome__Card">
+                            <div className="ContentHome__Card" onClick={() => handlePlaylist(e._id)}>
                                 <img className="ContentHome__Card--Image" src={e.image} alt="Card image cap" />
                                 <div className="ContentHome__Card--Body">
                                     <p className="ContentHome__Card--Title">{e.title}</p>

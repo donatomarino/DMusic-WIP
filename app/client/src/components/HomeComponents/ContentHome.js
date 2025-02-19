@@ -13,7 +13,7 @@ export const ContentHome = () => {
         const fetchs = async () => {
             try {
                 const resPlaylist = await fetchData({
-                    endpoint: '/playlist'
+                    endpoint: '/playlists'
                 })
 
                 if (resPlaylist && resPlaylist.length > 0) {
@@ -43,17 +43,14 @@ export const ContentHome = () => {
         try {
             const response = await fetchData({
                 endpoint: '/playlist',
-                // method: 'POST',
-                // body: {id}
+                method: 'POST',
+                body: {id}
             })
 
-            console.log(response[0][0]);
-
-            console.log(response);
-            if (response[0].length > 0) {
+            if (response.length > 0) {
                 const formattedTracks = [{
-                    url: `http://localhost:5001/${response[0][0].url}`,
-                    title: `${response[0][0].title}`,
+                    url: `http://localhost:5001/${response[0].url}`,
+                    title: `${response[0].title}`,
                     tags: ["music"]
                 }];
 

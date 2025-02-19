@@ -39,12 +39,19 @@ export const Explore = () => {
                 body: {id}
             })
 
+            console.log(response);
+
             if(response[0].length > 0){
-                const formattedTracks = [{
-                    url: `http://localhost:5001/${response[0][0].url}`,
-                    title: `${response[0][0].title}`,
-                    tags: ["music"]
-                }];                
+                const formattedTracks = [];
+                response.map(e => {
+                    e.map(e => {
+                        formattedTracks.push({
+                            url: `http://localhost:5001/${e.url}`,
+                            title: `${e.title}`,
+                            tags: ["music"]
+                        });
+                    });
+                });
 
                 toggleSong(formattedTracks);
             }

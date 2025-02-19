@@ -14,7 +14,8 @@ router.post('/dmusic/register', users.register);
 // Rutas MySQL sacar tablas
 
 // Ruta para sacar playlist y lopd mongoDB
-router.get('/dmusic/playlist', mongo.getPlaylists);
+router.post('/dmusic/playlist', mongo.getPlaylist);
+router.get('/dmusic/playlists', mongo.getPlaylists);
 router.get('/dmusic/lopd', mongo.getLopd);
 
 // Rutas para sacar Artistas MySQL
