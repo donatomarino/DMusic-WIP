@@ -3,23 +3,30 @@
     list-style-type: none;  /* Elimina los puntos por defecto de las listas */
     padding: 0;
     margin: 0;
+    width: 100%;
   }
   
   .Library__Item {
-    display: flex;  /* Para que los elementos dentro de cada li estén en fila */
-    align-items: center;  /* Centra los elementos verticalmente */
+    width: 100%;  /* Asegura que cada elemento ocupe toda la fila */
+    display: flex;
+    align-items: center;
     padding: 15px;
     margin: 10px 0;
     background-color: #2c2c2c;
     border-radius: 8px;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    justify-content: space-between; /* Distribuye los elementos a lo largo de la fila */
-  }
+    justify-content: space-between;
+}
+
   
   .Library__Item:hover {
     transform: scale(1.03);  /* Le da un pequeño zoom cuando se pasa el cursor */
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  }
+
+  .Library__ContainerList{
+    width: 100%;
   }
   
   /* Imagen */
@@ -69,19 +76,3 @@
       font-size: 12px; /* Ajusta el tamaño de la fuente para pantallas pequeñas */
     }
   }
-  
-.Library__Ol--heart, .Library__Ol--play{
-    font-size: 20px;
-}
-
-.Library__Ol--play::after{
-    content: '\25B6';
-    padding: 4px;
-}
-
-.Library__Ol--heart::after {
-    content: '\2764';
-    color: red;
-    padding: 4px;
-    border-radius: 5%;
-}

@@ -266,15 +266,13 @@
   left: 0;
   z-index: 1000; /* Asegura que el menú esté por encima del contenido */
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  flex-direction: column; /* Asegura que los elementos se distribuyan en columna */
+  justify-content: space-between; /* Empuja el logout hacia abajo */
   overflow-y: auto; /* Permite desplazamiento si el contenido es largo */
 }
 
 .SideMenu__Ul {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
+  flex-grow: 1; /* Ocupa el espacio disponible, empujando "Cerrar Sesión" hacia abajo */
   list-style: none;
   padding: 0;
   margin: 0;
@@ -286,12 +284,12 @@
   padding: 15px 20px;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  border-radius: 5px;
   margin-bottom: 10px;
 }
 
-.SideMenu__Menu:hover {
+.SideMenu__Menu:hover, .SideMenu__End:hover {
   background-color: #1668d4;
+  border-radius: 5px;
 }
 
 .SideMenu__Menu--icon {
@@ -310,8 +308,15 @@
   font-size: 16px;
   font-weight: bold;
   text-align: center;
-  color: #b3b3b3;
+  position:absolute;
+  bottom: 90px;
+  left: 10px;
+  color:#b3b3b3;
+  width: 90%;
   cursor: pointer;
+  border-top: 1px solid #282828;
+  transition: background-color 0.3s ease;
+  padding: 10px;
 }
 
 .SideMenu__Container.collapsed {

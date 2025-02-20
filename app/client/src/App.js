@@ -15,6 +15,7 @@ import { LoginProvider } from './utils/contexto/LoginContext.js'
 import { ComponentProvider } from './utils/contexto/ComponentContext.js'
 import Lopd from "./pages/LoginPages/LopdPage.js";
 import './styles/general/General.css';
+import { SearchProvider } from "./utils/contexto/SearchContext.js";
 
 function App() {
   return (
@@ -24,25 +25,23 @@ function App() {
           <RegisterProvider>
             <DataProvider>
               <LopdProvider>
-                {/* <Header> */}
-                <Routes>
-                  <Route path='/login' element={<LoginPage />} />
-                  <Route path='/user/forgot-password' element={<RecoveryPassPage />} />
-                  <Route path='/user/confirm-recovery/:token' element={<ConfirmRecoveryPage />} />
-                  <Route path='/user/register' element={<RegisterPage />} />
-                  <Route path='/user/lopd' element={<Lopd />} />
-                </Routes>
-                {/* </Header> */}
+                <ComponentProvider>
+                  <SongProvider>
+                    <SearchProvider>
+                    <Routes>
+                      <Route path='/login' element={<LoginPage />} />
+                      <Route path='/user/forgot-password' element={<RecoveryPassPage />} />
+                      <Route path='/user/confirm-recovery/:token' element={<ConfirmRecoveryPage />} />
+                      <Route path='/user/register' element={<RegisterPage />} />
+                      <Route path='/user/lopd' element={<Lopd />} />
+                      <Route path='/' element={<HomePage />} />
+                    </Routes>
+                    </SearchProvider>
+                  </SongProvider>
+                </ComponentProvider>
               </LopdProvider>
             </DataProvider>
           </RegisterProvider>
-          <ComponentProvider>
-            <SongProvider>
-              <Routes>
-                <Route path='/' element={<HomePage />} />
-              </Routes>
-            </SongProvider>
-          </ComponentProvider>
         </LoginProvider>
       </MessageProvider>
     </Router>

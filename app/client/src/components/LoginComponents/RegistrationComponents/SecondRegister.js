@@ -7,7 +7,8 @@ import Button from "../../GeneralComponents/Button";
 import { DataContext } from "../../../utils/contexto/DataContext";
 import { useNavigation } from "../../../utils/hooks/useNavigation";
 import FormField from "../FormField";
-import "../../../styles/login/login.css"
+import { FaChevronLeft } from "react-icons/fa";
+import "../../../styles/login/login.css";
 
 export const SecondRegister = () => {
     const { datos, toggleDatos } = useContext(DataContext);
@@ -58,7 +59,7 @@ export const SecondRegister = () => {
             </div>
 
             <div className="RegisterPage__Container">
-                <div className="RegisterPage__Container--Emotion" onClick={() => { nextPage(0) }}>◀️</div>
+                <div className="RegisterPage__Container--Emotion" onClick={() => { nextPage(0) }}><FaChevronLeft size={18} color="white" /></div>
                 <div className="RegisterPage__Options">
                     <div className="RegisterPage__Options--Routes">Paso 2 de 2</div>
                     <div className="RegisterPage__Options--Description">Crea usuario</div>

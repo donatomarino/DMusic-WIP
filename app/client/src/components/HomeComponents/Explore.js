@@ -62,7 +62,6 @@ export const Explore = () => {
 
     return (
         <div className="Explore__Container">
-
             <div className='Explore__Section'>
                 <img src="https://i.pinimg.com/736x/8f/3b/1e/8f3b1eaa982f4f6d179e92c07cee99ea.jpg" className='Explore__Section--Image' />
                 <h3 className='Explore__Section--Title Trends__Section--Title'>RECOMENDACIONES DE LOS USUARIOS</h3>

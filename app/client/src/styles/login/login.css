@@ -172,6 +172,11 @@ body {
     margin-bottom: 50px;
 }
 
+.RegisterPage__Container--Emotion{
+    position:relative;
+    top: 10px;
+}
+
 .RegisterPage__Container--Emotion:hover {
     cursor: pointer;
 }

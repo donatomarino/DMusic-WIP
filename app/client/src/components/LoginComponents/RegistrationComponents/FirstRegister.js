@@ -4,7 +4,8 @@ import FormField from "../FormField";
 import { useNavigation } from "../../../utils/hooks/useNavigation";
 import { RegisterContext } from "../../../utils/contexto/RegisterContext";
 import { DataContext } from "../../../utils/contexto/DataContext";
-import "../../../styles/login/login.css"
+import { FaChevronLeft } from "react-icons/fa";
+import "../../../styles/login/login.css";
 
 export const FirstRegister = () => {
     const navigate = useNavigation();
@@ -34,7 +35,7 @@ export const FirstRegister = () => {
             </div>
 
             <div className="RegisterPage__Container">
-                <div className="RegisterPage__Container--Emotion" onClick={() => {navigate('/login'); localStorage.removeItem('token')}}>◀️</div>
+                <div className="RegisterPage__Container--Emotion" onClick={() => {navigate('/login'); localStorage.removeItem('token')}}><FaChevronLeft size={18} color="white" /></div>
                 <div className="RegisterPage__Options">
                     <div className="RegisterPage__Options--Routes">Paso 1 de 2</div>
                     <div className="RegisterPage__Options--Description">Crea usuario</div>

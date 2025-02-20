@@ -14,9 +14,9 @@
     font-size: 24px;
 }
 
-.UserData__Header--h2::after {
-    content: "\1F60A"; /* Emoji de sonrisa */
-    margin-left: 5px;
+.UserData__Header--emoji{
+    position: relative;
+    top: 5px;
 }
 
 .UserData__Content {

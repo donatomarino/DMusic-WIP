@@ -24,37 +24,35 @@ export const SideMenu = () => {
     }
 
     return (
-        <div className="SideMenu__Container" >
+        <div className="SideMenu__Container">
+            <ul className="SideMenu__Ul">
+                <li className="SideMenu__Menu" onClick={() => toggleComponent('home')}>
+                    <FaHome className="SideMenu__Menu--icon" />
+                    <div>Inicio</div>
+                </li>
+                <li className="SideMenu__Menu" onClick={() => toggleComponent('explore')}>
+                    <FaSearch className="SideMenu__Menu--icon" />
+                    <div>Buscar</div>
+                </li>
+                <li className="SideMenu__Menu" onClick={() => toggleComponent('trends')}>
+                    <FaChartLine className="SideMenu__Menu--icon" />
+                    <div>Explorar</div>
+                </li>
 
-            <div className="SideMenu__Ul">
-                <div className="SideMenu__Menu" onClick={() => toggleComponent('home')}>
-                    <span class="SideMenu__Icon"><FaHome size={20} color="#555" /></span>
-                    <div>Home</div>
-                </div>
-
-                <div className="SideMenu__Menu" onClick={() => toggleComponent('explore')}>
-                    <span class="SideMenu__Icon"><FaSearch size={20} color="#555" /></span>
-                    <div onClick={() => toggleComponent('explore')}>Explorar</div>
-                </div>
-
-                <div className="SideMenu__Menu" onClick={() => toggleComponent('trends')}>
-                    <span class="SideMenu__Icon"><FaChartLine size={20} color="#555" /></span>
-                    <div>Tendencias</div>
-                </div>
-
-                {login === 1 &&
-                    <div className="SideMenu__Menu" onClick={() => toggleComponent('library')}>
-                        <span class="SideMenu__Icon"><FaMusic size={20} color="#555" /></span>
+                {login === 1 && (
+                    <li className="SideMenu__Menu" onClick={() => toggleComponent('library')}>
+                        <FaMusic className="SideMenu__Icon" size={20} color="#555" />
                         <div>Mi Biblioteca</div>
-                    </div>
-                }
+                    </li>
+                )}
 
-                {login === 1 &&
-                    <div className="SideMenu__Menu" onClick={handleSubmit}>
-                        <div className="SideMenu__End">Cerrar Sesión</div>
-                    </div>
-                }
-            </div>
+                {login === 1 && (
+                    <li className="SideMenu__End" onClick={handleSubmit}>
+                        Cerrar Sesión
+                    </li>
+                )}
+            </ul>
+
         </div>
-    )
+    );
 }

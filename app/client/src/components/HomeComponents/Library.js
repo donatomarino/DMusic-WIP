@@ -1,18 +1,21 @@
 import useFetch from '../../utils/hooks/useFetch';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
+import { FaPlay, FaHeart } from "react-icons/fa";
+import { SongContext } from '../../utils/contexto/SongContext';
 import '../../styles/home/Library.css';
 
 export const Library = () => {
     const [library, setLibrary] = useState([]);
+    const { toggleSong } = useContext(SongContext);
     const { fetchData, fetchError } = useFetch();
-    const columns = [{
-        "": "",
-        title: "Titulo canción",
-        name: "Artist Name",
-        time: "Duración cancion",
-        play: "Start music",
-        favorite: "Favorite canción"
-    }]
+    // const columns = [{
+    //     "": "",
+    //     title: "Titulo canción",
+    //     name: "Artist Name",
+    //     time: "Duración cancion",
+    //     play: "Start music",
+    //     favorite: "Favorite canción"
+    // }]
 
     useEffect(() => {
         const fetchLibrary = async () => {
@@ -32,10 +35,37 @@ export const Library = () => {
                 console.log('Ha habido un problema: ', e)
             }
         }
-
-
         fetchLibrary();
     }, [])
+
+    const handleSong = async (id) => {
+        try {
+            const response = await fetchData({
+                endpoint: '/play-song',
+                method: 'POST',
+                body: { id }
+            })
+
+            console.log(response);
+
+            if (response[0].length > 0) {
+                const formattedTracks = [];
+                response.map(e => {
+                    e.map(e => {
+                        formattedTracks.push({
+                            url: `http://localhost:5001/${e.url}`,
+                            title: `${e.title}`,
+                            tags: ["music"]
+                        });
+                    });
+                });
+
+                toggleSong(formattedTracks);
+            }
+        } catch (e) {
+            console.log('Ha habido un problema en la solicitud: ', e);
+        }
+    }
 
     return (
         <div className="">
@@ -46,23 +76,18 @@ export const Library = () => {
             </div>
 
             <div className="Library__ContainerList">
-                
                 <ol className='Library__Ol'>
-                    {library
-                        .map((e, i) => {
-                            return (
-                                <div className='Library__Item' key={i}>
-                                    <li style={{display: 'flex', alignItems: 'center'}}>
-                                        <img className='Library__Ol--Image' src={e.image}></img>
-                                        <span>{e.title}</span>
-                                        <span>{e.full_name}</span>
-                                        <span className='Library__Ol--play'></span>
-                                        <span className='Library__Ol--heart'></span>
-                                    </li>
-                                </div>
-                            );
-                        })}
+                    {library.map((e, i) => (
+                        <li key={i} className='Library__Item'>
+                            <img className='Library__Ol--Image' src={e.image} alt={e.title} />
+                            <span>{e.title}</span>
+                            <span>{e.full_name}</span>
+                            <FaPlay size={18} color="white" onClick={() => handleSong(e.id_song)} />
+                            <FaHeart size={18} color="red" />
+                        </li>
+                    ))}
                 </ol>
+
             </div>
         </div>)
 }

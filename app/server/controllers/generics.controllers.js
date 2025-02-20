@@ -29,10 +29,10 @@ export default {
             res.status(500).json({ message: 'Error inesperado al obtener las canciones', error: e });
         }
     },
-    getFavoritesSongs: async (req, res) => {
+    getFavoritsSongs: async (req, res) => {
         try {
             // SELECT s.image, s.title, a.full_name FROM users_songs us JOIN Users u ON u.id_user = us.id_user JOIN Songs s ON s.id_song = us.id_song JOIN Artists a ON s.id_artist = a.id_artist WHERE us.id_user = 1;
-            const values = ['us.id_user', 's.image', 's.title', 'a.full_name', 'users_songs', 'us', 'Users', 'u', 'u.id_user', 'us.id_user', 'Songs', 's', 's.id_song', 'us.id_song', 'Artists', 'a', 's.id_artist', 'a.id_artist', 'us.id_user', parseInt(1)];
+            const values = ['us.id_user', 's.image', 's.title', 's.id_song', 'a.full_name', 'users_songs', 'us', 'Users', 'u', 'u.id_user', 'us.id_user', 'Songs', 's', 's.id_song', 'us.id_song', 'Artists', 'a', 's.id_artist', 'a.id_artist', 'us.id_user', parseInt(1)];
             const response = await genericCrudMySQL.getFavoritesSongs(values);
 
             if (response.length === 0) {
@@ -47,7 +47,7 @@ export default {
     searchSong: async (req, res) => {
         try {
             // SELECT s.image, s.title, a.full_name FROM songs s JOIN artists a ON s.id_artist = a.id_artist WHERE title = 'Despacito';
-            const values = ['s.image', 's.title', 'a.full_name', 'songs', 's', 'artists', 'a', 's.id_artist', 'a.id_artist', req.body.song];
+            const values = ['s.image', 's.title', 'a.full_name', 's.id_song', 'songs', 's', 'artists', 'a', 's.id_artist', 'a.id_artist', req.body.song];
             const response = await genericCrudMySQL.searchSong(values);
 
             if (response) {
@@ -63,6 +63,7 @@ export default {
         try {
             // SELECT s.url, CONCAT (a.full_name, ' - ', s.title) title FROM songs s JOIN artists a ON a.id_artist = s.id_artist ORDER BY s.id_song = 3 DESC, s.id_song;
             const values = ['s.url', 'a.full_name', 's.title', 'title', 'songs', 's', 'artists', 'a', 'a.id_artist', 's.id_artist', 's.id_song', req.body.id, 's.id_song'];
+            console.log(req.body.id);
             const response = await genericCrudMySQL.playSong(values);
             console.log(response);
 
@@ -77,8 +78,8 @@ export default {
     },
     playArtist: async (req, res) => {
         try {
-            // SELECT s.url, CONCAT(a.full_name, ' - ', s.title) FROM songs s JOIN artists a ON a.id_artist = s.id_artist WHERE a.id_artist = 1;
-            const values = ['s.url', 'a.full_name', 's.title', 'title', 's.genre', 'tags', 'songs', 's', 'artists', 'a', 'a.id_artist', 's.id_artist', 's.id_artist', req.body.id];
+            // SELECT s.url, CONCAT (a.full_name, ' - ', s.title) title FROM songs s JOIN artists a ON a.id_artist = s.id_artist ORDER BY s.id_artist = 3 DESC, s.id_artist;
+            const values = ['s.url', 'a.full_name', 's.title', 'title', 'songs', 's', 'artists', 'a', 'a.id_artist', 's.id_artist', 's.id_artist', req.body.id, 's.id_artist'];
             const response = await genericCrudMySQL.playSong(values);
 
             if (response.length === 0) {

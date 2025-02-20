@@ -3,6 +3,7 @@ import { jwtDecode } from 'jwt-decode';
 import Button from "../GeneralComponents/Button";
 import { useNavigation } from "../../utils/hooks/useNavigation";
 import Label from '../GeneralComponents/Label';
+import {FaRegSmile} from "react-icons/fa"
 import '../../styles/home/UserData.css';
 
 export const UserData = () => {
@@ -35,7 +36,7 @@ export const UserData = () => {
     return (
         <div className="UserData__Container">
             <div className="UserData__Header">
-                <h2 className="UserData__Header--h2">Hola, {datos.full_name}</h2>
+                <h2 className="UserData__Header--h2">Hola, {datos.full_name}! <span className="UserData__Header--emoji"><FaRegSmile size={25} color="yellow" /></span></h2>
             </div>
 
             <div className="UserData__Content">

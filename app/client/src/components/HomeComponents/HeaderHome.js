@@ -4,7 +4,7 @@ import { LoginContext } from "../../utils/contexto/LoginContext";
 import { useNavigation } from "../../utils/hooks/useNavigation";
 import useFetch from '../../utils/hooks/useFetch';
 import { ComponentContext } from '../../utils/contexto/ComponentContext';
-import {SongContext} from '../../utils/contexto/SongContext';
+import {SearchContext} from '../../utils/contexto/SearchContext';
 import {MessageContext} from '../../utils/contexto/MessageContext';
 import Input from "../GeneralComponents/Input";
 import { jwtDecode } from "jwt-decode";
@@ -15,7 +15,7 @@ export const HeaderHome = () => {
     const { toggleComponent } = useContext(ComponentContext);
     const {toggleMessage}= useContext(MessageContext);
     const { fetchData, fetchError } = useFetch();
-    const {toggleSong} = useContext(SongContext);
+    const {toggleSearch} = useContext(SearchContext);
     const [song, setSong] = useState('');
     const navigate = useNavigation();
     const [init, setInit] = useState('');
@@ -44,12 +44,12 @@ export const HeaderHome = () => {
                     method: 'POST',
                     body: {song}
                 });
-    
+                console.log(response);
                 if(response[0].length > 0){
-                    toggleSong(response);
+                    toggleSearch(response);
                     toggleMessage();
                 } else {
-                    toggleSong([]);
+                    toggleSearch([]);
                     toggleMessage(`La canción ${song} no está disponible al momento.`);
                     console.log('Ha habido un problema en la solicitud de la busqueda: ', fetchError);
                 }

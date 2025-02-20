@@ -10,7 +10,6 @@ import { UserData } from '../../components/HomeComponents/UserData';
 import '../../styles/home/Home.css';
 import { Search } from "../../components/HomeComponents/Search";
 import { PlayerComponent } from "../../components/HomeComponents/PlayerComponent";
-import { Player1 } from "../../components/HomeComponents/Player";
 
 export const HomePage = () => {
     const { component, toggleComponent } = useContext(ComponentContext);

@@ -11,18 +11,18 @@ export const SongProvider = ({ children }) => {
   //   tags: ['music']
   // }]); 
 
-  const [search, setSearch] = useState([{
+  const [song, setSong] = useState([{
     url: '',
     title: '',
     tags: ['']
   }])
   // Función para actualizar el rol (por ejemplo, después de iniciar sesión)
   const toggleSong = (value) => {
-    setSearch(value);
+    setSong(value);
   };
 
   return (
-    <SongContext.Provider value={{ search, toggleSong }}>
+    <SongContext.Provider value={{ song, toggleSong }}>
       {children}
     </SongContext.Provider>
   );
