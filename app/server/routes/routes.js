@@ -1,7 +1,7 @@
 import {Router} from 'express';
-import users from '../controllers/users.controllers.js';
-import mongo from '../controllers/mongo.controllers.js';
-import generic from '../controllers/generics.controllers.js';
+import generic from '../controllers/mysql/generics.controllers.js';
+import users from '../controllers/mysql/users.controllers.js';
+import mongo from '../controllers/mongo/generics.controllers.js';
 
 const router = Router();
 
@@ -35,5 +35,8 @@ router.post('/dmusic/play-song', generic.playSong);
 
 // Endpoint para reproducir canciones de un artista singolo
 router.post('/dmusic/play-artist', generic.playArtist);
+
+// Endpoint para reproducir canciones de tu libreria
+router.post('/dmusic/play-library', generic.playLibrary);
 
 export {router};

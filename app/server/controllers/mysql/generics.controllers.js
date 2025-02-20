@@ -1,4 +1,4 @@
-import genericCrudMySQL from '../models/crudMySql/generic.crud.js';
+import genericCrudMySQL from "../../models/crudMySql/generic.crud.js";
 
 export default {
     getArtists: async (req, res) => {
@@ -84,6 +84,21 @@ export default {
 
             if (response.length === 0) {
                 res.status(400).json({ message: 'No hay canciones de este artista en la base de datos.' });
+            } else {
+                res.status(200).json(response);
+            }
+        } catch (e) {
+            res.status(500).json({ message: 'Error inesperado al obtener las canciones', error: e });
+        }
+    },
+    playLibrary: async (req, res) => {
+        try {
+            // SELECT s.url, CONCAT(a.full_name, ' - ', s.title) title from users_songs us JOIN songs s ON us.id_song = s.id_song JOIN artists a ON s.id_artist = a.id_artist WHERE id_user = 1 ORDER BY s.id_song = 3 DESC, s.id_song;
+            const values = ['s.url', 'a.full_name', 's.title', 'title', 'users_songs', 'us', 'songs', 's', 'us.id_song', 's.id_song', 'artists', 'a', 's.id_artist', 'a.id_artist', 'id_user', req.body.id_user, 's.id_song', req.body.id_song, 's.id_song']; 
+            const response = await genericCrudMySQL.playLibrary(values);
+
+            if (response.length === 0) {
+                res.status(400).json({ message: 'No hay canciones en la base de datos' });
             } else {
                 res.status(200).json(response);
             }

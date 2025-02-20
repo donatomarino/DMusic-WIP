@@ -29,7 +29,7 @@ export const HeaderHome = () => {
 
     useEffect(() => {
         if(song.length === 0) {
-            toggleComponent('home');
+            toggleComponent(2);
         }
     }, [song])
 
@@ -37,7 +37,7 @@ export const HeaderHome = () => {
         e.preventDefault();
         
         if(song.length > 0){
-            toggleComponent('search');
+            toggleComponent(7);
             try {
                 const response = await fetchData({
                     endpoint: '/search',
@@ -83,7 +83,7 @@ export const HeaderHome = () => {
                     <Button onClick={() => navigate('/login')}>Iniciar Sesión</Button>
                 </div>
             ) : (
-                <div className="HeaderHome__Button--Profile" onClick={() => { toggleComponent('user-data') }}>{init[0]}</div>
+                <div className="HeaderHome__Button--Profile" onClick={() => { toggleComponent(6) }}>{init[0]}</div>
             )}
         </header>
     )

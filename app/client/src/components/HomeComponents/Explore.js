@@ -5,6 +5,7 @@ import useFetch from '../../utils/hooks/useFetch';
 import { useState, useEffect, useContext } from 'react';
 import '../../styles/home/Explore.css';
 import { SongContext } from '../../utils/contexto/SongContext';
+import { LoginContext } from '../../utils/contexto/LoginContext';
 
 export const Explore = () => {
     const [songs, setSongs] = useState([]);

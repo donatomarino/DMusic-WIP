@@ -15,7 +15,7 @@ export const HomePage = () => {
     const { component, toggleComponent } = useContext(ComponentContext);
 
     useEffect(() => {
-        toggleComponent('home');
+        toggleComponent(2);
     }, []);
 
     return (
@@ -30,12 +30,12 @@ export const HomePage = () => {
                 </div>
 
                 <div className="HomePage__Content">
-                    {component === 'home' && <ContentHome />}
-                    {component === 'explore' && <Explore />}
-                    {component === 'trends' && <Trends />}
-                    {component === 'library' && <Library />}
-                    {component === 'user-data' && <UserData />}
-                    {component === 'search' && <Search />}
+                    {component === 2 && <ContentHome />}
+                    {component === 3 && <Explore />}
+                    {component === 4 && <Trends />}
+                    {component === 5 && <Library />}
+                    {component === 6 && <UserData />}
+                    {component === 7 && <Search />}
                 </div>
             </div>
 

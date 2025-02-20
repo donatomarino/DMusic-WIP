@@ -1,8 +1,8 @@
 import jwt from "jsonwebtoken";
-import userCrudMySQL from '../models/crudMySql/user.crud.js';
-import { createAccessToken } from "../utils/createAccessToken.js";
+import userCrudMySQL from '../../models/crudMySql/user.crud.js';
+import tokenUtils from "../../utils/createAccessToken.js";
 import bcrypt from 'bcryptjs';
-import { TOKEN_SECRET } from "../utils/config.js";
+import { TOKEN_SECRET } from "../../utils/config.js";
 const { sign, verify } = jwt;
 
 export default {
@@ -12,24 +12,23 @@ export default {
 			const { email, pass } = req.body
 
 			// Verificar que no hayan campos en null
-			if (!email || !pass) {
-				res.status(400).json({ message: 'Faltan datos obligatorios' })
-			}
+			if (!email || !pass) res.status(400).json({ message: 'Faltan datos obligatorios' });
 
-			const values = ['users', 'email', email, 'pass', pass];
-			const result = await userCrudMySQL.loginUser(values);
+			// Verificar si el usuario existe
+			const values = ['users', 'email', email];
+			const userFound = await userCrudMySQL.getUser(values);
+			if (!userFound) res.status(400).json({ message: 'El usuario no está registrado' });
+
+			const isMatch = await bcrypt.compare(pass, userFound[0][0].pass);
+			if (!isMatch) res.status(400).json({ message: 'Contraseña incorrecta' });
+
+			// Si el usuario existe, se procede a generar el token
+			const tokenFrom = { ...userFound[0][0] };
+			console.log(tokenFrom);
 			
-			if (result[0].length === 0) {
-				res.status(400).json({message: `El usuario no está registrado`});
-			} else {
-				//Configuramos el objeto con el que construiremos el token
-				const tokenFrom = { ...result[0][0]};
-				console.log(tokenFrom)
-
-				//Llamamos a la función para generar el token
-				const token = await createAccessToken(tokenFrom);
-				res.status(200).json(token);
-			}
+			//Llamamos a la función para generar el token
+			const token = await tokenUtils.createAccessToken(tokenFrom);
+			res.status(200).json(token);
 		} catch (error) {
 			res.status(500).json({ message: 'Error al hacer login: ', error })
 		}
@@ -38,7 +37,7 @@ export default {
 		try {
 			// Obtenemos el mail desde el cuerpo de la solicitud
 			const { email } = req.body;
-			
+
 			if (!email) {
 				res.status(400).json({ message: 'Faltan datos obligatorios' })
 			};
@@ -47,7 +46,7 @@ export default {
 			const values = ['users', 'email', email];
 			// Buscamos el mail en la tabla de usuarios
 			const infoUser = await userCrudMySQL.getUser(values);
-			
+
 			// Si el email no existe devuelve el error 404
 			if (infoUser[0].length === 0) {
 				res.status(404).json({ message: 'El usuario no existe' })
@@ -60,7 +59,7 @@ export default {
 				}
 
 				// Devolver el token
-				res.status(200).json({message: 'Token generado correctamente', token: `Bearer: ${token}` });
+				res.status(200).json({ message: 'Token generado correctamente', token: `Bearer: ${token}` });
 			});
 
 		} catch (e) {
@@ -93,16 +92,16 @@ export default {
 		try {
 			// Obtenemos toda la información desde el cuerpo de la solicitud
 			const { full_name, email, password, birthdate, gender } = req.body;
-	
+
 			if (!email || !full_name || !password || !birthdate || !gender) {
 				res.status(400).json({ message: 'Faltan datos obligatorios' });
 			}
-			
+
 			// Verificamos si el usuario ya existe
 			const values = ['users', 'email', email];
 			const verifyIfExist = await userCrudMySQL.getUser(values);
 			console.log(verifyIfExist[0])
-	
+
 			// Si el usuario ya existe, devuelve un error
 			if (verifyIfExist[0].length > 0) {
 				res.status(401).json({ message: "El usuario ya está registrado" });
@@ -113,7 +112,7 @@ export default {
 				// Valores para insertar en la base de datos
 				const createValues = ['users', 'full_name', 'email', 'pass', 'birthdate', 'gender', full_name, email, passHash, birthdate, gender];
 				await userCrudMySQL.createUser(createValues);
-	
+
 				res.status(200).json({ message: `${email} registrado correctamente!` });
 			}
 		} catch (err) {

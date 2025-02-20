@@ -4,17 +4,6 @@ const connection = await sql.mySQLConnection();
 
 export default {
 	/**
-	  * Funcion para el login
-	  * @param {Array} values - valores para la consulta
-	  * @returns {*} - un registro de la tabla
-	  */
-	loginUser: async (values) => {
-		const query = 'SELECT * FROM ?? WHERE ?? = ? AND ?? = ?';
-		const result = await connection.query(query, [...values])
-		return result
-	},
-
-	/**
 	  * Función para obtener usuario con email
 	  * @param {Array} values - valores para la consulta
 	  * @returns {Array} - Todos los datos del usuario si existe, sino devuelve un array vacío

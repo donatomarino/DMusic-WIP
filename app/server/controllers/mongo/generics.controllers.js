@@ -1,5 +1,5 @@
-import mongo from '../database/mongo.connection.js';
-import genericMongoCrud from '../models/crudMongo/generic.crud.js';
+import mongo from '../../database/mongo.connection.js';
+import genericMongoCrud from '../../models/crudMongo/generic.crud.js';
 
 export default {
 	getPlaylists: async (req, res) => {

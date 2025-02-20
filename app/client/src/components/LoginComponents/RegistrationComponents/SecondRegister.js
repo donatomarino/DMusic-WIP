@@ -1,7 +1,7 @@
 import { useState, useContext } from "react";
 import Label from "../../GeneralComponents/Label";
 import Input from "../../GeneralComponents/Input";
-import { RegisterContext } from "../../../utils/contexto/RegisterContext";
+import { ComponentContext } from "../../../utils/contexto/ComponentContext";
 import Checkbox from "../Checkbox";
 import Button from "../../GeneralComponents/Button";
 import { DataContext } from "../../../utils/contexto/DataContext";
@@ -13,7 +13,7 @@ import "../../../styles/login/login.css";
 export const SecondRegister = () => {
     const { datos, toggleDatos } = useContext(DataContext);
     const [isRegistred, setIsRegistred] = useState(false);
-    const { nextPage } = useContext(RegisterContext);
+    const { toggleComponent } = useContext(ComponentContext);
     const [message, setMessage] = useState('');
     const navigate = useNavigation();
 
@@ -47,7 +47,7 @@ export const SecondRegister = () => {
     }
 
     const handlePage = () => {
-        nextPage(0);
+        toggleComponent(0);
         navigate('/login');
     }
 
@@ -59,7 +59,7 @@ export const SecondRegister = () => {
             </div>
 
             <div className="RegisterPage__Container">
-                <div className="RegisterPage__Container--Emotion" onClick={() => { nextPage(0) }}><FaChevronLeft size={18} color="white" /></div>
+                <div className="RegisterPage__Container--Emotion" onClick={() => { toggleComponent(0) }}><FaChevronLeft size={18} color="white" /></div>
                 <div className="RegisterPage__Options">
                     <div className="RegisterPage__Options--Routes">Paso 2 de 2</div>
                     <div className="RegisterPage__Options--Description">Crea usuario</div>

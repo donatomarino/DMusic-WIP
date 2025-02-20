@@ -4,7 +4,7 @@ import { createContext, useState } from 'react';
 export const ComponentContext = createContext();
 
 export const ComponentProvider = ({ children }) => {
-    const [component, setComponent] = useState('home');
+    const [component, setComponent] = useState(0);
 
     // Función para cambiar el valor del componente
     const toggleComponent = (newComponent) => {

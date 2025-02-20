@@ -2,6 +2,7 @@ import useFetch from '../../utils/hooks/useFetch';
 import { useState, useEffect, useContext } from 'react';
 import { FaPlay, FaHeart } from "react-icons/fa";
 import { SongContext } from '../../utils/contexto/SongContext';
+import { jwtDecode } from 'jwt-decode';
 import '../../styles/home/Library.css';
 
 export const Library = () => {
@@ -38,12 +39,21 @@ export const Library = () => {
         fetchLibrary();
     }, [])
 
-    const handleSong = async (id) => {
+    const handleSong = async (value) => {
         try {
+            const user = localStorage.getItem('token');
+            const id = jwtDecode(user).id_user;
+            console.log(id);
+
+            const formData = {
+                id_user: id,
+                id_song: value
+            }
+
             const response = await fetchData({
-                endpoint: '/play-song',
+                endpoint: '/play-library',
                 method: 'POST',
-                body: { id }
+                body: formData
             })
 
             console.log(response);

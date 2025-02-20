@@ -1,19 +1,23 @@
-import { useContext} from "react";
-import { RegisterContext } from "../../utils/contexto/RegisterContext";
+import { useContext, useEffect} from "react";
+import { ComponentContext } from "../../utils/contexto/ComponentContext";
 import { FirstRegister } from "../../components/LoginComponents/RegistrationComponents/FirstRegister";
 import { SecondRegister } from "../../components/LoginComponents/RegistrationComponents/SecondRegister";
 import "../../styles/login/login.css";
 
 export const RegisterPage = () => {
-    const { page} = useContext(RegisterContext);
+    const { component, toggleComponent} = useContext(ComponentContext);
+
+    useEffect(() => {
+        toggleComponent(0);
+    }, [])
 
     return (
         <div className="Login__Form">
-            {page === 0 &&
+            {component === 0 &&
                 (<FirstRegister />)
             }
 
-            {page === 1 &&
+            {component === 1 &&
                 (<SecondRegister />)
             }
         </div>

@@ -2,7 +2,7 @@ import { useState, useContext } from "react";
 import Button from "../../GeneralComponents/Button";
 import FormField from "../FormField";
 import { useNavigation } from "../../../utils/hooks/useNavigation";
-import { RegisterContext } from "../../../utils/contexto/RegisterContext";
+import { ComponentContext } from "../../../utils/contexto/ComponentContext";
 import { DataContext } from "../../../utils/contexto/DataContext";
 import { FaChevronLeft } from "react-icons/fa";
 import "../../../styles/login/login.css";
@@ -12,7 +12,7 @@ export const FirstRegister = () => {
     const { datos, toggleDatos } = useContext(DataContext);
     const [confirmPass, setConfirmPass] = useState('');
     const [showPassword, setShowPassword] = useState(false);
-    const { nextPage } = useContext(RegisterContext);
+    const { toggleComponent } = useContext(ComponentContext);
     const [message, setMessage] = useState('');
 
     const handleSubmit = async (e) => {
@@ -22,7 +22,7 @@ export const FirstRegister = () => {
             setMessage('Las contraseñas no coinciden');
             return;
         } else {
-            nextPage(1)
+            toggleComponent(1)
             setMessage('');
         }
     }
@@ -51,6 +51,7 @@ export const FirstRegister = () => {
                     value={datos.full_name}
                     onChange={(e) => toggleDatos({ ...datos, full_name: e.target.value })}
                     required
+                    minLength={4}
                 />
             </div>
 
@@ -63,6 +64,7 @@ export const FirstRegister = () => {
                     value={datos.password}
                     onChange={(e) => toggleDatos({ ...datos, password: e.target.value })}
                     required
+                    minLength={8}
                 />
 
                 <Button
@@ -82,6 +84,7 @@ export const FirstRegister = () => {
                     value={confirmPass}
                     onChange={(e) => setConfirmPass(e.target.value)}
                     required
+                    minLength={8}
                 />
 
                 <div>

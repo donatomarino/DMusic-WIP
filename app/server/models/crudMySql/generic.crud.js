@@ -44,4 +44,11 @@ export default {
 
         return [result];
     },
+    playLibrary: async (values) => {
+        // SELECT s.url, CONCAT(a.full_name, ' - ', s.title) title from users_songs us JOIN songs s ON us.id_song = s.id_song JOIN artists a ON s.id_artist = a.id_artist WHERE id_user = 1 ORDER BY s.id_song = 3 DESC, s.id_song;
+        const query = `SELECT ??, CONCAT(??, ' - ', ??) ?? FROM ?? ?? JOIN ?? ?? ON ?? = ?? JOIN ?? ?? ON ?? = ?? WHERE ?? = ? ORDER BY ?? = ? DESC, ??;`;
+        const [result] = await connection.query(query, [...values]);
+
+        return [result];
+    }
 }

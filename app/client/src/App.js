@@ -4,13 +4,11 @@ import { LoginPage } from './pages/LoginPages/LoginPage.js';
 import { RecoveryPassPage } from './pages/LoginPages/RecoveryPassPage.js';
 import { ConfirmRecoveryPage } from './pages/LoginPages/ConfirmRecoveryPage.js';
 import { RegisterPage } from "./pages/LoginPages/RegisterPage.js";
-import { RegisterProvider } from './utils/contexto/RegisterContext.js';
 import { MessageProvider } from "./utils/contexto/MessageContext.js";
 import { DataProvider } from './utils/contexto/DataContext.js'
 import { LopdProvider } from "./utils/contexto/LopdContext.js";
 import { HomePage } from "./pages/HomePages/HomePage.js";
 import { SongProvider } from "./utils/contexto/SongContext.js";
-// import { Header } from "./components/GeneralComponents/Header.js"
 import { LoginProvider } from './utils/contexto/LoginContext.js'
 import { ComponentProvider } from './utils/contexto/ComponentContext.js'
 import Lopd from "./pages/LoginPages/LopdPage.js";
@@ -22,7 +20,6 @@ function App() {
     <Router>
       <MessageProvider>
         <LoginProvider>
-          <RegisterProvider>
             <DataProvider>
               <LopdProvider>
                 <ComponentProvider>
@@ -41,7 +38,6 @@ function App() {
                 </ComponentProvider>
               </LopdProvider>
             </DataProvider>
-          </RegisterProvider>
         </LoginProvider>
       </MessageProvider>
     </Router>
