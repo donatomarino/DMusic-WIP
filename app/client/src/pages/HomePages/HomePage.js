@@ -1,15 +1,15 @@
-import { HeaderHome } from "../../components/HomeComponents/HeaderHome";
-import { SideMenu } from "../../components/HomeComponents/SideMenu";
+import { HeaderHome } from "../../components/HomeComponents/LayoutComponents/HeaderHome";
+import { SideMenu } from "../../components/HomeComponents/LayoutComponents/SideMenu";
 import { ComponentContext } from "../../utils/contexto/ComponentContext";
 import { useContext, useEffect } from "react";
-import { ContentHome } from '../../components/HomeComponents/ContentHome';
-import { Explore } from '../../components/HomeComponents/Explore';
-import { Trends } from '../../components/HomeComponents/Trends';
-import { Library } from '../../components/HomeComponents/Library';
-import { UserData } from '../../components/HomeComponents/UserData';
-import '../../styles/home/Home.css';
-import { Search } from "../../components/HomeComponents/Search";
-import { PlayerComponent } from "../../components/HomeComponents/PlayerComponent";
+import { ContentHome } from '../../components/HomeComponents/MainContent/ContentHome';
+import { Explore } from '../../components/HomeComponents/MainContent/Explore';
+import { Trends } from '../../components/HomeComponents/MainContent/Trends';
+import { Library } from '../../components/HomeComponents/MainContent/Library';
+import { UserData } from '../../components/HomeComponents/MainContent/UserData';
+import { Search } from "../../components/HomeComponents/LayoutComponents/Search";
+import { PlayerComponent } from "../../components/HomeComponents/LayoutComponents/PlayerComponent";
+import '../../styles/home/Layout.css';
 
 export const HomePage = () => {
     const { component, toggleComponent } = useContext(ComponentContext);

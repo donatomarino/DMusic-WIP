@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
 import { jwtDecode } from 'jwt-decode';
-import Button from "../GeneralComponents/Button";
-import { useNavigation } from "../../utils/hooks/useNavigation";
-import Label from '../GeneralComponents/Label';
+import Button from "../../GeneralComponents/Button";
+import { useNavigation } from "../../../utils/hooks/useNavigation";
+import Label from '../../GeneralComponents/Label';
 import {FaRegSmile} from "react-icons/fa"
-import '../../styles/home/UserData.css';
+// import '../../styles/home/UserData.css';
+import '../../../styles/home/Content.css';
 
 export const UserData = () => {
     const navigate = useNavigation();
@@ -23,7 +24,6 @@ export const UserData = () => {
             const UserDatos = {
                 full_name: jwtDecode(user).full_name,
                 email: jwtDecode(user).email,
-                pass: jwtDecode(user).pass,
                 birthdate: jwtDecode(user).birthdate,
                 gender: jwtDecode(user).gender
             }

@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { SongContext } from '../../utils/contexto/SongContext';
+import { SongContext } from '../../../utils/contexto/SongContext';
 import Player from "@madzadev/audio-player";
 import "@madzadev/audio-player/dist/index.css";
 

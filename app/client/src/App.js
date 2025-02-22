@@ -1,4 +1,3 @@
-// import { Header } from './components/GeneralComponents/Header.js';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { LoginPage } from './pages/LoginPages/LoginPage.js';
 import { RecoveryPassPage } from './pages/LoginPages/RecoveryPassPage.js';
@@ -12,19 +11,19 @@ import { SongProvider } from "./utils/contexto/SongContext.js";
 import { LoginProvider } from './utils/contexto/LoginContext.js'
 import { ComponentProvider } from './utils/contexto/ComponentContext.js'
 import Lopd from "./pages/LoginPages/LopdPage.js";
-import './styles/general/General.css';
 import { SearchProvider } from "./utils/contexto/SearchContext.js";
+import './styles/general/General.css';
 
 function App() {
   return (
     <Router>
-      <MessageProvider>
-        <LoginProvider>
-            <DataProvider>
+      <DataProvider>
+        <ComponentProvider>
+          <MessageProvider>
+            <LoginProvider>
               <LopdProvider>
-                <ComponentProvider>
-                  <SongProvider>
-                    <SearchProvider>
+                <SongProvider>
+                  <SearchProvider>
                     <Routes>
                       <Route path='/login' element={<LoginPage />} />
                       <Route path='/user/forgot-password' element={<RecoveryPassPage />} />
@@ -33,13 +32,13 @@ function App() {
                       <Route path='/user/lopd' element={<Lopd />} />
                       <Route path='/' element={<HomePage />} />
                     </Routes>
-                    </SearchProvider>
-                  </SongProvider>
-                </ComponentProvider>
+                  </SearchProvider>
+                </SongProvider>
               </LopdProvider>
-            </DataProvider>
-        </LoginProvider>
-      </MessageProvider>
+            </LoginProvider>
+          </MessageProvider>
+        </ComponentProvider>
+      </DataProvider>
     </Router>
   );
 }

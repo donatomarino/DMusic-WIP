@@ -1,15 +1,15 @@
-import useFetch from '../../utils/hooks/useFetch';
-import { useState, useEffect, useContext } from 'react';
-import '../../styles/home/ContentHomeExplore.css';
-import { SongContext } from '../../utils/contexto/SongContext';
-import {LoginContext} from '../../utils/contexto/LoginContext';
+import useFetch from '../../../utils/hooks/useFetch';
+import { useState, useEffect } from 'react';
+import { usePlaySong } from '../../../utils/hooks/usePlaySong';
+import { usePlayPlaylist } from '../../../utils/hooks/usePlayPlaylist';
+import '../../../styles/home/Content.css';
 
 export const ContentHome = () => {
     const [playlist, setPlaylist] = useState([]);
     const [artists, setartists] = useState([]);
     const { fetchData, fetchError } = useFetch();
-    const { toggleSong } = useContext(SongContext);
-    const {login} = useContext(LoginContext);
+    const { handleSong } = usePlaySong();
+    const {handlePlaylist} = usePlayPlaylist();
 
     useEffect(() => {
         const fetchs = async () => {
@@ -40,63 +40,6 @@ export const ContentHome = () => {
         }
         fetchs();
     }, [])
-
-    const handlePlaylist = async (id) => {
-        if(login === 1) {
-            try {
-                const response = await fetchData({
-                    endpoint: '/playlist',
-                    method: 'POST',
-                    body: {id}
-                })
-    
-                if (response.length > 0) {
-                    const formattedTracks = [{
-                        url: `http://localhost:5001/${response[0].url}`,
-                        title: `${response[0].title}`,
-                        tags: ["music"]
-                    }];
-    
-                    toggleSong(formattedTracks);
-                }
-            } catch (e) {
-                console.log('Ha habido un problema en la solicitud: ', e);
-            }
-        } else {
-            alert('Debes estar logueado para escuchar música');
-        }
-    }
-
-    const handleSong = async (id) => {
-        if(login === 1) {
-            try {
-                const response = await fetchData({
-                    endpoint: '/play-artist',
-                    method: 'POST',
-                    body: { id }
-                })
-    
-                if (response.length > 0) {
-                    const formattedTracks = [];
-                    response.map(e => {
-                        e.map(e => {
-                            formattedTracks.push({
-                                url: `http://localhost:5001/${e.url}`,
-                                title: `${e.title}`,
-                                tags: ["music"]
-                            });
-                        });
-                    });
-    
-                    toggleSong(formattedTracks);
-                }
-            } catch (e) {
-                console.log('Ha habido un problema en la solicitud: ', e);
-            }
-        } else {
-            alert('Debes estar logueado para escuchar música');
-        }
-    }
 
     return (
         <div className="ContentHome__Container">

@@ -1,14 +1,15 @@
 import { useContext, useEffect, useState } from "react";
-import Button from "../GeneralComponents/Button";
-import { LoginContext } from "../../utils/contexto/LoginContext";
-import { useNavigation } from "../../utils/hooks/useNavigation";
-import useFetch from '../../utils/hooks/useFetch';
-import { ComponentContext } from '../../utils/contexto/ComponentContext';
-import {SearchContext} from '../../utils/contexto/SearchContext';
-import {MessageContext} from '../../utils/contexto/MessageContext';
-import Input from "../GeneralComponents/Input";
+import Button from "../../GeneralComponents/Button";
+import { LoginContext } from "../../../utils/contexto/LoginContext";
+import { useNavigation } from "../../../utils/hooks/useNavigation";
+import useFetch from '../../../utils/hooks/useFetch';
+import { ComponentContext } from '../../../utils/contexto/ComponentContext';
+import {SearchContext} from '../../../utils/contexto/SearchContext';
+import {MessageContext} from '../../../utils/contexto/MessageContext';
+import Input from "../../GeneralComponents/Input";
 import { jwtDecode } from "jwt-decode";
 import { FaSearch } from "react-icons/fa";
+import '../../../styles/home/Layout.css';
 
 export const HeaderHome = () => {
     const { login } = useContext(LoginContext);

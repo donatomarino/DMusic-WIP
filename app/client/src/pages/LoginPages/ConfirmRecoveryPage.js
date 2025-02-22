@@ -4,6 +4,7 @@ import { useNavigation } from "../../utils/hooks/useNavigation";
 import { useParams } from "react-router-dom";
 import "../../styles/login/login.css";
 import FormField from "../../components/LoginComponents/FormField";
+import { Header } from "../../components/LoginComponents/Header";
 
 export const ConfirmRecoveryPage = () => {
     const navigate = useNavigation();
@@ -39,10 +40,7 @@ export const ConfirmRecoveryPage = () => {
 
     return (
         <form className='Login__Form' onSubmit={handleSubmit} method='POST'>
-            <div className='Login__HeaderContainer'>
-                <h1 className='Login__HeaderContainer--Title'>DMusic</h1>
-                <h2 id='Login_HeaderContainer--Description'>Restablece la contraseña</h2>
-            </div>
+            <Header description={'Restablece tu contraseña'}/>
 
             <div className='Login__InputContainer--ChangePass'>
                 <FormField

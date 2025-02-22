@@ -24,6 +24,7 @@ export default function Lopd() {
                         <Button
                             type="submit"
                             className="Lopd__Button"
+                            onclick={acceptChecker}
                         >Acepto términos y condiciones
                         </Button>
                     </div>

@@ -19,9 +19,9 @@ body {
 }
 
 .Login__HeaderContainer--Title,
-#Login__HeaderContainer--Description {
+.Login__HeaderContainer--Description {
     text-align: center;
-    margin-top: 30px;
+    margin-top: 20px;
 }
 
 .Login__HeaderContainer--Title {
@@ -34,8 +34,7 @@ body {
     cursor: pointer;
 }
 
-
-#Login_HeaderContainer--Description {
+.Login__HeaderContainer--Description{
     border-bottom: 1px solid #282828;
     padding-bottom: 20px;
 }

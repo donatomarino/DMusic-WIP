@@ -14,7 +14,6 @@ export const useLopd = () => {
             const response = await fetch('http://localhost:5001/dmusic/lopd');
             if (response.ok) {
                 const data = await response.json();
-                console.log(data[0].text);
                 await setLopdData(data[0].text);
             } else {
                 console.error("Error en la respuesta del servidor:", response.status);

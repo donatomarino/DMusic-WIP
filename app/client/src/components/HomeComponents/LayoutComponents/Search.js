@@ -1,10 +1,11 @@
 import { useContext } from 'react';
-import { SearchContext } from '../../utils/contexto/SearchContext';
-import { MessageContext } from '../../utils/contexto/MessageContext';
-import useFetch from '../../utils/hooks/useFetch';
-import {SongContext} from '../../utils/contexto/SongContext';
-import { LoginContext } from '../../utils/contexto/LoginContext';
-import '../../styles/home/Explore.css';
+import { SearchContext } from '../../../utils/contexto/SearchContext';
+import { MessageContext } from '../../../utils/contexto/MessageContext';
+import useFetch from '../../../utils/hooks/useFetch';
+import {SongContext} from '../../../utils/contexto/SongContext';
+import { LoginContext } from '../../../utils/contexto/LoginContext';
+// import '../../../styles/home/Explore.css';
+import '../../../styles/home/Layout.css';
 
 export const Search = () => {
     const { search } = useContext(SearchContext);

@@ -5,6 +5,7 @@ import { useNavigation } from '../../utils/hooks/useNavigation';
 import { LoginContext } from '../../utils/contexto/LoginContext';
 import { DataContext } from '../../utils/contexto/DataContext';
 import '../../styles/login/login.css';
+import { Header } from '../../components/LoginComponents/Header';
 
 export const LoginPage = () => {
     const [showPassword, setShowPassword] = useState(false);
@@ -60,10 +61,10 @@ export const LoginPage = () => {
 
     return (
         <form className='Login__Form' onSubmit={handleSubmit} method='POST'>
-            <div className='Login__HeaderContainer'>
-                <h1 className='Login__HeaderContainer--Title' onClick={() => navigate('/')}>DMusic</h1>
-                <h2 id='Login_HeaderContainer--Description'>Inicia sesión en DMusic</h2>
-            </div>
+            <Header 
+                description={'Inicia sesión en DMusic'}
+                onClick={() => navigate('/')}
+            />
 
             <div className='Login__InputContainer'>
                     <FormField

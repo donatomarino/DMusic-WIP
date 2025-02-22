@@ -1,9 +1,9 @@
-import useFetch from '../../utils/hooks/useFetch';
+import useFetch from '../../../utils/hooks/useFetch';
 import { useState, useEffect, useContext } from 'react';
 import { FaPlay, FaHeart } from "react-icons/fa";
-import { SongContext } from '../../utils/contexto/SongContext';
+import { SongContext } from '../../../utils/contexto/SongContext';
 import { jwtDecode } from 'jwt-decode';
-import '../../styles/home/Library.css';
+import '../../../styles/home/Content.css';
 
 export const Library = () => {
     const [library, setLibrary] = useState([]);
@@ -102,7 +102,7 @@ export const Library = () => {
                     {library.map((e, i) => (
                         <li key={i} className='Library__Item'>
                             <img className='Library__Ol--Image' src={e.image} alt={e.title} />
-                            <span>{e.title}</span>
+                            <span><strong>{e.title}</strong></span>
                             <span>{e.full_name}</span>
                             <FaPlay size={18} color="white" onClick={() => handleSong(e.id_song)} />
                             <span>{e.duration}</span>

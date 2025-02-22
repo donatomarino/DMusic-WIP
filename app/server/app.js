@@ -1,6 +1,8 @@
 import express, {json, urlencoded} from 'express';
 import cors from 'cors';
 import { router } from './routes/routes.js';
+import { swaggerUi } from './swaggerConfig.js';
+import { swaggerDocs } from './swaggerConfig.js';
 
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -13,9 +15,8 @@ const app = express();
 
 app.use(json());
 app.use(urlencoded({extended: false}));
-
 app.use(cors());
-
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 app.use(router);
 
 // Escuchar canciones desde local

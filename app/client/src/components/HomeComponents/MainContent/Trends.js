@@ -1,12 +1,12 @@
-import useFetch from '../../utils/hooks/useFetch';
-import { useState, useEffect, useContext } from 'react';
-import { SongContext } from '../../utils/contexto/SongContext';
-import '../../styles/home/Explore.css';
+import useFetch from '../../../utils/hooks/useFetch';
+import { useState, useEffect } from 'react';
+import { usePlayPlaylist } from '../../../utils/hooks/usePlayPlaylist';
+import '../../../styles/home/Content.css';
 
 export const Trends = () => {
     const [playlist, setPlaylist] = useState([]);
     const {fetchData, fetchError} = useFetch();
-    const {toggleSong} = useContext(SongContext);
+    const {handlePlaylist} = usePlayPlaylist();
 
     useEffect(() => {
         const fetchPlaylist = async () => {
@@ -26,28 +26,6 @@ export const Trends = () => {
         }
         fetchPlaylist();
     }, [])
-
-    const handlePlaylist = async (id) => {
-        try {
-            const response = await fetchData({
-                endpoint: '/playlist',
-                method: 'POST',
-                body: {id}
-            })
-
-            if (response.length > 0) {
-                const formattedTracks = [{
-                    url: `http://localhost:5001/${response[0].url}`,
-                    title: `${response[0].title}`,
-                    tags: ["music"]
-                }];
-
-                toggleSong(formattedTracks);
-            }
-        } catch (e) {
-            console.log('Ha habido un problema en la solicitud: ', e);
-        }
-    }
 
     return (
         <div className = "Explore__Container">

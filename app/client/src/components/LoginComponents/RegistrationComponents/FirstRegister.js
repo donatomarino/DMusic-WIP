@@ -6,6 +6,7 @@ import { ComponentContext } from "../../../utils/contexto/ComponentContext";
 import { DataContext } from "../../../utils/contexto/DataContext";
 import { FaChevronLeft } from "react-icons/fa";
 import "../../../styles/login/login.css";
+import { Header } from "../Header";
 
 export const FirstRegister = () => {
     const navigate = useNavigation();
@@ -29,10 +30,7 @@ export const FirstRegister = () => {
 
     return (
         <form onSubmit={handleSubmit} method='POST'>
-            <div className='Login__HeaderContainer'>
-                <h1 className='Login__HeaderContainer--Title'>DMusic</h1>
-                <h2 id='Login_HeaderContainer--Description'>Únete ahora y disfruta de todo el contenido</h2>
-            </div>
+            <Header description={'Únete ahora y disfruta de todo el contenido'} />
 
             <div className="RegisterPage__Container">
                 <div className="RegisterPage__Container--Emotion" onClick={() => {navigate('/login'); localStorage.removeItem('token')}}><FaChevronLeft size={18} color="white" /></div>

@@ -1,0 +1,9 @@
+--- REGISTRO ---
+Cuándo acepto los LOPD hay 2 problemas: 
+  1- En cuanto se utiliza el mismo contexto por todos los componentes del login y también los de la home, está puesto que cuando entrás en la página de registro se va al primer componente con
+    useEffect, mientras cuando aceptas los lopd se necesita que se vaya al componente 2 y esto hace conflicto.
+
+    ** SOLUCION PENSADA **
+    - Hacer un contexto para el register y otro contexto para los componentes de la home.
+
+  2- Cuando se vuelve a la página de registro, en el contexto no se guardan los datos insertados anteriormente.

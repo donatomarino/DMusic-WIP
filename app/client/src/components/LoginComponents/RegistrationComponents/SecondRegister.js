@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import Label from "../../GeneralComponents/Label";
 import Input from "../../GeneralComponents/Input";
 import { ComponentContext } from "../../../utils/contexto/ComponentContext";
@@ -9,6 +9,7 @@ import { useNavigation } from "../../../utils/hooks/useNavigation";
 import FormField from "../FormField";
 import { FaChevronLeft } from "react-icons/fa";
 import "../../../styles/login/login.css";
+import { Header } from "../Header";
 
 export const SecondRegister = () => {
     const { datos, toggleDatos } = useContext(DataContext);
@@ -17,6 +18,10 @@ export const SecondRegister = () => {
     const [message, setMessage] = useState('');
     const navigate = useNavigation();
 
+    useEffect(() => {
+        console.log(datos);
+    }, [])
+    
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -53,10 +58,7 @@ export const SecondRegister = () => {
 
     return (
         <form onSubmit={handleSubmit} method='POST'>
-            <div className='Login__HeaderContainer'>
-                <h1 className='Login__HeaderContainer--Title'>DMusic</h1>
-                <h2 id='Login_HeaderContainer--Description'>Únete ahora y disfruta de todo el contenido</h2>
-            </div>
+            <Header description={'Únete ahora y disfruta de todo el contenido'} />
 
             <div className="RegisterPage__Container">
                 <div className="RegisterPage__Container--Emotion" onClick={() => { toggleComponent(0) }}><FaChevronLeft size={18} color="white" /></div>

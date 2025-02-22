@@ -1,8 +1,9 @@
 import { useContext, useEffect } from "react"
-import { LoginContext } from "../../utils/contexto/LoginContext"
-import { ComponentContext } from "../../utils/contexto/ComponentContext";
-import { useNavigation } from "../../utils/hooks/useNavigation";
+import { LoginContext } from "../../../utils/contexto/LoginContext"
+import { ComponentContext } from "../../../utils/contexto/ComponentContext";
+import { useNavigation } from "../../../utils/hooks/useNavigation";
 import { FaHome, FaSearch, FaChartLine, FaMusic } from "react-icons/fa";
+import '../../../styles/home/Layout.css';
 
 export const SideMenu = () => {
     const { login, toggleLogin } = useContext(LoginContext);
