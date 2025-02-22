@@ -9,6 +9,9 @@ export const Library = () => {
     const [library, setLibrary] = useState([]);
     const { toggleSong } = useContext(SongContext);
     const { fetchData, fetchError } = useFetch();
+
+    const user = localStorage.getItem('token');
+    const id = jwtDecode(user).id_user;
     // const columns = [{
     //     "": "",
     //     title: "Titulo canción",
@@ -25,8 +28,6 @@ export const Library = () => {
                     endpoint: '/favoritesongs'
                 })
 
-                console.log(response[0]);
-
                 if (response && response.length > 0) {
                     setLibrary(response[0]);
                 } else {
@@ -37,14 +38,10 @@ export const Library = () => {
             }
         }
         fetchLibrary();
-    }, [])
+    }, [library])
 
     const handleSong = async (value) => {
         try {
-            const user = localStorage.getItem('token');
-            const id = jwtDecode(user).id_user;
-            console.log(id);
-
             const formData = {
                 id_user: id,
                 id_song: value
@@ -77,6 +74,21 @@ export const Library = () => {
         }
     }
 
+    const deleteSong = async (value) => {
+        const formData = {
+            id_user: id,
+            id_song: value
+        };
+
+        await fetchData({
+            endpoint: '/delete-favoritesongs',
+            method: 'DELETE',
+            body: formData
+        });
+
+        alert('Canción eliminada correctamente de tus favoritos');
+    }
+
     return (
         <div className="">
 
@@ -93,7 +105,8 @@ export const Library = () => {
                             <span>{e.title}</span>
                             <span>{e.full_name}</span>
                             <FaPlay size={18} color="white" onClick={() => handleSong(e.id_song)} />
-                            <FaHeart size={18} color="red" />
+                            <span>{e.duration}</span>
+                            <FaHeart size={18} color="red" onClick={() => deleteSong(e.id_song)}/>
                         </li>
                     ))}
                 </ol>

@@ -32,7 +32,7 @@ export default {
     getFavoritsSongs: async (req, res) => {
         try {
             // SELECT s.image, s.title, a.full_name FROM users_songs us JOIN Users u ON u.id_user = us.id_user JOIN Songs s ON s.id_song = us.id_song JOIN Artists a ON s.id_artist = a.id_artist WHERE us.id_user = 1;
-            const values = ['us.id_user', 's.image', 's.title', 's.id_song', 'a.full_name', 'users_songs', 'us', 'Users', 'u', 'u.id_user', 'us.id_user', 'Songs', 's', 's.id_song', 'us.id_song', 'Artists', 'a', 's.id_artist', 'a.id_artist', 'us.id_user', parseInt(1)];
+            const values = ['us.id_user', 's.image', 's.title', 's.duration', 'duration', 's.id_song', 'a.full_name', 'users_songs', 'us', 'Users', 'u', 'u.id_user', 'us.id_user', 'Songs', 's', 's.id_song', 'us.id_song', 'Artists', 'a', 's.id_artist', 'a.id_artist', 'us.id_user', parseInt(1)];
             const response = await genericCrudMySQL.getFavoritesSongs(values);
 
             if (response.length === 0) {
@@ -94,7 +94,7 @@ export default {
     playLibrary: async (req, res) => {
         try {
             // SELECT s.url, CONCAT(a.full_name, ' - ', s.title) title from users_songs us JOIN songs s ON us.id_song = s.id_song JOIN artists a ON s.id_artist = a.id_artist WHERE id_user = 1 ORDER BY s.id_song = 3 DESC, s.id_song;
-            const values = ['s.url', 'a.full_name', 's.title', 'title', 'users_songs', 'us', 'songs', 's', 'us.id_song', 's.id_song', 'artists', 'a', 's.id_artist', 'a.id_artist', 'id_user', req.body.id_user, 's.id_song', req.body.id_song, 's.id_song']; 
+            const values = ['s.url', 'a.full_name', 's.title', 'title', 'users_songs', 'us', 'songs', 's', 'us.id_song', 's.id_song', 'artists', 'a', 's.id_artist', 'a.id_artist', 'id_user', req.body.id_user, 's.id_song', req.body.id_song, 's.id_song'];
             const response = await genericCrudMySQL.playLibrary(values);
 
             if (response.length === 0) {
@@ -105,5 +105,35 @@ export default {
         } catch (e) {
             res.status(500).json({ message: 'Error inesperado al obtener las canciones', error: e });
         }
+    },
+    addFavoritsSongs: async (req, res) => {
+        try {
+            // SELECT * FROM users_songs WHERE id_user = 1 && id_song = 1;
+            const values = ['users_songs', 'id_user', req.body.id_user, 'id_song', req.body.id_song];
+            // Verificamos si la canción ya está en favoritos
+            const response = await genericCrudMySQL.getSong(values);
+            if (response[0].length > 0) {
+                res.status(400).json({ message: 'La cancion ya esta en favoritos' });
+            } else {
+                // INSERT INTO users_songs VALUES(1, 1);
+                const values = ['users_songs', req.body.id_user, req.body.id_song];
+                await genericCrudMySQL.addFavoritsSongs(values);
+                res.status(200).json({ message: 'Cancion añadida correctamente' });
+            }
+        } catch (e) {
+            res.status(500).json({ message: 'Error inesperado al añadir la cancion', error: e });
+        }
+    },
+    deleteFavoritsSongs: async (req, res) => {
+        try {
+            // DELETE FROM users_songs WHERE id_user = 1 AND id_song = 1;
+            const values = ['users_songs', 'id_user', req.body.id_user, 'id_song', req.body.id_song];
+            await genericCrudMySQL.deleteFavoritsSongs(values);
+
+            res.status(200).json({ message: 'Cancion eliminada correctamente' });
+        } catch (e) {
+            res.status(500).json({ message: 'Error inesperado al eliminar la cancion', error: e });
+        }
     }
+
 }

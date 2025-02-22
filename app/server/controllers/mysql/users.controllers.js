@@ -38,9 +38,7 @@ export default {
 			// Obtenemos el mail desde el cuerpo de la solicitud
 			const { email } = req.body;
 
-			if (!email) {
-				res.status(400).json({ message: 'Faltan datos obligatorios' })
-			};
+			if (!email)	res.status(400).json({ message: 'Faltan datos obligatorios' });
 
 			// Creamos arreglo para buscar el usuario
 			const values = ['users', 'email', email];
@@ -48,15 +46,11 @@ export default {
 			const infoUser = await userCrudMySQL.getUser(values);
 
 			// Si el email no existe devuelve el error 404
-			if (infoUser[0].length === 0) {
-				res.status(404).json({ message: 'El usuario no existe' })
-			}
+			if (infoUser[0].length === 0) res.status(404).json({ message: 'El usuario no existe' });
 
 			// Configuramos el objeto con el que construiremos el token
 			sign({ email }, TOKEN_SECRET, { expiresIn: '1h' }, (err, token) => {
-				if (err) {
-					res.status(401).json({ message: 'Error al generar el token' })
-				}
+				if (err) res.status(401).json({ message: 'Error al generar el token' })
 
 				// Devolver el token
 				res.status(200).json({ message: 'Token generado correctamente', token: `Bearer: ${token}` });
@@ -93,9 +87,7 @@ export default {
 			// Obtenemos toda la información desde el cuerpo de la solicitud
 			const { full_name, email, password, birthdate, gender } = req.body;
 
-			if (!email || !full_name || !password || !birthdate || !gender) {
-				res.status(400).json({ message: 'Faltan datos obligatorios' });
-			}
+			if (!email || !full_name || !password || !birthdate || !gender) res.status(400).json({ message: 'Faltan datos obligatorios' });
 
 			// Verificamos si el usuario ya existe
 			const values = ['users', 'email', email];

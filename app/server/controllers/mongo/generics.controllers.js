@@ -5,8 +5,7 @@ export default {
 	getPlaylists: async (req, res) => {
 		try {
 			const result = await genericMongoCrud.getAll('playlists');
-
-
+			
 			res.json(result)
 		} finally {
 			await mongo.closeClient()

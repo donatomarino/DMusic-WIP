@@ -83,6 +83,37 @@
     font-weight: 200;
 }
 
+.Trends__Card--Buttons{
+    display: flex;
+    justify-content: space-around;
+    margin-top: 15px;
+}
+
+.Trends__Card--PlayButton, .Trends__Card--FavButton{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 15px;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+
+.Trends__Card--PlayButton{
+    background-color: #1668d4;
+}
+
+.Trends__Card--FavButton{
+    background-color: rgb(130, 6, 6);
+}
+
+.Trends__Card--PlayButton:hover, .Trends__Card--FavButton:hover{
+    transform: scale(1.1);
+}
+
 /* ------ SEARCH PAGE ------ */
 .Search__Image {
     height: 250px;

@@ -18,7 +18,7 @@ export default {
     },
     getFavoritesSongs: async (values) => {
         // SELECT s.image, s.title, a.full_name FROM users_songs us JOIN Users u ON u.id_user = us.id_user JOIN Songs s ON s.id_song = us.id_song JOIN artists a ON a.id_artist = s.id_artist WHERE us.id_user = ? ;
-        const query = 'SELECT ??, ??, ??, ??, ?? FROM ?? AS ?? JOIN ?? AS ?? ON ?? = ?? JOIN ?? AS ?? ON ?? = ?? JOIN ?? AS ?? ON ?? = ?? WHERE ?? = ?';
+        const query = `SELECT ??, ??, ??, DATE_FORMAT(??, "%i:%s") AS ??, ??, ?? FROM ?? AS ?? JOIN ?? AS ?? ON ?? = ?? JOIN ?? AS ?? ON ?? = ?? JOIN ?? AS ?? ON ?? = ?? WHERE ?? = ?`;
         const [result] = await connection.query(query, [...values]);
 
         return [result];
@@ -50,5 +50,26 @@ export default {
         const [result] = await connection.query(query, [...values]);
 
         return [result];
+    },
+    addFavoritsSongs: async(values) => {
+        // INSERT INTO users_songs VALUES(1, 1);
+        const query = 'INSERT INTO ?? VALUES(?, ?)';
+        const result = await connection.query(query, [...values]);
+
+        return result;
+    },
+    getSong: async(values) => {
+        // SELECT * FROM users_songs WHERE id_user = 1 && id_song = 1;
+        const query = 'SELECT * FROM ?? WHERE ?? = ? && ?? = ?';
+        const result = await connection.query(query, [...values]);
+
+        return result;
+    },
+    deleteFavoritsSongs: async(values) => {
+        // // DELETE FROM users_songs WHERE id_user = 1 AND id_song = 1;
+        const query = 'DELETE FROM ?? WHERE ?? = ? AND ?? = ?';
+        const result = await connection.query(query, [...values]);
+
+        return result;
     }
 }

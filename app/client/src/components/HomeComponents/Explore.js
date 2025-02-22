@@ -4,12 +4,14 @@
 import useFetch from '../../utils/hooks/useFetch';
 import { useState, useEffect, useContext } from 'react';
 import '../../styles/home/Explore.css';
+import Button from '../GeneralComponents/Button';
 import { SongContext } from '../../utils/contexto/SongContext';
-import { LoginContext } from '../../utils/contexto/LoginContext';
+import { FaPlay, FaHeart } from "react-icons/fa";
+import { jwtDecode } from 'jwt-decode';
 
 export const Explore = () => {
     const [songs, setSongs] = useState([]);
-    const { toggleSong} = useContext(SongContext);
+    const { toggleSong } = useContext(SongContext);
 
     const { fetchData, fetchError } = useFetch();
 
@@ -33,16 +35,14 @@ export const Explore = () => {
     }, [])
 
     const handleSong = async (id) => {
-        try{
+        try {
             const response = await fetchData({
                 endpoint: '/play-song',
                 method: 'POST',
-                body: {id}
+                body: { id }
             })
 
-            console.log(response);
-
-            if(response[0].length > 0){
+            if (response[0].length > 0) {
                 const formattedTracks = [];
                 response.map(e => {
                     e.map(e => {
@@ -56,7 +56,33 @@ export const Explore = () => {
 
                 toggleSong(formattedTracks);
             }
-        } catch (e){
+        } catch (e) {
+            console.log('Ha habido un problema en la solicitud: ', e);
+        }
+    }
+
+    const handleFavorite = async (id) => {
+        try{
+            const user = localStorage.getItem('token');
+            const id_u = jwtDecode(user).id_user;
+            console.log(id_u);
+            const formData = {
+                id_user: id_u,
+                id_song: id
+            }
+
+            const response = await fetchData({
+                endpoint: '/add-favoritesongs',
+                method: 'POST',
+                body: formData
+            });
+
+            if(response.length === 0){
+                alert('La canción ya está en tus favoritos')
+            } else {
+                alert('Canción añadida a favoritos')
+            }
+        } catch(e){
             console.log('Ha habido un problema en la solicitud: ', e);
         }
     }
@@ -70,18 +96,36 @@ export const Explore = () => {
 
             <div className="Trends__ContainerCard">
                 {songs
-                    .sort((a,b) => b.score - a.score)
+                    .sort((a, b) => b.score - a.score)
                     .map((e, i) => {
-                        return (
-                            <div className="ContentHome__Card Trends__Card" onClick={() => handleSong(e.id_song)} key={i}>
-                                <img className="ContentHome__Card--Image" src={e.image} alt="Card image cap" />
-                                <div className="ContentHome__Card--Body">
-                                    <p className='Trends__Card--NameArtist'>{e.full_name}</p>
-                                    <p className="ContentHome__Card--Title Trends__Card--Title">{e.title}</p>
+                    return (
+                        <div className="ContentHome__Card Trends__Card" key={i}>
+                            <img
+                                className="ContentHome__Card--Image"
+                                src={e.image}
+                                alt="Card image cap"
+                            />
+                            <div className="ContentHome__Card--Body">
+                                <p className="Trends__Card--NameArtist">{e.full_name}</p>
+                                <p className="ContentHome__Card--Title Trends__Card--Title">{e.title}</p>
+
+                                <div className="Trends__Card--Buttons">
+                                    <Button
+                                        className="Trends__Card--PlayButton"
+                                        onClick={() => handleSong(e.id_song)}
+                                    >
+                                        <FaPlay />
+                                    </Button>
+                                    <Button
+                                        className="Trends__Card--FavButton"
+                                        onClick={() => handleFavorite(e.id_song)}
+                                    >
+                                        <FaHeart />
+                                    </Button>
                                 </div>
                             </div>
-                        );
-                    })}
+                        </div>
+                    )})};
             </div>
         </div>
     )

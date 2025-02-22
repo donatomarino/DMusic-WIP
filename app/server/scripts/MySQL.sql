@@ -1,4 +1,4 @@
-#DROP DATABASE DMusic;
+DROP DATABASE DMusic;
 CREATE DATABASE DMusic;
 USE DMusic;
 
@@ -13,17 +13,16 @@ gender VARCHAR(10) NOT NULL
 );
 
 -- Insertamos datos en la tabla users
-INSERT INTO Users VALUES(NULL, 'Donato Marino', 'donato_8@icloud.com', '1234', '2000-01-15', 'hombre');
+-- INSERT INTO Users VALUES(NULL, 'Donato Marino', 'donato_8@icloud.com', '1234', '2000-01-15', 'hombre');
 
 SELECT * FROM Users;
-
-
 
 -- Creamos la tabla Songs
 CREATE TABLE Songs(
 id_song INT AUTO_INCREMENT PRIMARY KEY,
 title VARCHAR(255) NOT NULL,
 genre VARCHAR(255),
+duration TIME,
 url VARCHAR(255) NOT NULL,
 image VARCHAR(255),
 score DECIMAL(5,2),
@@ -32,20 +31,20 @@ id_artist INT NOT NULL
 
 -- Insertamos datos en la tabla Songs
 INSERT INTO Songs VALUES
-(NULL, 'Baile InoLVIDABLE', 'Raggaetton', 'music/BadBunny_BAILEINoLVIDABLE_1.mp3', 'https://t2.genius.com/unsafe/504x504/https%3A%2F%2Fimages.genius.com%2F66f08db4c1d9d323ab441ab6c04a034a.1000x1000x1.png', 9, 1),
-(NULL, 'The Age Of Love', 'Tecno', 'music/Charlotte_AgeOfLove_2.mp3', 'https://t2.genius.com/unsafe/600x0/https%3A%2F%2Fimages.genius.com%2F3d4759fb8e0c210198bb7c2e9a1f92b1.500x500x1.jpg', 9.9, 2),
-(NULL, 'Tu Me Quieres', 'Trap', 'music/BabyGang_TuMeQuieres_3.mp3', 'https://t2.genius.com/unsafe/504x504/https%3A%2F%2Fimages.genius.com%2F239bf8df4dfb37b7c74c40cba9136498.1000x1000x1.png', 9.5, 3),
-(NULL, 'DeBÍ TiRAR MáS FOToS', 'Ragaetton', 'music/BadBunny_NUEVAYoL_1.mp3', 'https://t2.genius.com/unsafe/600x600/https%3A%2F%2Fimages.genius.com%2F66f08db4c1d9d323ab441ab6c04a034a.1000x1000x1.png', 9.7, 1),
-(NULL, 'Pero Tú', 'Ragaetton', 'music/KarolG_PeroTú_4.mp3', 'https://t2.genius.com/unsafe/504x504/https%3A%2F%2Fimages.genius.com%2F281b83d9beed781e49c498f400afa4f5.640x640x1.jpg', 9.9, 4),
-(NULL, 'Someone Like You', 'Ballad', 'music/Adele_SomeoneLikeYou_8.mp3', 'https://t2.genius.com/unsafe/504x504/https%3A%2F%2Fimages.genius.com%2F48caff7f3cd18b4f4e9b2db1baf3d576.1000x1000x1.png', 9.0, 8),
-(NULL, 'Despacito', 'Reggaeton', 'music/LuisFonsi_Despacito_9.mp3', 'https://t2.genius.com/unsafe/504x504/https%3A%2F%2Fimages.genius.com%2F6dbadaf716039dad3841a1640755ac3a.1000x1000x1.png', 9.3, 9),
-(NULL, 'REBOTA', 'Ragaetton', 'music/Karima_Rebota_6.mp3', 'https://t2.genius.com/unsafe/504x504/https%3A%2F%2Fimages.genius.com%2Fc69cd2fbcfbd69a99c7a445754a4c679.300x300x1.jpg', 8.1, 5),
-(NULL, 'DOLCE', 'Latino', 'music/Cazzu_DOLCE_7.mp3', 'https://t2.genius.com/unsafe/504x504/https%3A%2F%2Fimages.genius.com%2F95a555bd9a68b4ce7bf726b3cdedc248.1000x1000x1.png', 8.3, 6),
-(NULL, 'Soltera', 'Latino', 'music/Shakira_Soltera_5.mp3', 'https://t2.genius.com/unsafe/504x504/https%3A%2F%2Fimages.genius.com%2F591fd77de49c251aa4e05691166a60b5.1000x1000x1.png', 8.5, 7),
-(NULL, 'GIRL LIKE ME', 'Latino', 'music/Shakira_GIRLLIKEME_5.mp3', 'https://t2.genius.com/unsafe/504x504/https%3A%2F%2Fimages.genius.com%2F124f3cddce7532eb26594b949010ae8f.1000x1000x1.jpg', 8.4, 7),
-(NULL, 'Roar', 'Tecno', 'music/Charlotte_Roar_2.mp3', 'https://t2.genius.com/unsafe/504x504/https%3A%2F%2Fimages.genius.com%2Fedc02ee11001ed707a21838f4376f696.1000x1000x1.png', 9.1, 2),
-(NULL, 'Ma Chérie', 'Trap', 'music/BabyGang_MaChérie_3.mp3', 'https://t2.genius.com/unsafe/504x504/https%3A%2F%2Fimages.genius.com%2F17bbb5e6470ce849dcc3df2f294345eb.1000x1000x1.jpg', 8.7, 7),
-(NULL, 'Si Antes Te Hubiera Conocido', 'Ragaetton', 'music/KarolG_SiAntesTeHubieraConocido_4.mp3', 'https://t2.genius.com/unsafe/504x504/https%3A%2F%2Fimages.genius.com%2Fb29d7abd74acce26b24675c6ba87b4ca.1000x1000x1.png', 9.0, 4);
+(NULL, 'Baile InoLVIDABLE', 'Raggaetton', '00:06:18', 'music/BadBunny_BAILEINoLVIDABLE_1.mp3', 'https://t2.genius.com/unsafe/504x504/https%3A%2F%2Fimages.genius.com%2F66f08db4c1d9d323ab441ab6c04a034a.1000x1000x1.png', 9, 1),
+(NULL, 'The Age Of Love', 'Tecno', '00:06:22', 'music/Charlotte_AgeOfLove_2.mp3', 'https://t2.genius.com/unsafe/600x0/https%3A%2F%2Fimages.genius.com%2F3d4759fb8e0c210198bb7c2e9a1f92b1.500x500x1.jpg', 9.9, 2),
+(NULL, 'Tu Me Quieres', 'Trap', '00:03:47', 'music/BabyGang_TuMeQuieres_3.mp3', 'https://t2.genius.com/unsafe/504x504/https%3A%2F%2Fimages.genius.com%2F239bf8df4dfb37b7c74c40cba9136498.1000x1000x1.png', 9.5, 3),
+(NULL, 'DeBÍ TiRAR MáS FOToS', 'Ragaetton', '00:03:05', 'music/BadBunny_NUEVAYoL_1.mp3', 'https://t2.genius.com/unsafe/600x600/https%3A%2F%2Fimages.genius.com%2F66f08db4c1d9d323ab441ab6c04a034a.1000x1000x1.png', 9.7, 1),
+(NULL, 'Pero Tú', 'Ragaetton', '00:03:01', 'music/KarolG_PeroTú_4.mp3', 'https://t2.genius.com/unsafe/504x504/https%3A%2F%2Fimages.genius.com%2F281b83d9beed781e49c498f400afa4f5.640x640x1.jpg', 9.9, 4),
+(NULL, 'Someone Like You', 'Ballad', '00:04:45', 'music/Adele_SomeoneLikeYou_8.mp3', 'https://t2.genius.com/unsafe/504x504/https%3A%2F%2Fimages.genius.com%2F48caff7f3cd18b4f4e9b2db1baf3d576.1000x1000x1.png', 9.0, 8),
+(NULL, 'Despacito', 'Reggaeton', '00:04:41', 'music/LuisFonsi_Despacito_9.mp3', 'https://t2.genius.com/unsafe/504x504/https%3A%2F%2Fimages.genius.com%2F6dbadaf716039dad3841a1640755ac3a.1000x1000x1.png', 9.3, 9),
+(NULL, 'REBOTA', 'Ragaetton', '00:03:28', 'music/Karima_Rebota_6.mp3', 'https://t2.genius.com/unsafe/504x504/https%3A%2F%2Fimages.genius.com%2Fc69cd2fbcfbd69a99c7a445754a4c679.300x300x1.jpg', 8.1, 6),
+(NULL, 'DOLCE', 'Latino', '00:03:18', 'music/Cazzu_DOLCE_7.mp3', 'https://t2.genius.com/unsafe/504x504/https%3A%2F%2Fimages.genius.com%2F95a555bd9a68b4ce7bf726b3cdedc248.1000x1000x1.png', 8.3, 7),
+(NULL, 'Soltera', 'Latino', '00:04:08', 'music/Shakira_Soltera_5.mp3', 'https://t2.genius.com/unsafe/504x504/https%3A%2F%2Fimages.genius.com%2F591fd77de49c251aa4e05691166a60b5.1000x1000x1.png', 8.5, 5),
+(NULL, 'GIRL LIKE ME', 'Latino', '00:03:53', 'music/Shakira_GIRLLIKEME_5.mp3', 'https://t2.genius.com/unsafe/504x504/https%3A%2F%2Fimages.genius.com%2F124f3cddce7532eb26594b949010ae8f.1000x1000x1.jpg', 8.4, 5),
+(NULL, 'Roar', 'Tecno', '00:05:55', 'music/Charlotte_Roar_2.mp3', 'https://t2.genius.com/unsafe/504x504/https%3A%2F%2Fimages.genius.com%2Fedc02ee11001ed707a21838f4376f696.1000x1000x1.png', 9.1, 2),
+(NULL, 'Ma Chérie', 'Trap', '00:02:50', 'music/BabyGang_MaChérie_3.mp3', 'https://t2.genius.com/unsafe/504x504/https%3A%2F%2Fimages.genius.com%2F17bbb5e6470ce849dcc3df2f294345eb.1000x1000x1.jpg', 8.7, 3),
+(NULL, 'Si Antes Te Hubiera Conocido', 'Ragaetton', '00:03:15', 'music/KarolG_SiAntesTeHubieraConocido_4.mp3', 'https://t2.genius.com/unsafe/504x504/https%3A%2F%2Fimages.genius.com%2Fb29d7abd74acce26b24675c6ba87b4ca.1000x1000x1.png', 9.0, 4);
 
 SELECT * FROM Songs;
 
@@ -73,7 +72,7 @@ INSERT INTO Artists VALUES
 ALTER TABLE Songs ADD CONSTRAINT FK_Artistas_Songs FOREIGN KEY (id_artist) REFERENCES Artists(id_artist) ON DELETE CASCADE ON UPDATE CASCADE;
 
 SELECT * FROM Artists;
-SELECT s.url, CONCAT (a.full_name, ' - ', s.title), s.genre FROM songs s JOIN artists a ON a.id_artist = s.id_artist;
+SELECT s.url, CONCAT (a.full_name, ' - ', s.title), s.genre FROM songs s JOIN artists a ON a.id_artist = s.id_artist WHERE s.id_song = 1;
 
 
 
@@ -86,10 +85,12 @@ PRIMARY KEY(id_user, id_song),
 FOREIGN KEY (id_user) REFERENCES Users(id_user),
 FOREIGN KEY (id_song) REFERENCES Songs(id_song)
 );
-
+/*
 INSERT INTO users_songs VALUES(1, 1);
 INSERT INTO users_songs VALUES(1, 3);
 INSERT INTO users_songs VALUES(1, 4);
+*/
+SELECT * FROM users_songs WHERE id_user = 1 && id_song = 1;
 
 /*
 --- Prueba JOIN tabla artists y songs ---
@@ -119,11 +120,16 @@ FROM songs s
 JOIN artists a ON s.id_artist = a.id_artist
 WHERE title = 'Despacito';
 
+SELECT s.url, CONCAT(a.full_name, ' - ', s.title) title from users_songs us JOIN songs s ON us.id_song = s.id_song JOIN artists a ON s.id_artist = a.id_artist WHERE id_user = 1 ORDER BY s.id_song = 3 DESC, s.id_song ;
 
 
-
-
-
-
-
-
+SELECT 
+    Songs.title AS song_title, 
+    Artists.full_name AS artist_name
+FROM 
+    Users_Songs
+JOIN 
+    Songs ON Users_Songs.id_song = Songs.id_song
+JOIN 
+    Artists ON Songs.id_artist = Artists.id_artist;
+    
