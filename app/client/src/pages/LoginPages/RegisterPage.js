@@ -7,9 +7,9 @@ import "../../styles/login/login.css";
 export const RegisterPage = () => {
     const { component, toggleComponent} = useContext(ComponentContext);
 
-    // useEffect(() => {
-    //     toggleComponent(0);
-    // }, [])
+    useEffect(() => {
+        toggleComponent(0);
+    }, [])
 
     return (
         <div className="Login__Form">

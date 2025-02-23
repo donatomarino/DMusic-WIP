@@ -6,4 +6,4 @@ Cuándo acepto los LOPD hay 2 problemas:
     ** SOLUCION PENSADA **
     - Hacer un contexto para el register y otro contexto para los componentes de la home.
 
-  2- Cuando se vuelve a la página de registro, en el contexto no se guardan los datos insertados anteriormente.
+  2- Cuando se vuelve a la página de registro, en DataContext no se guardan los datos insertados anteriormente.

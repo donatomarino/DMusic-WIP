@@ -23,7 +23,7 @@ export default {
 			if (!email || !pass) return res.status(400).json({ message: 'Faltan datos obligatorios' });
 
 			// Verificar si el usuario existe
-			const values = [process.env.USERS, 'email', email];
+			const values = [process.env.TAB_USERS, 'email', email];
 			const userFound = await userCrudMySQL.getUser(values);
 			if (!userFound) return res.status(401).json({ message: 'El usuario no está registrado' });
 
@@ -55,7 +55,7 @@ export default {
 			if (!email) return res.status(400).json({ message: 'Faltan datos obligatorios' });
 
 			// Creamos arreglo para buscar el usuario
-			const values = [process.env.USERS, 'email', email];
+			const values = [process.env.TAB_USERS, 'email', email];
 			// Buscamos el mail en la tabla de usuarios
 			const infoUser = await userCrudMySQL.getUser(values);
 
@@ -88,7 +88,7 @@ export default {
 			const passHash = await bcrypt.hash(req.body.pass, 10);
 
 			// UPDATE 'users' SET 'password' = 'nuevaPass' WHERE 'email' = 'email';
-			const values = [process.env.USERS, 'pass', passHash, 'email', email];
+			const values = [process.env.TAB_USERS, 'pass', passHash, 'email', email];
 			userCrudMySQL.updatePass(values);
 
 			res.status(200).json({ message: 'Contraseña actualizada correctamente' });
@@ -110,7 +110,7 @@ export default {
 			if (!email || !full_name || !password || !birthdate || !gender) return res.status(400).json({ message: 'Faltan datos obligatorios' });
 
 			// Verificamos si el usuario ya existe
-			const values = [process.env.USERS, 'email', email];
+			const values = [process.env.TAB_USERS, 'email', email];
 			const verifyIfExist = await userCrudMySQL.getUser(values);
 
 			// Si el usuario ya existe, devuelve un error
@@ -121,7 +121,7 @@ export default {
 				const passHash = await bcrypt.hash(password, 10);
 
 				// Valores para insertar en la base de datos
-				const createValues = [process.env.USERS, 'full_name', 'email', 'pass', 'birthdate', 'gender', full_name, email, passHash, birthdate, gender];
+				const createValues = [process.env.TAB_USERS, 'full_name', 'email', 'pass', 'birthdate', 'gender', full_name, email, passHash, birthdate, gender];
 				await userCrudMySQL.createUser(createValues);
 
 				res.status(200).json({ message: `${email} registrado correctamente!` });
