@@ -4,9 +4,9 @@ const connection = await sql.mySQLConnection();
 
 export default {
 	/**
-	  * Función para obtener usuario con email
-	  * @param {Array} values - valores para la consulta
-	  * @returns {Array} - Todos los datos del usuario si existe, sino devuelve un array vacío
+	  * Obtener todos los datos de un usuario
+	  * @param {Array} values 
+	  * @returns {Array}
 	  */
 	getUser: async (values) => {
 		const query = 'SELECT * FROM ?? WHERE ?? = ?';
@@ -16,19 +16,18 @@ export default {
 
     /**
 	* Actualiza la password del usuario
-	* @param {Array} values - valores con los datos de la consulta
-	* @returns {Number} - número de filas afectadas
+	* @param {Array} values
+	* @returns {Number}
 	*/
 	updatePass: async (values) => {
 		const query = 'UPDATE ?? SET ?? = ? WHERE ?? = ?'
 		const [result] = await connection.query(query, [...values])
 		return result;
 	},
-    
-    	/**
-	  * Crear un nuevo item en la tabla especificada
-	  * @param {Array} values - Valores a insertar en la tabla
-	  * @returns {number} - ID del nuevo registro
+    /**
+	  * Registración nuevo usuario
+	  * @param {Array} values -
+	  * @returns {number}
 	  */
 	createUser: async (values) => {
 		const query = 'INSERT INTO ?? (??, ??, ??, ??, ??) VALUES (?, ?, ?, ?, ?)';

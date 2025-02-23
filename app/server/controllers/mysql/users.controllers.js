@@ -6,6 +6,12 @@ import { TOKEN_SECRET } from "../../utils/config.js";
 const { sign, verify } = jwt;
 
 export default {
+	/**
+	 * Login usuario y obtención de token.
+	 * @param {*} req 
+	 * @param {*} res 
+	 * @returns 
+	 */
 	login: async (req, res) => {
 		try {
 			// Obtener los datos del cuerpo de la solicitud
@@ -33,6 +39,12 @@ export default {
 			res.status(500).json({ message: 'Error al hacer login: ', error })
 		}
 	},
+	/**
+	 * Pedir enlace para recuperar contraseña tramite email.
+	 * @param {*} req 
+	 * @param {*} res 
+	 * @returns 
+	 */
 	recoveryPass: async (req, res) => {
 		try {
 			// Obtenemos el mail desde el cuerpo de la solicitud
@@ -60,6 +72,11 @@ export default {
 			res.status(500).json({ message: 'Error al recuperar la contraseña: ', e })
 		}
 	},
+	/**
+	 * Confirmar recuperación de contraseña.
+	 * @param {*} req 
+	 * @param {*} res 
+	 */
 	confirmRecovery: async (req, res) => {
 		try {
 			const decoded = verify(req.params.token, TOKEN_SECRET);
@@ -77,6 +94,12 @@ export default {
 			res.status(500).json({ message: "Error en el servidor: ", error: e });
 		}
 	},
+	/**
+	 * Registración de nuevo usuario.
+	 * @param {*} req 
+	 * @param {*} res 
+	 * @returns 
+	 */
 	register: async (req, res) => {
 		try {
 			// Obtenemos toda la información desde el cuerpo de la solicitud

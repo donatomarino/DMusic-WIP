@@ -2,6 +2,11 @@ import jwt from 'jsonwebtoken';
 import { TOKEN_SECRET } from './config.js';
 
 export default {
+    /**
+     * Crear un token de acceso. 
+     * @param {Array} payload 
+     * @returns {Promise}
+     */
     createAccessToken: async (payload) => {
         return new Promise((resolve, reject) => {
             jwt.sign(payload, TOKEN_SECRET, { expiresIn: '10000s' }, (err, token) => {

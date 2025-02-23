@@ -12,7 +12,7 @@ export const usePlayPlaylist = () => {
         if (login === 1) {
             try {
                 const response = await fetchData({
-                    endpoint: '/playlist',
+                    endpoint: '/play-playlist',
                     method: 'POST',
                     body: { id }
                 })

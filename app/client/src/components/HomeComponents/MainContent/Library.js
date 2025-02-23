@@ -25,7 +25,9 @@ export const Library = () => {
         const fetchLibrary = async () => {
             try {
                 const response = await fetchData({
-                    endpoint: '/favoritesongs'
+                    endpoint: '/favoritesongs',
+                    method: 'POST',
+                    body: {id}
                 })
 
                 if (response && response.length > 0) {
@@ -52,8 +54,6 @@ export const Library = () => {
                 method: 'POST',
                 body: formData
             })
-
-            console.log(response);
 
             if (response[0].length > 0) {
                 const formattedTracks = [];

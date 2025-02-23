@@ -7,6 +7,10 @@ const my_db = "DMusic"; // Nombre datebase
 
 export default {
 
+	/**
+	 * Connection to the MySQL database.
+	 * @returns {Promise<Pool>}
+	 */
 	mySQLConnection: async () => {
 
 		const pool = mysql.createPool({
