@@ -3,6 +3,8 @@ import cors from 'cors';
 import { router } from './routes/routes.js';
 import { swaggerUi } from './swaggerConfig.js';
 import { swaggerDocs } from './swaggerConfig.js';
+import dotenv from 'dotenv';
+dotenv.config();
 
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -23,7 +25,7 @@ app.use(router);
 app.use('/music', express.static(path.join(__dirname, 'music')));
 app.use('/playlist', express.static(path.join(__dirname, 'playlist')));
 
-const port = process.env.PORT || 5001;
+const port = process.env.PORT;
 
 app.listen(port,() => console.log(`Server running on port ${port}`));
 

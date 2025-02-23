@@ -1,9 +1,11 @@
 import { ObjectId } from 'mongodb';
 import mongo from '../../database/mongo.connection.js';
+import dotenv from 'dotenv';
+dotenv.config();
 
 const client = await mongo.connectToMongo();
 
-const mydb = 'DMusic';
+const mydb = process.env.MONGO_DB;
 
 export default {
     /**

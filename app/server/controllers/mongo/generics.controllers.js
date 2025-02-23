@@ -1,5 +1,7 @@
 import mongo from '../../database/mongo.connection.js';
 import genericMongoCrud from '../../models/crudMongo/generic.crud.js';
+import dotenv from 'dotenv';
+dotenv.config();
 
 export default {
 	/**
@@ -9,7 +11,7 @@ export default {
 	 */
 	getPlaylists: async (req, res) => {
 		try {
-			const result = await genericMongoCrud.getAll('playlists');
+			const result = await genericMongoCrud.getAll(process.env.COLL_PLAYLISTS);
 			
 			if(result.length === 0){
 				res.status(400).json({message: 'No hay playlist en la base de datos.'});
@@ -29,7 +31,7 @@ export default {
 	 */
     getLopd: async (req, res) => {
         try{
-			const result = await genericMongoCrud.getAll('lopd');
+			const result = await genericMongoCrud.getAll(process.env.COLL_LOPD);
 			
 			res.status(200).json(result);
         } catch(e) {
@@ -45,7 +47,7 @@ export default {
 	 */
 	playPlaylist: async(req, res) => {
 		try {
-			const result = await genericMongoCrud.getOne('playlists', req.body.id);
+			const result = await genericMongoCrud.getOne(process.env.COLL_PLAYLISTS, req.body.id);
 
 			res.status(200).json(result);
 		} catch(e) {
