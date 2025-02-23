@@ -39,7 +39,6 @@ export const Explore = () => {
         try {
             const user = localStorage.getItem('token');
             const id_u = jwtDecode(user).id_user;
-            console.log(id_u);
             const formData = {
                 id_user: id_u,
                 id_song: id

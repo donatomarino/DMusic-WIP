@@ -4,18 +4,19 @@ import FormField from '../../components/LoginComponents/FormField';
 import { useNavigation } from '../../utils/hooks/useNavigation';
 import { LoginContext } from '../../utils/contexto/LoginContext';
 import { DataContext } from '../../utils/contexto/DataContext';
-import '../../styles/login/login.css';
 import { Header } from '../../components/LoginComponents/Header';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import '../../styles/login/login.css';
 
 export const LoginPage = () => {
     const [showPassword, setShowPassword] = useState(false);
     const [email, setEmail] = useState('');
     const [pass, setPassword] = useState('');
     const [isMatch, setIsMatch] = useState(false);
-    const {toggleLogin} = useContext(LoginContext);
-    const {toggleDatos} = useContext(DataContext);
+    const { toggleLogin } = useContext(LoginContext);
+    const { toggleDatos } = useContext(DataContext);
     const navigate = useNavigation();
-    
+
     useEffect(() => {
         toggleDatos({
             full_name: '',
@@ -23,7 +24,7 @@ export const LoginPage = () => {
             password: '',
             birthdate: '',
             gender: ''
-          })
+        })
     }, [])
 
     const handleSubmit = async (e) => {
@@ -61,43 +62,43 @@ export const LoginPage = () => {
 
     return (
         <form className='Login__Form' onSubmit={handleSubmit} method='POST'>
-            <Header 
+            <Header
                 description={'Inicia sesión en DMusic'}
                 onClick={() => navigate('/')}
             />
 
             <div className='Login__InputContainer'>
-                    <FormField
-                        label={'Correo electrónico'}
-                        type={'email'}
-                        id={'email'}
-                        placeholder={'Introduces tu correo electrónico'}
-                        name={'email'}
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        required
-                    />
+                <FormField
+                    label={'Correo electrónico'}
+                    type={'email'}
+                    id={'email'}
+                    placeholder={'Introduces tu correo electrónico'}
+                    name={'email'}
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    required
+                />
             </div>
 
             <div className='Login__InputContainer'>
-                    <FormField
-                        label={'Password'}
-                        type={showPassword ? 'text' : 'password'}
-                        id={'password'}
-                        placeholder={'Introduces tu contraseña'}
-                        name={'password'}
-                        value={pass}
-                        onChange={(e) => setPassword(e.target.value)}
-                        required
-                    />
+                <FormField
+                    label={'Password'}
+                    type={showPassword ? 'text' : 'password'}
+                    id={'password'}
+                    placeholder={'Introduces tu contraseña'}
+                    name={'password'}
+                    value={pass}
+                    onChange={(e) => setPassword(e.target.value)}
+                    required
+                />
 
-                    <Button
-                        onClick={() => setShowPassword(!showPassword)}
-                        className="Login__Button--togglePasswordVisibility"
-                    >
-                        <img src={showPassword ? '/images/ojo.png' : '/images/ojo2.png'} className="Login__InputContainer--icon" alt="Toggle visibility" />
-                    </Button>
-                </div>
+                <Button
+                    onClick={() => setShowPassword(!showPassword)}
+                    className="Login__Button--togglePasswordVisibility"
+                >
+                    {showPassword ? <FaEye color= '#1668d4' size={28} /> : <FaEyeSlash color= '#1668d4' size={28} />}
+                </Button>
+            </div>
 
             {isMatch &&
                 <div className='Login__Error-Confirma'>
@@ -117,8 +118,8 @@ export const LoginPage = () => {
 
             <div>
                 <span className='Login__Span'>¿No tienes cuenta?</span>
-                <Button className='Login__Button--Routes' onClick={() => { navigate('/user/register')}}>
-                Regístrate en DMusic
+                <Button className='Login__Button--Routes' onClick={() => { navigate('/user/register') }}>
+                    Regístrate en DMusic
                 </Button>
             </div>
 

@@ -5,8 +5,9 @@ import { useNavigation } from "../../../utils/hooks/useNavigation";
 import { ComponentContext } from "../../../utils/contexto/ComponentContext";
 import { DataContext } from "../../../utils/contexto/DataContext";
 import { FaChevronLeft } from "react-icons/fa";
-import "../../../styles/login/login.css";
 import { Header } from "../Header";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
+import "../../../styles/login/login.css";
 
 export const FirstRegister = () => {
     const navigate = useNavigation();
@@ -33,7 +34,7 @@ export const FirstRegister = () => {
             <Header description={'Únete ahora y disfruta de todo el contenido'} />
 
             <div className="RegisterPage__Container">
-                <div className="RegisterPage__Container--Emotion" onClick={() => {navigate('/login'); localStorage.removeItem('token')}}><FaChevronLeft size={18} color="white" /></div>
+                <div className="RegisterPage__Container--Emotion" onClick={() => { navigate('/login'); localStorage.removeItem('token') }}><FaChevronLeft size={18} color="white" /></div>
                 <div className="RegisterPage__Options">
                     <div className="RegisterPage__Options--Routes">Paso 1 de 2</div>
                     <div className="RegisterPage__Options--Description">Crea usuario</div>
@@ -69,7 +70,7 @@ export const FirstRegister = () => {
                     onClick={() => setShowPassword(!showPassword)}
                     className="Login__Button--togglePasswordVisibility--Register"
                 >
-                    <img src={showPassword ? '/images/ojo.png' : '/images/ojo2.png'} className="Login__InputContainer--icon" alt="Toggle visibility" />
+                    {showPassword ? <FaEye color='#1668d4' size={28} /> : <FaEyeSlash color='#1668d4' size={28} />}
                 </Button>
             </div>
 

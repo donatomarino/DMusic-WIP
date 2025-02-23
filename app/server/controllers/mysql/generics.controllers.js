@@ -145,6 +145,7 @@ export default {
             const values = [process.env.TAB_US, 'id_user', req.body.id_user, 'id_song', req.body.id_song];
             // Verificamos si la canción ya está en favoritos
             const response = await genericCrudMySQL.getSong(values);
+
             if (response[0].length > 0) {
                 res.status(400).json({ message: 'La cancion ya esta en favoritos.' });
             } else {
