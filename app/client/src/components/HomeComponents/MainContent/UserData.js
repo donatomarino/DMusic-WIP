@@ -4,8 +4,7 @@ import Button from "../../GeneralComponents/Button";
 import { useNavigation } from "../../../utils/hooks/useNavigation";
 import Label from '../../GeneralComponents/Label';
 import {FaRegSmile} from "react-icons/fa"
-// import '../../styles/home/UserData.css';
-import '../../../styles/home/Content.css';
+import '../../../styles/home/UserData.css';
 
 export const UserData = () => {
     const navigate = useNavigation();

@@ -76,10 +76,10 @@ body {
 .Login__Button--togglePasswordVisibility--Register {
     background: none;
     border: none;
-    position: absolute;
+    position: fixed;
     cursor: pointer;
-    right: 34%;
-    top: 54.5%;
+    right: 38%;
+    top: 54%;
     transform: translateY(-50%);
     text-decoration: underline;
     border-bottom: 2px solid #1668d4;
