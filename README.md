@@ -5,31 +5,31 @@ my-react-app/
 │
 ├── public/
 │   └── images/
-│       └── favicon.png
+│         └── favicon.png
 │
 └── src/
     ├── components/
-    │   ├── GeneralComponents/
-    │   │            ├── Button.js
-    │   │            ├── Footer.js   
-    │   │            ├── Input.js
-    │   │            └── Label.js
-    │   │                
-    │   ├── HomeComponents/
-    │   │             ├── LayoutComponents/
-    │   │             │           ├── HeaderHome.js
-    │   │             │           ├── PlayerComponent.js
-    │   │             │           ├── Search.js
-    │   │             │           └── SideMenu.js
-    │   │             │ 
-    │   │             └── MainContent/
-    │   │                         ├── ContentHome.js
-    │   │                         ├── Explore.js
-    │   │                         ├── Library.js
-    │   │                         ├── Trends.js
-    │   │                         └── UserData.js
-    │   │
-    │   └── LoginComponents/
+    │     ├── GeneralComponents/
+    │     │            ├── Button.js
+    │     │            ├── Footer.js   
+    │     │            ├── Input.js
+    │     │            └── Label.js
+    │     │                
+    │     ├── HomeComponents/
+    │     │             ├── LayoutComponents/
+    │     │             │           ├── HeaderHome.js
+    │     │             │           ├── PlayerComponent.js
+    │     │             │           ├── Search.js
+    │     │             │           └── SideMenu.js
+    │     │             │ 
+    │     │             └── MainContent/
+    │     │                         ├── ContentHome.js
+    │     │                         ├── Explore.js
+    │     │                         ├── Library.js
+    │     │                         ├── Trends.js
+    │     │                         └── UserData.js
+    │     │
+    │     └── LoginComponents/
     │                 ├── RegistrationComponents/
     │                 │            ├── FirstRegister.js
     │                 │            └── SecondRegister.js 
@@ -40,10 +40,10 @@ my-react-app/
     │                 └── Radio.js        
     │ 
     ├── pages/
-    │   ├── HomePages/
-    │   │        └── HomePage.js
-    │   │  
-    │   └── LoginPages/
+    │      ├── HomePages/
+    │      │        └── HomePage.js
+    │      │  
+    │      └── LoginPages/
     │            ├── ConfirmRecoveryPage.js
     │            ├── LoginPage.js
     │            ├── LopdPage.js
