@@ -9,28 +9,28 @@ my-react-app/
 │
 └── src/
     ├── components/
-    │   ├── GeneralComponents
+    │   ├── GeneralComponents/
     │   │            ├── Button.js
     │   │            ├── Footer.js   
     │   │            ├── Input.js
     │   │            └── Label.js
     │   │                
-    │   ├── HomeComponents
-    │   │             ├── LayoutComponents
+    │   ├── HomeComponents/
+    │   │             ├── LayoutComponents/
     │   │             │           ├── HeaderHome.js
     │   │             │           ├── PlayerComponent.js
     │   │             │           ├── Search.js
-    │   │             │           └──  SideMenu.js
+    │   │             │           └── SideMenu.js
     │   │             │ 
-    │   │             └── MainContent
+    │   │             └── MainContent/
     │   │                         ├── ContentHome.js
     │   │                         ├── Explore.js
     │   │                         ├── Library.js
     │   │                         ├── Trends.js
     │   │                         └── UserData.js
     │   │
-    │   └── LoginComponents
-    │                 ├── RegistrationComponents
+    │   └── LoginComponents/
+    │                 ├── RegistrationComponents/
     │                 │            ├── FirstRegister.js
     │                 │            └── SecondRegister.js 
     │                 │ 
@@ -40,16 +40,47 @@ my-react-app/
     │                 └── Radio.js        
     │ 
     ├── pages/
-    │   ├── HomePages
+    │   ├── HomePages/
     │   │        └── HomePage.js
     │   │  
-    │   └── LoginPages
+    │   └── LoginPages/
     │            ├── ConfirmRecoveryPage.js
     │            ├── LoginPage.js
     │            ├── LopdPage.js
     │            ├── RecoveryPassPage.js
     │            └── RegisterPage.js
     │
+    ├── styles/
+    │       ├── general/
+    │       │       └── General.css
+    │       │
+    │       ├── home/
+    │       │      ├── Content.css
+    │       │      ├── Layout.css
+    │       │      └── UserData.css
+    │       │
+    │       └── login/
+    │              ├── login.css
+    │              └── lopd.css
+    │ 
+    ├── utils/
+    │      ├── context/
+    │      │       ├── ComponentContext.js
+    │      │       ├── DataContext.js
+    │      │       ├── LoginContext.js
+    │      │       ├── LopdContext.js
+    │      │       ├── MessageContext.js
+    │      │       ├── SearchContext.js
+    │      │       └── SongContext.js  
+    │      │ 
+    │      └── hooks/
+    │             ├── useFetch.js
+    │             ├── useLopd.js             
+    │             ├── useNavigation.js
+    │             ├── usePlayPlaylist.js  
+    │             └── usePlaySong.js  
+    │           
     ├── App.js
+    │
     └── index.js
 ```
