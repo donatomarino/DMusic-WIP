@@ -5,7 +5,6 @@ const login = [
 
 const searches = ['despacito', 'perotu', 'pero tu', 'macherie', 'ma cherie', 'shakira'];
 
-// Prueba login
 for (let i = 0; i < login[0].length; i++) {
   for (let y = 0; y < 1; y++) {
       for (let x = 1; x < 2; x++) {
@@ -20,7 +19,6 @@ for (let i = 0; i < login[0].length; i++) {
   }
 }
 
-// Prueba busqueda de canciones
 searches.forEach(e => {
   describe('Search song', () => {
     it('Home page', () => {
