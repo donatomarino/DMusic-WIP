@@ -134,7 +134,7 @@
 .HeaderHome__Logo {
   font-size: 2rem;
   font-weight: bold;
-  color: #1668d4;
+  color: #044396;
   letter-spacing: 1px;
   cursor: pointer;
 }
@@ -156,7 +156,7 @@
 }
 
 .HeaderHome__InputContainer--Input:hover {
-  border: 1px solid #1668d4;
+  border: 1px solid #044396;
   padding: 5px;
 }
 
@@ -180,7 +180,7 @@
 .HeaderHome__InputContainer--Icon:hover {
   padding: 4px;
   cursor: pointer;
-  border: 1px solid #1668d4;
+  border: 1px solid #044396;
   border-radius: 50%;
 }
 
@@ -191,7 +191,7 @@
 
 .HeaderHome__Buttons button {
   padding: 8px 20px;
-  background-color: #1668d4;
+  background-color: #044396;
   border: none;
   border-radius: 25px;
   color: white;
@@ -202,7 +202,7 @@
 }
 
 .HeaderHome__Buttons button:hover {
-  background-color: #1668d4;
+  background-color: #044396;
 }
 
 .HeaderHome__Buttons button:disabled {
@@ -212,7 +212,7 @@
 
 .HeaderHome__Button--Profile {
   padding: 10px;
-  background-color: #1668d4;
+  background-color: #044396;
   border-radius: 50%;
 }
 
@@ -291,7 +291,7 @@
 
 .SideMenu__Menu:hover,
 .SideMenu__End:hover {
-  background-color: #1668d4;
+  background-color: #044396;
   border-radius: 5px;
 }
 

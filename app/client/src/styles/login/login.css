@@ -26,8 +26,9 @@ body {
 
 .Login__HeaderContainer--Title {
     font-size: 2.5rem;
-    font-weight: 500;
+    font-weight: 700;
     margin-bottom: 10px;
+    color:#044396;
 }
 
 .Login__HeaderContainer--Title:hover{
@@ -82,7 +83,7 @@ body {
     top: 54%;
     transform: translateY(-50%);
     text-decoration: underline;
-    border-bottom: 2px solid #1668d4;
+    border-bottom: 2px solid #044396;
 }
 
 .Login__Error-Confirma {
@@ -92,7 +93,7 @@ body {
 }
 
 .Login__Button--Submit {
-    background-color: #044396;
+    background-color: #044396;;
     color: #fff;
     border: none;
     padding: 15px 30px;
@@ -104,7 +105,7 @@ body {
 }
 
 .Login__Button--Submit:hover {
-    background-color: #1668d4;
+    background-color: #044396;
 }
 
 .Login__Button--Routes {
