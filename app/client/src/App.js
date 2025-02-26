@@ -2,16 +2,16 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { LoginPage } from './pages/LoginPages/LoginPage.js';
 import { RecoveryPassPage } from './pages/LoginPages/RecoveryPassPage.js';
 import { ConfirmRecoveryPage } from './pages/LoginPages/ConfirmRecoveryPage.js';
-import { RegisterPage } from "./pages/LoginPages/RegisterPage.js";
-import { MessageProvider } from "./utils/contexto/MessageContext.js";
-import { DataProvider } from './utils/contexto/DataContext.js'
-import { LopdProvider } from "./utils/contexto/LopdContext.js";
+import { RegisterPage } from "./pages/RegisterPage/RegisterPage.js";
+import { MessageProvider } from "./utils/contexto/GeneralContext/MessageContext.js";
+import { DataProvider } from './utils/contexto/RegisterContext/DataContext.js'
+import { LopdProvider } from "./utils/contexto/RegisterContext/LopdContext.js";
 import { HomePage } from "./pages/HomePages/HomePage.js";
-import { SongProvider } from "./utils/contexto/SongContext.js";
-import { LoginProvider } from './utils/contexto/LoginContext.js'
-import { ComponentProvider } from './utils/contexto/ComponentContext.js'
-import Lopd from "./pages/LoginPages/LopdPage.js";
-import { SearchProvider } from "./utils/contexto/SearchContext.js";
+import { SongProvider } from "./utils/contexto/HomeContext/SongContext.js";
+import { LoginProvider } from './utils/contexto/GeneralContext/LoginContext.js'
+import { ComponentProvider } from './utils/contexto/GeneralContext/ComponentContext.js'
+import { SearchProvider } from "./utils/contexto/HomeContext/SearchContext.js";
+import Lopd from "./pages/RegisterPage/LopdPage.js";
 import './styles/general/General.css';
 
 function App() {

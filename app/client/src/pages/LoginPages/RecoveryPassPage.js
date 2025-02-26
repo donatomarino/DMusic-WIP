@@ -1,37 +1,11 @@
-import React, { useState } from "react";
 import Button from "../../components/GeneralComponents/Button";
-import { useNavigation } from "../../utils/hooks/useNavigation";
-import "../../styles/login/login.css";
 import FormField from "../../components/LoginComponents/FormField";
 import { Header } from "../../components/LoginComponents/Header";
+import { useRecoveryPass } from "../../utils/hooks/LoginHooks/useRecoveryPass";
+import "../../styles/login/login.css";
 
 export const RecoveryPassPage = () => {
-    const navigate = useNavigation();
-    const [email, setEmail] = useState('');
-    const [message, setMessage] = useState(null);
-
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-
-        try {
-            const response = await fetch('http://localhost:5001/dmusic/recovery-password', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ email })
-            });
-
-            if (response.ok) {
-                const data = await response.json();
-                const token = data.token.split(' ')[1];
-                console.log(`http://localhost:3000/user/confirm-recovery/${token}`);
-                setMessage('Revisa tu correo para restablecer la contraseña.');
-            } else {
-                setMessage('El mail introducido no existe.');
-            }
-        } catch(err){
-            console.log('Error en la solicitud: ', err);
-        }
-    };
+    const {navigate, email, setEmail, message, handleSubmit} = useRecoveryPass();
 
     return (
         <form className='Login__Form' onSubmit={handleSubmit} method='POST'>

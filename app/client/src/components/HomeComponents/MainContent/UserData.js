@@ -1,36 +1,11 @@
-import { useState, useEffect } from "react";
-import { jwtDecode } from 'jwt-decode';
-import Button from "../../GeneralComponents/Button";
-import { useNavigation } from "../../../utils/hooks/useNavigation";
 import Label from '../../GeneralComponents/Label';
-import {FaRegSmile} from "react-icons/fa"
+import Button from "../../GeneralComponents/Button";
+import { FaRegSmile } from "react-icons/fa";
+import { useUserData } from '../../../utils/hooks/HomeHooks/MainHooks/useUserData';
 import '../../../styles/home/UserData.css';
 
 export const UserData = () => {
-    const navigate = useNavigation();
-    const [datos, setDatos] = useState({
-        full_name: '',
-        email: '',
-        pass: '',
-        birthdate: '',
-        gender: ''
-    });
-
-    useEffect(() => {
-        const user = localStorage.getItem('token');
-        
-        if(user) {
-            const UserDatos = {
-                full_name: jwtDecode(user).full_name,
-                email: jwtDecode(user).email,
-                birthdate: jwtDecode(user).birthdate,
-                gender: jwtDecode(user).gender
-            }
-    
-            setDatos(UserDatos);
-        }
-    }, [])
-
+    const { navigate, datos } = useUserData();
 
     return (
         <div className="UserData__Container">
@@ -51,7 +26,7 @@ export const UserData = () => {
 
                 <div className="UserData__Content--Item">
                     <Label>Fecha de nacimiento</Label>
-                    <div className="UserData__Content--div">{datos.birthdate.slice(0,10).split('-').reverse().join('-')}</div>
+                    <div className="UserData__Content--div">{datos.birthdate.slice(0, 10).split('-').reverse().join('-')}</div>
                 </div>
 
                 <div className="UserData__Content--Item">

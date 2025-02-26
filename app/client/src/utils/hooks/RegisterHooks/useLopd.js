@@ -1,7 +1,7 @@
-import {useNavigation} from './useNavigation';
-import {LopdContext} from '../contexto/LopdContext';
+import {useNavigation} from '../GeneralHooks/useNavigation';
+import {LopdContext} from '../../contexto/RegisterContext/LopdContext';
 import { useState, useContext } from 'react';
-import { ComponentContext } from '../contexto/ComponentContext';
+import { ComponentContext } from '../../contexto/GeneralContext/ComponentContext';
 
 export const useLopd = () => {
     const {toggleComponent} = useContext(ComponentContext);
@@ -23,7 +23,6 @@ export const useLopd = () => {
         }
     }
     fetchLopd();
-
     const acceptChecker = (event) => {
         event.preventDefault();
         toggleComponent(1);

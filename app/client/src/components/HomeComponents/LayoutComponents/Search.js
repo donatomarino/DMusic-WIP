@@ -1,50 +1,9 @@
-import { useContext } from 'react';
-import { SearchContext } from '../../../utils/contexto/SearchContext';
-import { MessageContext } from '../../../utils/contexto/MessageContext';
-import useFetch from '../../../utils/hooks/useFetch';
-import {SongContext} from '../../../utils/contexto/SongContext';
-import { LoginContext } from '../../../utils/contexto/LoginContext';
-// import '../../../styles/home/Explore.css';
+import { useSearch } from '../../../utils/hooks/HomeHooks/LayoutHooks/useSearch';
 import '../../../styles/home/Layout.css';
 
 export const Search = () => {
-    const { search } = useContext(SearchContext);
-    const { message } = useContext(MessageContext);
-    const { login } = useContext(LoginContext);
-    const {fetchData} = useFetch();
-    const {toggleSong} = useContext(SongContext);
-
-    const handleSong = async (id) => {
-        if(login === 1) {
-            try{
-                const response = await fetchData({
-                    endpoint: '/play-song',
-                    method: 'POST',
-                    body: {id}
-                })
+    const { search, message, handleSong } = useSearch();
     
-                if(response[0].length > 0){
-                    const formattedTracks = [];
-                    response.map(e => {
-                        e.map(e => {
-                            formattedTracks.push({
-                                url: `http://localhost:5001/${e.url}`,
-                                title: `${e.title}`,
-                                tags: ["music"]
-                            });
-                        });
-                    });
-    
-                    toggleSong(formattedTracks);
-                }
-            } catch (e){
-                console.log('Ha habido un problema en la solicitud: ', e);
-            }
-        } else {
-            alert('No tienes permisos para escuchar música');
-        }
-    }
-
     return (
         <div className="Explore__Container">
 

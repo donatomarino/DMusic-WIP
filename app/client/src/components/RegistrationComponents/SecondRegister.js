@@ -1,61 +1,16 @@
-import { useState, useContext, useEffect } from "react";
-import Label from "../../GeneralComponents/Label";
-import Input from "../../GeneralComponents/Input";
-import { ComponentContext } from "../../../utils/contexto/ComponentContext";
-import Checkbox from "../Checkbox";
-import Button from "../../GeneralComponents/Button";
-import { DataContext } from "../../../utils/contexto/DataContext";
-import { useNavigation } from "../../../utils/hooks/useNavigation";
-import FormField from "../FormField";
+import Label from "../GeneralComponents/Label";
+import Input from "../GeneralComponents/Input";
+import Checkbox from "../LoginComponents/Checkbox";
+import Button from "../GeneralComponents/Button";
+import FormField from "../LoginComponents/FormField";
 import { FaChevronLeft } from "react-icons/fa";
-import "../../../styles/login/login.css";
-import { Header } from "../Header";
+import { Header } from "../LoginComponents/Header";
+import { useSecondRegister } from "../../utils/hooks/RegisterHooks/useSecondRegister";
+import "../../styles/login/login.css";
 
 export const SecondRegister = () => {
-    const { datos, toggleDatos } = useContext(DataContext);
-    const [isRegistred, setIsRegistred] = useState(false);
-    const { toggleComponent } = useContext(ComponentContext);
-    const [message, setMessage] = useState('');
-    const navigate = useNavigation();
-
-    useEffect(() => {
-        console.log(datos);
-    }, [])
-    
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-
-        const register = {
-            "full_name": datos.full_name,
-            "email": datos.email,
-            "password": datos.password,
-            "birthdate": datos.birthdate,
-            "gender": datos.gender
-        }
-
-        try {
-            const response = await fetch('http://localhost:5001/dmusic/register', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(register)
-            })
-
-            if (response.ok) {
-                setMessage("Usuario registrado correctamente.")
-                setIsRegistred(!isRegistred)
-            } else {
-                setMessage("El correo electrónico ya está registrado.")
-            }
-        } catch (e) {
-            setMessage("Ha habido un problema en el registro: ", e);
-        }
-    }
-
-    const handlePage = () => {
-        toggleComponent(0);
-        navigate('/login');
-    }
-
+    const {datos, toggleDatos, message, handleSubmit, handlePage, toggleComponent, isRegistred} = useSecondRegister();
+   
     return (
         <form onSubmit={handleSubmit} method='POST'>
             <Header description={'Únete ahora y disfruta de todo el contenido'} />

@@ -16,39 +16,42 @@ my-react-app/
     │     │            └── Label.js
     │     │                
     │     ├── HomeComponents/
-    │     │             ├── LayoutComponents/
-    │     │             │           ├── HeaderHome.js
-    │     │             │           ├── PlayerComponent.js
-    │     │             │           ├── Search.js
-    │     │             │           └── SideMenu.js
-    │     │             │ 
-    │     │             └── MainContent/
-    │     │                         ├── ContentHome.js
-    │     │                         ├── Explore.js
-    │     │                         ├── Library.js
-    │     │                         ├── Trends.js
-    │     │                         └── UserData.js
+    │     │            ├── LayoutComponents/
+    │     │            │           ├── HeaderHome.js
+    │     │            │           ├── PlayerComponent.js
+    │     │            │           ├── Search.js
+    │     │            │           └── SideMenu.js
+    │     │            │ 
+    │     │            └── MainContent/
+    │     │                        ├── ContentHome.js
+    │     │                        ├── Explore.js
+    │     │                        ├── Library.js
+    │     │                        ├── Trends.js
+    │     │                        └── UserData.js
     │     │
-    │     └── LoginComponents/
-    │                 ├── RegistrationComponents/
-    │                 │            ├── FirstRegister.js
-    │                 │            └── SecondRegister.js 
-    │                 │ 
-    │                 ├── Checkbox.js
-    │                 ├── FormField.js
-    │                 ├── Header.js
-    │                 └── Radio.js        
-    │ 
+    │     ├── LoginComponents/           
+    │     │           ├── Checkbox.js
+    │     │           ├── FormField.js
+    │     │           ├── Header.js
+    │     │           └── Radio.js        
+    │     │
+    │     └── RegistrationComponents/
+    │                 ├── FirstRegister.js
+    │                 └── SecondRegister.js 
+    │            
     ├── pages/
     │      ├── HomePages/
-    │      │        └── HomePage.js
+    │      │         └── HomePage.js
     │      │  
-    │      └── LoginPages/
-    │            ├── ConfirmRecoveryPage.js
-    │            ├── LoginPage.js
-    │            ├── LopdPage.js
-    │            ├── RecoveryPassPage.js
-    │            └── RegisterPage.js
+    │      ├── LoginPages/
+    │      │          ├── ConfirmRecoveryPage.js
+    │      │          ├── LoginPage.js
+    │      │          ├── LopdPage.js
+    │      │          └── RecoveryPassPage.js
+    │      │
+    │      └── RegisterPage        
+    │                 ├── RegisterPage.js
+    │                 └── LopdPage.js
     │
     ├── styles/
     │       ├── general/

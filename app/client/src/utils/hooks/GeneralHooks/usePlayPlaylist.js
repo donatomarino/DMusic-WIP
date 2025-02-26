@@ -1,7 +1,7 @@
-import { LoginContext } from "../contexto/LoginContext";
+import { LoginContext } from "../../contexto/GeneralContext/LoginContext";
 import { useContext } from 'react';
 import useFetch from "./useFetch";
-import { SongContext } from "../contexto/SongContext";
+import { SongContext } from "../../contexto/HomeContext/SongContext";
 
 export const usePlayPlaylist = () => {
     const {login} = useContext(LoginContext);

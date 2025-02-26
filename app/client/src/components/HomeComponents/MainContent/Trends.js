@@ -1,37 +1,13 @@
-import useFetch from '../../../utils/hooks/useFetch';
-import { useState, useEffect } from 'react';
-import { usePlayPlaylist } from '../../../utils/hooks/usePlayPlaylist';
+import { useTrends } from '../../../utils/hooks/HomeHooks/MainHooks/useTrends';
 import '../../../styles/home/Content.css';
 
 export const Trends = () => {
-    const [playlist, setPlaylist] = useState([]);
-    const {fetchData, fetchError} = useFetch();
-    const {handlePlaylist} = usePlayPlaylist();
-
-    useEffect(() => {
-        const fetchPlaylist = async () => {
-            try {
-                const response = await fetchData({
-                    endpoint: '/playlists'
-                })
-
-                if (response && response.length > 0) {
-                    setPlaylist(response)
-                } else {
-                    console.log('Ha habido un problema en la solicitud de las playlist: ', fetchError);
-                }
-            } catch (e) {
-                console.log('Error en la solicitud: ', e)
-            }
-        }
-        fetchPlaylist();
-    }, [])
-
+    const { playlist, handlePlaylist } = useTrends();
     return (
-        <div className = "Explore__Container">
+        <div className="Explore__Container">
 
             <div className='Explore__Section'>
-                <img src="https://i.pinimg.com/736x/86/e8/b8/86e8b85d661ad48df253371dca9de3ec.jpg" className='Explore__Section--Image'/>
+                <img src="https://i.pinimg.com/736x/86/e8/b8/86e8b85d661ad48df253371dca9de3ec.jpg" className='Explore__Section--Image' />
                 <h3 className='Explore__Section--Title'>2025 | TOP HITS TENDENCIAS NUEVAS</h3>
             </div>
 

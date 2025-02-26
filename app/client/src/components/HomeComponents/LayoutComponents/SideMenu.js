@@ -1,29 +1,10 @@
-import { useContext, useEffect } from "react"
-import { LoginContext } from "../../../utils/contexto/LoginContext"
-import { ComponentContext } from "../../../utils/contexto/ComponentContext";
-import { useNavigation } from "../../../utils/hooks/useNavigation";
+import { useSideMenu } from "../../../utils/hooks/HomeHooks/LayoutHooks/useSideMenu";
 import { FaHome, FaSearch, FaChartLine, FaMusic } from "react-icons/fa";
 import '../../../styles/home/Layout.css';
 
 export const SideMenu = () => {
-    const { login, toggleLogin } = useContext(LoginContext);
-    const { toggleComponent } = useContext(ComponentContext);
-    const navigate = useNavigation();
-
-    useEffect(() => {
-        const login = localStorage.getItem('token');
-
-        if (login) {
-            toggleLogin(1);
-        }
-    }, [])
-
-    const handleSubmit = () => {
-        localStorage.removeItem('token');
-        toggleLogin(0);
-        navigate('/login');
-    }
-
+    const {login, toggleComponent, handleSubmit} = useSideMenu();
+    
     return (
         <div className="SideMenu__Container">
             <ul className="SideMenu__Ul">

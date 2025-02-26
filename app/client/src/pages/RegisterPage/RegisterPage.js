@@ -1,7 +1,7 @@
 import { useContext, useEffect} from "react";
-import { ComponentContext } from "../../utils/contexto/ComponentContext";
-import { FirstRegister } from "../../components/LoginComponents/RegistrationComponents/FirstRegister";
-import { SecondRegister } from "../../components/LoginComponents/RegistrationComponents/SecondRegister";
+import { ComponentContext } from "../../utils/contexto/GeneralContext/ComponentContext";
+import { FirstRegister } from "../../components/RegistrationComponents/FirstRegister";
+import { SecondRegister } from "../../components/RegistrationComponents/SecondRegister";
 import "../../styles/login/login.css";
 
 export const RegisterPage = () => {

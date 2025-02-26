@@ -1,22 +1,26 @@
-import { SongContext } from "../contexto/SongContext";
 import { useContext } from 'react';
-import useFetch from '../hooks/useFetch';
-import { LoginContext } from "../contexto/LoginContext";
+import { SearchContext } from '../../../contexto/HomeContext/SearchContext';
+import { MessageContext } from '../../../contexto/GeneralContext/MessageContext';
+import useFetch from '../../GeneralHooks/useFetch';
+import {SongContext} from '../../../contexto/HomeContext/SongContext';
+import { LoginContext } from '../../../contexto/GeneralContext/LoginContext';
 
-export const usePlaySong = () => {
-    const {login} = useContext(LoginContext);
-    const {fetchData} = useFetch();
+export const useSearch = () => {
+    const { search } = useContext(SearchContext);
+    const { message } = useContext(MessageContext);
+    const { login } = useContext(LoginContext);
+    const { fetchData } = useFetch();
     const { toggleSong } = useContext(SongContext);
-    
+
     const handleSong = async (id) => {
-        if(login === 1){
+        if (login === 1) {
             try {
                 const response = await fetchData({
                     endpoint: '/play-song',
                     method: 'POST',
                     body: { id }
                 })
-    
+
                 if (response[0].length > 0) {
                     const formattedTracks = [];
                     response.map(e => {
@@ -28,15 +32,16 @@ export const usePlaySong = () => {
                             });
                         });
                     });
-    
+
                     toggleSong(formattedTracks);
                 }
             } catch (e) {
                 console.log('Ha habido un problema en la solicitud: ', e);
             }
         } else {
-            alert('Debes iniciar sesión para poder reproducir música');
+            alert('No tienes permisos para escuchar música');
         }
     }
-    return { handleSong }
+
+    return{search, message, handleSong}
 }

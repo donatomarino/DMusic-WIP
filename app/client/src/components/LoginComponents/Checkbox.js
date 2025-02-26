@@ -1,5 +1,5 @@
 import Input from '../GeneralComponents/Input';
-import { LopdContext } from '../../utils/contexto/LopdContext';
+import { LopdContext } from '../../utils/contexto/RegisterContext/LopdContext';
 import { useContext } from 'react';
 
 export default function Checkbox() {

@@ -1,6 +1,6 @@
 import { HeaderHome } from "../../components/HomeComponents/LayoutComponents/HeaderHome";
 import { SideMenu } from "../../components/HomeComponents/LayoutComponents/SideMenu";
-import { ComponentContext } from "../../utils/contexto/ComponentContext";
+import { ComponentContext } from "../../utils/contexto/GeneralContext/ComponentContext";
 import { useContext, useEffect } from "react";
 import { ContentHome } from '../../components/HomeComponents/MainContent/ContentHome';
 import { Explore } from '../../components/HomeComponents/MainContent/Explore';

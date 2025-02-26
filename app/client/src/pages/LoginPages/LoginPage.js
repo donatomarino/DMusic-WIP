@@ -1,64 +1,12 @@
-import React, { useContext, useEffect, useState } from 'react';
 import Button from '../../components/GeneralComponents/Button';
 import FormField from '../../components/LoginComponents/FormField';
-import { useNavigation } from '../../utils/hooks/useNavigation';
-import { LoginContext } from '../../utils/contexto/LoginContext';
-import { DataContext } from '../../utils/contexto/DataContext';
 import { Header } from '../../components/LoginComponents/Header';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import { useLogin } from '../../utils/hooks/LoginHooks/useLogin';
 import '../../styles/login/login.css';
 
 export const LoginPage = () => {
-    const [showPassword, setShowPassword] = useState(false);
-    const [email, setEmail] = useState('');
-    const [pass, setPassword] = useState('');
-    const [isMatch, setIsMatch] = useState(false);
-    const { toggleLogin } = useContext(LoginContext);
-    const { toggleDatos } = useContext(DataContext);
-    const navigate = useNavigation();
-
-    useEffect(() => {
-        toggleDatos({
-            full_name: '',
-            email: '',
-            password: '',
-            birthdate: '',
-            gender: ''
-        })
-    }, [])
-
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-
-        const formData = {
-            email,
-            pass
-        };
-
-        try {
-            const response = await fetch('http://localhost:5001/dmusic/login', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(formData)
-            });
-
-            if (response.ok) {
-                const data = await response.json();
-                const dataToSave = data.token.split(' ')[1]; // Cogemos el token del response
-
-                // Pintamos el token en el LocalStorage
-                localStorage.setItem('token', dataToSave);
-
-                toggleLogin(1);
-                navigate('/');
-            } else {
-                setIsMatch(true);
-                console.log('Error en la solicitud', response.statusText);
-            }
-        } catch (err) {
-            console.log('Error en la solicitud: ', err);
-        }
-    }
+    const {email, navigate, pass, showPassword, setShowPassword, setEmail, setPassword, isMatch, handleSubmit} = useLogin();
 
     return (
         <form className='Login__Form' onSubmit={handleSubmit} method='POST'>

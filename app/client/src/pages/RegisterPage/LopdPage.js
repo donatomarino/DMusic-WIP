@@ -1,7 +1,7 @@
 import React from 'react';
 import Button from '../../components/GeneralComponents/Button';
 import FormField from '../../components/LoginComponents/FormField'
-import { useLopd } from '../../utils/hooks/useLopd';
+import { useLopd } from '../../utils/hooks/RegisterHooks/useLopd';
 import '../../styles/login/lopd.css';
 
 export default function Lopd() {

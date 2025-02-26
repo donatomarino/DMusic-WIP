@@ -1,33 +1,13 @@
-import { useState, useContext } from "react";
-import Button from "../../GeneralComponents/Button";
-import FormField from "../FormField";
-import { useNavigation } from "../../../utils/hooks/useNavigation";
-import { ComponentContext } from "../../../utils/contexto/ComponentContext";
-import { DataContext } from "../../../utils/contexto/DataContext";
+import Button from "../GeneralComponents/Button";
+import FormField from "../LoginComponents/FormField";
 import { FaChevronLeft } from "react-icons/fa";
-import { Header } from "../Header";
+import { Header } from "../LoginComponents/Header";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import "../../../styles/login/login.css";
+import { useFirstRegister } from "../../utils/hooks/RegisterHooks/useFirstRegister";
+import "../../styles/login/login.css";
 
 export const FirstRegister = () => {
-    const navigate = useNavigation();
-    const { datos, toggleDatos } = useContext(DataContext);
-    const [confirmPass, setConfirmPass] = useState('');
-    const [showPassword, setShowPassword] = useState(false);
-    const { toggleComponent } = useContext(ComponentContext);
-    const [message, setMessage] = useState('');
-
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-
-        if (datos.password !== confirmPass) {
-            setMessage('Las contraseñas no coinciden');
-            return;
-        } else {
-            toggleComponent(1)
-            setMessage('');
-        }
-    }
+    const { datos, navigate, toggleDatos, confirmPass, setConfirmPass, showPassword, setShowPassword, message, handleSubmit } = useFirstRegister();
 
     return (
         <form onSubmit={handleSubmit} method='POST'>

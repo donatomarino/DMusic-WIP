@@ -1,42 +1,11 @@
-import React, { useState } from "react";
 import Button from "../../components/GeneralComponents/Button";
-import { useNavigation } from "../../utils/hooks/useNavigation";
-import { useParams } from "react-router-dom";
-import "../../styles/login/login.css";
 import FormField from "../../components/LoginComponents/FormField";
 import { Header } from "../../components/LoginComponents/Header";
+import { useConfirmRecovery } from "../../utils/hooks/LoginHooks/useConfirmRecovery";
+import "../../styles/login/login.css";
 
 export const ConfirmRecoveryPage = () => {
-    const navigate = useNavigation();
-    const [message, setMessage] = useState('');
-    const [pass, setPass] = useState('');
-    const [confirmPass, setConfirmPass] = useState('');
-    const [showPassword, setShowPassword] = useState(false);
-    const [confirmReset, setConfirmReset] = useState(false);
-    let { token } = useParams();
-
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-
-        if (pass === confirmPass) {
-            try {
-                const response = await fetch(`http://localhost:5001/dmusic/confirm-recovery/${token}`, {
-                    method: 'PATCH',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ pass })
-                });
-
-                if (response.ok) {
-                    setMessage('Contraseña actualizada correctamente');
-                    setConfirmReset(!confirmReset)
-                }
-            } catch (err) {
-                console.log('Error en la solicitud: ', err);
-            }
-        } else {
-            setMessage('Las contraseñas no coinciden');
-        }
-    };
+    const {pass, setPass, navigate, message, confirmPass, setConfirmPass, setShowPassword, showPassword, handleSubmit, confirmReset} = useConfirmRecovery();
 
     return (
         <form className='Login__Form' onSubmit={handleSubmit} method='POST'>
