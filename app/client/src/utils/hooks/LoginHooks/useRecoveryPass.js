@@ -1,14 +1,15 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useNavigation } from "../GeneralHooks/useNavigation";
-import useFetch from '../GeneralHooks/useFetch';
-import { toast} from 'react-toastify';
+import { MessageContext } from "../../contexto/GeneralContext/MessageContext";
+import { toast } from 'react-toastify';
 import { Bounce } from "react-toastify";
+import useFetch from '../GeneralHooks/useFetch';
 
 export const useRecoveryPass = () => {
     const navigate = useNavigation();
     const [email, setEmail] = useState('');
-    const [message, setMessage] = useState(null);
-    const {fetchData} = useFetch();
+    const { message, toggleMessage } = useContext(MessageContext);
+    const { fetchData } = useFetch();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -17,7 +18,7 @@ export const useRecoveryPass = () => {
             const response = await fetchData({
                 endpoint: '/recovery-password',
                 method: 'POST',
-                body: {email}
+                body: { email }
             })
 
             console.log(response);
@@ -25,7 +26,7 @@ export const useRecoveryPass = () => {
             if (response && response.length !== 0) {
                 const token = response.token.split(' ')[1];
                 console.log(`http://localhost:3000/user/confirm-recovery/${token}`);
-                setMessage('Revisa tu correo para restablecer la contraseña.');
+                toggleMessage('Revisa tu correo para restablecer la contraseña.');
             } else {
                 console.log('Error')
                 toast.error('El correo introducido no está registrado.', {
@@ -40,10 +41,10 @@ export const useRecoveryPass = () => {
                     transition: Bounce,
                 });
             }
-        } catch(err){
+        } catch (err) {
             console.log('Error en la solicitud: ', err);
         }
     };
 
-    return {navigate, email, setEmail, message, handleSubmit}
+    return { navigate, email, setEmail, message, handleSubmit }
 }
