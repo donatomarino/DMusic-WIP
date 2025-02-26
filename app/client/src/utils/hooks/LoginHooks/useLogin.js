@@ -2,16 +2,17 @@ import { useState, useEffect, useContext } from "react";
 import {LoginContext} from '../../contexto/GeneralContext/LoginContext';
 import {useNavigation} from "../GeneralHooks/useNavigation";
 import { DataContext } from "../../contexto/RegisterContext/DataContext";
+import { toast} from 'react-toastify';
+import { Bounce } from "react-toastify";
 import useFetch from '../../hooks/GeneralHooks/useFetch';
 
 export const useLogin = () => {
     const [showPassword, setShowPassword] = useState(false);
     const [email, setEmail] = useState('');
     const [pass, setPassword] = useState('');
-    const [isMatch, setIsMatch] = useState(false);
     const { toggleLogin } = useContext(LoginContext);
     const { toggleDatos } = useContext(DataContext);
-    const {fetchData, fetchError} = useFetch();
+    const {fetchData} = useFetch();
     const navigate = useNavigation();
 
     useEffect(() => {
@@ -48,13 +49,22 @@ export const useLogin = () => {
                 toggleLogin(1);
                 navigate('/');
             } else {
-                setIsMatch(true);
-                console.log('Datos incorrectos', fetchError);
+                toast.error('Email o password incorrectos', {
+                    position: "top-right",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: false,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "dark",
+                    transition: Bounce,
+                });
             }
         } catch (err) {
             console.log('Error en la solicitud: ', err);
         }
     }
 
-    return {email, navigate, pass, showPassword, setShowPassword, setEmail, setPassword, isMatch, handleSubmit}
+    return {email, navigate, pass, showPassword, setShowPassword, setEmail, setPassword, handleSubmit}
 }

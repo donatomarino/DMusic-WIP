@@ -1,8 +1,10 @@
 import { useState, useEffect, useContext } from 'react';
 import { jwtDecode } from 'jwt-decode';
-import useFetch from '../../GeneralHooks/useFetch';
 import {usePlaySong} from '../../GeneralHooks/usePlaySong'
 import { LoginContext } from '../../../contexto/GeneralContext/LoginContext';
+import { toast } from 'react-toastify';
+import { Bounce } from 'react-toastify';
+import useFetch from '../../GeneralHooks/useFetch';
 
 export const useExplore = () => {
     const [songs, setSongs] = useState([]);
@@ -45,9 +47,29 @@ export const useExplore = () => {
             });
 
             if (response.length === 0) {
-                alert('La canción ya está en tus favoritos')
+                toast.error('La canción ya está en tus favoritos!', {
+                    position: "top-right",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: false,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "dark",
+                    transition: Bounce,
+                    });
             } else {
-                alert('Canción añadida a favoritos')
+                toast.success('Canción añadida a favoritos!', {
+                    position: "bottom-right",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: false,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                    transition: Bounce,
+                });
             }
         } catch (e) {
             console.log('Ha habido un problema en la solicitud: ', e);

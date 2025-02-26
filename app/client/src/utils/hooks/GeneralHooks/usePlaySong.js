@@ -1,7 +1,9 @@
 import { SongContext } from "../../contexto/HomeContext/SongContext";
 import { useContext } from 'react';
-import useFetch from '../GeneralHooks/useFetch';
 import { LoginContext } from "../../contexto/GeneralContext/LoginContext";
+import { toast } from "react-toastify";
+import { Bounce } from "react-toastify";
+import useFetch from '../GeneralHooks/useFetch';
 
 export const usePlaySong = () => {
     const {login} = useContext(LoginContext);
@@ -35,7 +37,17 @@ export const usePlaySong = () => {
                 console.log('Ha habido un problema en la solicitud: ', e);
             }
         } else {
-            alert('Debes iniciar sesión para poder reproducir música');
+            toast.error('Debes iniciar sesión para poder reproducir música', {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: false,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
+                transition: Bounce,
+            });
         }
     }
     return { handleSong }

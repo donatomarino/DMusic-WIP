@@ -2,14 +2,16 @@ import Button from "../../components/GeneralComponents/Button";
 import FormField from "../../components/LoginComponents/FormField";
 import { Header } from "../../components/LoginComponents/Header";
 import { useConfirmRecovery } from "../../utils/hooks/LoginHooks/useConfirmRecovery";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 import "../../styles/login/login.css";
+import { ToastContainer } from "react-toastify";
 
 export const ConfirmRecoveryPage = () => {
-    const {pass, setPass, navigate, message, confirmPass, setConfirmPass, setShowPassword, showPassword, handleSubmit, confirmReset} = useConfirmRecovery();
+    const { pass, setPass, navigate, confirmPass, setConfirmPass, setShowPassword, showPassword, handleSubmit, confirmReset } = useConfirmRecovery();
 
     return (
         <form className='Login__Form' onSubmit={handleSubmit} method='POST'>
-            <Header description={'Restablece tu contraseña'}/>
+            <Header description={'Restablece tu contraseña'} />
 
             <div className='Login__InputContainer--ChangePass'>
                 <FormField
@@ -26,8 +28,7 @@ export const ConfirmRecoveryPage = () => {
                     onClick={() => setShowPassword(!showPassword)}
                     className="Login__Button--togglePasswordVisibility"
                 >
-                    <img src={showPassword ? '/images/ojo.png' : '/images/ojo2.png'} className="Login__InputContainer--icon" alt="Toggle visibility" />
-                </Button>
+                    {showPassword ? <FaEye color='#1668d4' size={28} /> : <FaEyeSlash color='#1668d4' size={28} />}                </Button>
             </div>
 
             <div className='Login__InputContainer--ChangePass'>
@@ -42,8 +43,6 @@ export const ConfirmRecoveryPage = () => {
                 />
             </div>
 
-            {message && <div className="Login__Error-Confirma">{message}</div>}
-
             {!confirmReset ? (
                 <div>
                     <Button type="submit" className='Login__Button--Submit'>
@@ -57,6 +56,8 @@ export const ConfirmRecoveryPage = () => {
                     </Button>
                 </div>
             )}
+
+            <ToastContainer />
         </form >
     );
 }

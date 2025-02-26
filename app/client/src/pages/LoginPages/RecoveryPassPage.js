@@ -2,6 +2,7 @@ import Button from "../../components/GeneralComponents/Button";
 import FormField from "../../components/LoginComponents/FormField";
 import { Header } from "../../components/LoginComponents/Header";
 import { useRecoveryPass } from "../../utils/hooks/LoginHooks/useRecoveryPass";
+import { ToastContainer } from "react-toastify";
 import "../../styles/login/login.css";
 
 export const RecoveryPassPage = () => {
@@ -42,6 +43,7 @@ export const RecoveryPassPage = () => {
                 </Button>
             </div>
 
+            <ToastContainer />
         </form>
     );
 }

@@ -9,6 +9,7 @@ import { Library } from '../../components/HomeComponents/MainContent/Library';
 import { UserData } from '../../components/HomeComponents/MainContent/UserData';
 import { Search } from "../../components/HomeComponents/LayoutComponents/Search";
 import { PlayerComponent } from "../../components/HomeComponents/LayoutComponents/PlayerComponent";
+import { ToastContainer } from "react-toastify";
 import '../../styles/home/Layout.css';
 
 export const HomePage = () => {
@@ -42,6 +43,8 @@ export const HomePage = () => {
             <div className="HomePage__Iframe">
                 <PlayerComponent />
             </div>
+
+            <ToastContainer />
         </div>
     )
 }

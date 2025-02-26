@@ -1,6 +1,8 @@
 import { useState, useEffect, useContext } from 'react';
 import {SongContext} from '../../../contexto/HomeContext/SongContext';
 import { jwtDecode } from 'jwt-decode';
+import { toast } from 'react-toastify';
+import { Bounce } from 'react-toastify';
 import useFetch from '../../GeneralHooks/useFetch';
 
 export const useLibrary = () => {
@@ -52,8 +54,9 @@ export const useLibrary = () => {
                     method: 'POST',
                     body: formData
                 })
-    
-                if (response[0].length > 0) {
+                
+                console.log(response)
+                if (response.length !== 0) {
                     const formattedTracks = [];
                     response.map(e => {
                         e.map(e => {
@@ -84,7 +87,17 @@ export const useLibrary = () => {
                 body: formData
             });
     
-            alert('Canción eliminada correctamente de tus favoritos');
+            toast.success('Canción eliminada correctamente de tus favoritos', {
+                position: "bottom-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: false,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+                transition: Bounce,
+            });
         }
     
         return {library, handleSong, deleteSong}

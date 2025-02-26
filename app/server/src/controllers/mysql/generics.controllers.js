@@ -132,9 +132,10 @@ export default {
     playLibrary: async (req, res) => {
         try {
             // SELECT s.url, CONCAT(a.full_name, ' - ', s.title) title from users_songs us JOIN songs s ON us.id_song = s.id_song JOIN artists a ON s.id_artist = a.id_artist WHERE id_user = 1 ORDER BY s.id_song = 3 DESC, s.id_song;
-            const values = ['s.url', 'a.full_name', 's.title', 'title', process.env.TAB_US, 'us', process.env.TAB_SONGS,, 's', 'us.id_song', 's.id_song', process.env.TAB_ARTISTS, 'a', 's.id_artist', 'a.id_artist', 'id_user', req.body.id_user, 's.id_song', req.body.id_song, 's.id_song'];
+            const values = ['s.url', 'a.full_name', 's.title', 'title', process.env.TAB_US, 'us', process.env.TAB_SONGS, 's', 'us.id_song', 's.id_song', process.env.TAB_ARTISTS, 'a', 's.id_artist', 'a.id_artist', 'id_user', req.body.id_user, 's.id_song', req.body.id_song, 's.id_song'];
             const response = await genericCrudMySQL.playLibrary(values);
 
+            console.log(response);
             // No hay condiciones en cuanto se puede hacer esta solicitud solamente si el artista está en la base de datos y aparece en la app.
             res.status(200).json(response);
         } catch (e) {

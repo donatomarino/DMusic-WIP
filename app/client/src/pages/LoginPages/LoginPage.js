@@ -4,9 +4,10 @@ import { Header } from '../../components/LoginComponents/Header';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { useLogin } from '../../utils/hooks/LoginHooks/useLogin';
 import '../../styles/login/login.css';
+import { ToastContainer } from 'react-toastify';
 
 export const LoginPage = () => {
-    const {email, navigate, pass, showPassword, setShowPassword, setEmail, setPassword, isMatch, handleSubmit} = useLogin();
+    const {email, navigate, pass, showPassword, setShowPassword, setEmail, setPassword, handleSubmit} = useLogin();
 
     return (
         <form className='Login__Form' onSubmit={handleSubmit} method='POST'>
@@ -48,12 +49,6 @@ export const LoginPage = () => {
                 </Button>
             </div>
 
-            {isMatch &&
-                <div className='Login__Error-Confirma'>
-                    <p className="Login__Error-Confirma">Email o password incorrectos</p>
-                </div>
-            }
-
             <div>
                 <Button type='submit' className='Login__Button--Submit'>Iniciar sesión</Button>
             </div>
@@ -71,6 +66,7 @@ export const LoginPage = () => {
                 </Button>
             </div>
 
+            <ToastContainer />
         </form>
     );
 }

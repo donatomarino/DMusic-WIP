@@ -1,11 +1,12 @@
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { useNavigation } from "../GeneralHooks/useNavigation";
+import {toast} from 'react-toastify';
+import { Bounce } from "react-toastify";
 import useFetch from '../GeneralHooks/useFetch';
 
 export const useConfirmRecovery = () => {
     const navigate = useNavigation();
-    const [message, setMessage] = useState('');
     const [pass, setPass] = useState('');
     const [confirmPass, setConfirmPass] = useState('');
     const [showPassword, setShowPassword] = useState(false);
@@ -25,7 +26,17 @@ export const useConfirmRecovery = () => {
                 })
 
                 if (response && response.length !== 0) {
-                    setMessage('Contraseña actualizada correctamente');
+                    toast.success('Contraseña actualizada correctamente', {
+                        position: "bottom-right",
+                        autoClose: 3000,
+                        hideProgressBar: false,
+                        closeOnClick: false,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "light",
+                        transition: Bounce,
+                    });
                     setConfirmReset(!confirmReset)
                 } else {
                     console.log(fetchError);
@@ -34,9 +45,19 @@ export const useConfirmRecovery = () => {
                 console.log('Error en la solicitud: ', err);
             }
         } else {
-            setMessage('Las contraseñas no coinciden.');
+            toast.error('Las contraseñas no coinciden.', {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: false,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
+                transition: Bounce,
+            });
         }
     };
 
-    return {pass, setPass, navigate, message, confirmPass, setConfirmPass, setShowPassword, showPassword, handleSubmit, confirmReset}
+    return {pass, setPass, navigate, confirmPass, setConfirmPass, setShowPassword, showPassword, handleSubmit, confirmReset}
 }
