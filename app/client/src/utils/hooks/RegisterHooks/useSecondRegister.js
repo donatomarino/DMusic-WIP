@@ -2,6 +2,7 @@ import { useState, useContext, useEffect } from "react";
 import { DataContext } from "../../contexto/RegisterContext/DataContext";
 import { useNavigation } from "../GeneralHooks/useNavigation";
 import { ComponentContext } from "../../contexto/GeneralContext/ComponentContext";
+import useFetch from "../GeneralHooks/useFetch";
 
 export const useSecondRegister = () => {
     const { datos, toggleDatos } = useContext(DataContext);
@@ -9,11 +10,12 @@ export const useSecondRegister = () => {
     const { toggleComponent } = useContext(ComponentContext);
     const [message, setMessage] = useState('');
     const navigate = useNavigation();
+    const { fetchData, fetchError } = useFetch();
 
     useEffect(() => {
         console.log(datos);
     }, [])
-    
+
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -26,13 +28,13 @@ export const useSecondRegister = () => {
         }
 
         try {
-            const response = await fetch('http://localhost:5001/dmusic/register', {
+            const response = await fetchData({
+                endpoint: '/register',
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(register)
+                body: register
             })
 
-            if (response.ok) {
+            if (response?.length !== 0) {
                 setMessage("Usuario registrado correctamente.")
                 setIsRegistred(!isRegistred)
             } else {
@@ -48,5 +50,5 @@ export const useSecondRegister = () => {
         navigate('/login');
     }
 
-    return {datos, toggleDatos, message, handleSubmit, handlePage, toggleComponent, isRegistred}
+    return { datos, toggleDatos, message, handleSubmit, handlePage, toggleComponent, isRegistred }
 }

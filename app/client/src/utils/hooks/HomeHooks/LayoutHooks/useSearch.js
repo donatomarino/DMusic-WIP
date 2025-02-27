@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import { SearchContext } from '../../../contexto/HomeContext/SearchContext';
 import { MessageContext } from '../../../contexto/GeneralContext/MessageContext';
 import useFetch from '../../GeneralHooks/useFetch';
-import {SongContext} from '../../../contexto/HomeContext/SongContext';
+import { SongContext } from '../../../contexto/HomeContext/SongContext';
 import { LoginContext } from '../../../contexto/GeneralContext/LoginContext';
 
 export const useSearch = () => {
@@ -43,5 +43,5 @@ export const useSearch = () => {
         }
     }
 
-    return{search, message, handleSong}
+    return { search, message, handleSong }
 }

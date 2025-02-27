@@ -8,9 +8,14 @@
   overflow: hidden;
 }
 
+.HomePage__Main, .HomePage__Content{
+  background-color: #1e1e1e;
+}
+
 .HomePage__Main {
   display: flex;
   flex: 1;
+  align-items: center;
   overflow: hidden;
 }
 
@@ -19,7 +24,6 @@
   overflow-y: auto;
   /* Agrega scroll si el contenido es largo */
   padding: 25px;
-  background-color: #1e1e1e;
   margin-top: 80px;
   /* Espacio para el header */
   margin-left: 250px;

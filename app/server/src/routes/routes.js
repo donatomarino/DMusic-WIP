@@ -2,8 +2,11 @@ import { Router } from 'express';
 import generic from '../controllers/mysql/generics.controllers.js';
 import users from '../controllers/mysql/users.controllers.js';
 import mongo from '../controllers/mongo/generics.controllers.js';
+import { recoveryMail } from '../controllers/mail/mail.controller.js';
 
 const router = Router();
+
+router.post('/recovery-mail', recoveryMail);
 
 //---- MYSQL
 /**

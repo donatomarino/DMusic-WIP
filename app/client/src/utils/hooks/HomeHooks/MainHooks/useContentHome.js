@@ -17,21 +17,13 @@ export const useContentHome = () => {
                     endpoint: '/playlists'
                 })
 
-                if (resPlaylist && resPlaylist.length > 0) {
-                    setPlaylist(resPlaylist)
-                } else {
-                    console.log('Ha habido un problema en la solicitud de las playlist: ', fetchError);
-                }
+                resPlaylist?.length > 0 ? setPlaylist(resPlaylist) : console.log('Ha habido un problema en la solicitud de las playlist: ', fetchError);
 
                 const resArtists = await fetchData({
                     endpoint: '/artists'
                 })
 
-                if (resArtists && resArtists.length > 0) {
-                    setartists(resArtists)
-                } else {
-                    console.log('Ha habido un problema en la solicitud de los artistas: ', fetchError);
-                }
+                resArtists?.length > 0 ? setartists(resArtists) : console.log('Ha habido un problema en la solicitud de los artistas: ', fetchError);
 
             } catch (e) {
                 console.log('Error en la solicitud: ', e)

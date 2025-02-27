@@ -21,14 +21,17 @@ export const useRecoveryPass = () => {
                 body: { email }
             })
 
-            console.log(response);
-
             if (response && response.length !== 0) {
                 const token = response.token.split(' ')[1];
-                console.log(`http://localhost:3000/user/confirm-recovery/${token}`);
+                const recoveryLink = `http://localhost:3000/user/confirm-recovery/${token}`;
+                const response = await fetch({
+                    endpoint: '/recovery-mail',
+                    method: 'POST',
+                    body: {recoveryLink}
+                })
+
                 toggleMessage('Revisa tu correo para restablecer la contraseña.');
             } else {
-                console.log('Error')
                 toast.error('El correo introducido no está registrado.', {
                     position: "top-right",
                     autoClose: 3000,

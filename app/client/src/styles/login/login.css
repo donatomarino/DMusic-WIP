@@ -73,18 +73,24 @@ body {
     color: white;
 }
 
+.Login__InputContainer--Pass{
+    display:flex;
+    flex-direction: column;
+}
+
 .Login__Button--togglePasswordVisibility,
 .Login__Button--togglePasswordVisibility--Register {
     background: none;
     border: none;
-    position: fixed;
+    position: absolute;
     cursor: pointer;
-    right: 38%;
-    top: 54%;
-    transform: translateY(-50%);
+    font-size: 20px;
+    color: #1a73e8;
     text-decoration: underline;
-    border-bottom: 2px solid #044396;
+    padding: 0;
 }
+
+.Login__Icon
 
 .Login__Error-Confirma {
     font-weight: bolder;

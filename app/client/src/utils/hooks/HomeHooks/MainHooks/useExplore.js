@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext } from 'react';
 import { jwtDecode } from 'jwt-decode';
-import {usePlaySong} from '../../GeneralHooks/usePlaySong'
+import { usePlaySong } from '../../GeneralHooks/usePlaySong'
 import { LoginContext } from '../../../contexto/GeneralContext/LoginContext';
 import { toast } from 'react-toastify';
 import { Bounce } from 'react-toastify';
@@ -19,11 +19,8 @@ export const useExplore = () => {
                     endpoint: '/songs'
                 })
 
-                if (response && response.length > 0) {
-                    setSongs(response)
-                } else {
-                    console.log('Ha habido un problema en la solicitud de las playlist: ', fetchError);
-                }
+                response?.length > 0 ? setSongs(response) : console.log('Ha habido un problema en la solicitud de las playlist: ', fetchError);
+
             } catch (e) {
                 console.log('Error en la solicitud: ', e)
             }
@@ -57,7 +54,7 @@ export const useExplore = () => {
                     progress: undefined,
                     theme: "dark",
                     transition: Bounce,
-                    });
+                });
             } else {
                 toast.success('Canción añadida a favoritos!', {
                     position: "bottom-right",
@@ -76,5 +73,5 @@ export const useExplore = () => {
         }
     }
 
-    return {songs, handleSong, login, handleFavorite}
+    return { songs, handleSong, login, handleFavorite }
 }

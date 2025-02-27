@@ -13,11 +13,7 @@ export default {
         try {
             const response = await genericCrudMySQL.getArtists(process.env.TAB_ARTISTS);
 
-            if (response.length === 0) {
-                res.status(400).json({ message: 'No hay artistas en la base de datos.' })
-            } else {
-                res.status(200).json(response);
-            }
+            response.length === 0 ? res.status(400).json({ message: 'No hay artistas en la base de datos.' }) : res.status(200).json(response);
         } catch (error) {
             res.status(500).json({ message: 'Error inesperado al obtener los artistas: ', error });
         }
@@ -34,11 +30,7 @@ export default {
             const values = ['a.full_name', 's.id_song', 's.title', 's.score', 's.image', 's.url', process.env.TAB_SONGS, 's', process.env.TAB_ARTISTS, 'a', 'a.id_artist', 's.id_artist'];
             const response = await genericCrudMySQL.getSongs(values);
 
-            if (response.length === 0) {
-                res.status(400).json({ message: 'No hay canciones en la base de datos.' })
-            } else {
-                res.status(200).json(response);
-            }
+            response.length === 0 ? res.status(400).json({ message: 'No hay canciones en la base de datos.' }) : res.status(200).json(response);
         } catch (e) {
             res.status(500).json({ message: 'Error inesperado al obtener las canciones: ', e });
         }
@@ -55,11 +47,7 @@ export default {
             const values = ['us.id_user', 's.image', 's.title', 's.duration', 'duration', 's.id_song', 'a.full_name', process.env.TAB_US, 'us', process.env.TAB_USERS, 'u', 'u.id_user', 'us.id_user', process.env.TAB_SONGS, 's', 's.id_song', 'us.id_song', process.env.TAB_ARTISTS, 'a', 's.id_artist', 'a.id_artist', 'us.id_user', req.body.id];
             const response = await genericCrudMySQL.getFavoritesSongs(values);
 
-            if (response.length === 0) {
-                res.status(400).json({ message: 'No hay canciones favoritas en la base de datos.' })
-            } else {
-                res.status(200).json(response);
-            }
+            response.length === 0 ? res.status(400).json({ message: 'No hay canciones favoritas en la base de datos.' }) : res.status(200).json(response);
         } catch (e) {
             res.status(500).json({ message: 'Error inesperado al obtener las canciones favoritas: ', e });
         }
@@ -76,11 +64,7 @@ export default {
             const values = ['s.image', 's.title', 'a.full_name', 's.id_song', process.env.TAB_SONGS, 's', process.env.TAB_ARTISTS, 'a', 's.id_artist', 'a.id_artist', req.body.song];
             const response = await genericCrudMySQL.searchSong(values);
 
-            if (response) {
-                res.status(200).json(response);
-            } else {
-                res.status(400).json({ error: 'No hay canciones con este titulo.' });
-            }
+            response ? res.status(200).json(response) : res.status(400).json({ error: 'No hay canciones con este titulo.' });
         } catch (e) {
             res.status(500).json({ message: 'Error en la busqueda: ', e })
         }
@@ -135,7 +119,6 @@ export default {
             const values = ['s.url', 'a.full_name', 's.title', 'title', process.env.TAB_US, 'us', process.env.TAB_SONGS, 's', 'us.id_song', 's.id_song', process.env.TAB_ARTISTS, 'a', 's.id_artist', 'a.id_artist', 'id_user', req.body.id_user, 's.id_song', req.body.id_song, 's.id_song'];
             const response = await genericCrudMySQL.playLibrary(values);
 
-            console.log(response);
             // No hay condiciones en cuanto se puede hacer esta solicitud solamente si el artista está en la base de datos y aparece en la app.
             res.status(200).json(response);
         } catch (e) {

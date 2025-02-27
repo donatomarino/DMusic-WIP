@@ -1,8 +1,8 @@
 import { useState, useEffect, useContext } from "react";
-import {LoginContext} from '../../contexto/GeneralContext/LoginContext';
-import {useNavigation} from "../GeneralHooks/useNavigation";
+import { LoginContext } from '../../contexto/GeneralContext/LoginContext';
+import { useNavigation } from "../GeneralHooks/useNavigation";
 import { DataContext } from "../../contexto/RegisterContext/DataContext";
-import { toast} from 'react-toastify';
+import { toast } from 'react-toastify';
 import { Bounce } from "react-toastify";
 import useFetch from '../../hooks/GeneralHooks/useFetch';
 
@@ -12,7 +12,7 @@ export const useLogin = () => {
     const [pass, setPassword] = useState('');
     const { toggleLogin } = useContext(LoginContext);
     const { toggleDatos } = useContext(DataContext);
-    const {fetchData} = useFetch();
+    const { fetchData } = useFetch();
     const navigate = useNavigation();
 
     useEffect(() => {
@@ -66,5 +66,5 @@ export const useLogin = () => {
         }
     }
 
-    return {email, navigate, pass, showPassword, setShowPassword, setEmail, setPassword, handleSubmit}
+    return { email, navigate, pass, showPassword, setShowPassword, setEmail, setPassword, handleSubmit }
 }

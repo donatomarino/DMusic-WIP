@@ -1,20 +1,25 @@
-import {useNavigation} from '../GeneralHooks/useNavigation';
-import {LopdContext} from '../../contexto/RegisterContext/LopdContext';
+import { useNavigation } from '../GeneralHooks/useNavigation';
+import { LopdContext } from '../../contexto/RegisterContext/LopdContext';
 import { useState, useContext } from 'react';
 import { ComponentContext } from '../../contexto/GeneralContext/ComponentContext';
+import useFetch from '../GeneralHooks/useFetch';
 
 export const useLopd = () => {
-    const {toggleComponent} = useContext(ComponentContext);
+    const { toggleComponent } = useContext(ComponentContext);
     const navigate = useNavigation();
     const { toggleLopd } = useContext(LopdContext);
     const [lopdData, setLopdData] = useState('');
+    const { fetchData, fetchError } = useFetch();
 
     const fetchLopd = async () => {
         try {
-            const response = await fetch('http://localhost:5001/dmusic/lopd');
-            if (response.ok) {
+            const response = await fetchData({
+                endpoint: '/lopd'
+            })
+
+            if (response?.length !== 0) {
                 const data = await response.json();
-                await setLopdData(data[0].text);
+                setLopdData(data[0].text);
             } else {
                 console.error("Error en la respuesta del servidor:", response.status);
             }
@@ -29,5 +34,5 @@ export const useLopd = () => {
         navigate('/user/register');
     }
 
-return { toggleLopd, lopdData, acceptChecker };
+    return { toggleLopd, lopdData, acceptChecker };
 };
