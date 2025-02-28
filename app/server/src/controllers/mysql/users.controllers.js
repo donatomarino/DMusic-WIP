@@ -3,6 +3,7 @@ import userCrudMySQL from '../../models/crudMySql/user.crud.js';
 import tokenUtils from "../../utils/createAccessToken.js";
 import bcrypt from 'bcryptjs';
 import { TOKEN_SECRET } from "../../utils/config.js";
+import { mailToUser } from "../../utils/email.js";
 import dotenv from 'dotenv';
 dotenv.config();
 const { sign, verify } = jwt;
@@ -68,8 +69,9 @@ export default {
 			sign({ email }, TOKEN_SECRET, { expiresIn: '1h' }, (err, token) => {
 				if (err) res.status(402).json({ message: 'Error al generar el token' })
 
-				// Devolver el token
-				res.status(200).json({ message: 'Token generado correctamente', token: `Bearer: ${token}` });
+				mailToUser(email, token);
+
+				res.status(200).json({ message: 'Email enviado correctamente'});
 			});
 
 		} catch (e) {

@@ -2,11 +2,8 @@ import { Router } from 'express';
 import generic from '../controllers/mysql/generics.controllers.js';
 import users from '../controllers/mysql/users.controllers.js';
 import mongo from '../controllers/mongo/generics.controllers.js';
-import { recoveryMail } from '../controllers/mail/mail.controller.js';
 
 const router = Router();
-
-router.post('/recovery-mail', recoveryMail);
 
 //---- MYSQL
 /**
@@ -74,15 +71,15 @@ router.post('/dmusic/login', users.login);
  *                 description: Email del usuario
  *     responses:
  *       200:
- *         description: Token de recuperación enviado exitosamente.
+ *         description: Email enviado correctamente.
  *         content:
  *           application/json:
  *             schema:
  *               type: object
  *               properties:
- *                 token:
+ *                 message:
  *                   type: string
- *                   description: Token generado correctamente.
+ *                   description: Mensaje de respuesta.
  *       400:
  *         description: Faltan datos obligatorios.
  *       401:

@@ -3,7 +3,6 @@
   display: flex;
   flex-direction: column;
   height: 100vh;
-  /* Asegura que ocupe toda la pantalla */
   width: 100vw;
   overflow: hidden;
 }
@@ -15,32 +14,25 @@
 .HomePage__Main {
   display: flex;
   flex: 1;
-  align-items: center;
   overflow: hidden;
 }
 
 .HomePage__Content {
   flex: 1;
   overflow-y: auto;
-  /* Agrega scroll si el contenido es largo */
   padding: 25px;
   margin-top: 80px;
-  /* Espacio para el header */
   margin-left: 250px;
-  /* Espacio para el menú lateral */
-  height: calc(100vh - 80px - 100px);
-  /* Ajustar altura con el reproductor */
+  height: calc(100vh - 80px - 120px);
 }
 
 .HomePage__Content::-webkit-scrollbar {
   height: 7px;
   width: 10px;
-  /* Ancho de la barra de desplazamiento */
 }
 
 .HomePage__Content::-webkit-scrollbar-track {
   background-color: #f1f1f1;
-  /* Color de fondo de la pista de la barra */
 }
 
 .HomePage__Content::-webkit-scrollbar-thumb {
@@ -50,7 +42,6 @@
 .HomePage__Content::-webkit-scrollbar-thumb:hover {
   background-color: #555;
 }
-
 
 .HomePage__Iframe {
   background-color: #181818;
@@ -117,8 +108,6 @@
   height: 1px !important;
 }
 
-/* Ajustes en pantallas grandes */
-
 
 /* ----- HeaderHomeComponent -----*/
 .HeaderHome__Container {
@@ -129,7 +118,6 @@
   background-color: #181818;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
   position: fixed;
-  /* Fijo en la parte superior */
   top: 0;
   left: 0;
   width: 100%;
@@ -207,7 +195,7 @@
 }
 
 .HeaderHome__Buttons button:hover {
-  background-color: #044396;
+  background-color: #022d66;
 }
 
 .HeaderHome__Buttons button:disabled {
@@ -270,7 +258,6 @@
   top: 80px;
   left: 0;
   z-index: 1000;
-  /* Asegura que el menú esté por encima del contenido */
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -279,8 +266,7 @@
 
 .SideMenu__Ul {
   flex-grow: 1;
-  /* Ocupa el espacio disponible, empujando "Cerrar Sesión" hacia abajo */
-  list-style: none;
+  /* list-style: none; */
   padding: 0;
   margin: 0;
 }
@@ -303,7 +289,7 @@
 .SideMenu__Menu--icon {
   font-size: 20px;
   margin-right: 15px;
-  color: #b3b3b3;
+  color: #b3b3b3;;
 }
 
 .SideMenu__Menu div {

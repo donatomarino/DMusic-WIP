@@ -2,10 +2,12 @@ import nodemailer from 'nodemailer';
 import dotenv from 'dotenv';
 dotenv.config();
 
+const server = process.env.MAIL_ROUTE;
+
 // Crear un objeto de transporte
 const transporter = nodemailer.createTransport({
-    host: 'smtp.gmail.com',
-    port: 587,
+    host: process.env.MAIL_SERVER,
+    port: process.env.MAIL_PORT,
     secure: false,
     auth: {
         user: process.env.MAIL_USERNAME,
@@ -13,13 +15,13 @@ const transporter = nodemailer.createTransport({
     }
 });
 
-export const mailToUser = (email, route) => {
+export const mailToUser = (email, token) => {
     // Configurar el objeto mailOptions
     const mailOptions = {
-        from: 'dmusic@dmusic.com',
-        to: {email},
+        from: process.env.MAIL_USERNAME,
+        to: email,
         subject: 'Recupera tu contraseña',
-        html: `<p>Accedes a este link para recuperar la contraseña: ${route}</p>`
+        html: `<p>Accedes a este link para recuperar la <a href=${server}${token}>contraseña</a</p>`
     };
     
     // Enviar el email

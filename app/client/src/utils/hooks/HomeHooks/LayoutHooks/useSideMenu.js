@@ -9,11 +9,9 @@ export const useSideMenu = () => {
         const navigate = useNavigation();
     
         useEffect(() => {
-            const login = localStorage.getItem('token');
+            const user = localStorage.getItem('token');
     
-            if (login) {
-                toggleLogin(1);
-            }
+            user ? toggleLogin(1) : toggleLogin(0); 
         }, [])
     
         const handleSubmit = () => {

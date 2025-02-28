@@ -23,6 +23,8 @@ export const useLogin = () => {
             birthdate: '',
             gender: ''
         })
+
+        localStorage.removeItem('token');
     }, [])
 
     const handleSubmit = async (e) => {

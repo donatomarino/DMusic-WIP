@@ -90,8 +90,6 @@ body {
     padding: 0;
 }
 
-.Login__Icon
-
 .Login__Error-Confirma {
     font-weight: bolder;
     text-decoration: underline;
@@ -112,7 +110,7 @@ body {
 }
 
 .Login__Button--Submit:hover {
-    background-color: #044396;
+    background-color: #022d66;
 }
 
 .Login__Button--Routes {
@@ -233,7 +231,7 @@ body {
 .Checkbox__Container input[type="checkbox"] {
     width: 18px;
     height: 18px;
-    accent-color: #1a73e8; /* Color personalizado para el checkbox */
+    accent-color: #1a73e8;
 }
 
 .Checkbox__Container--link {
