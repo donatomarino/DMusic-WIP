@@ -1,0 +1,163 @@
+openapi: 3.0.0
+info:
+  title: API de Direcciones
+  version: 1.0.0
+paths:
+  /dmusic/artists:
+    get:
+      tags:
+        - Interacciones MySQL
+      summary: Obtiene todos los artistas
+      description: Obtiene todos los artistas en la base de datos.
+      responses:
+        '200':
+          description: Lista de artistas obtenida exitosamente.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+        '400':
+          description: No hay artistas en la base de datos.
+        '500':
+          description: Error de sistema.
+
+  /dmusic/songs:
+    get:
+      tags:
+        - Interacciones MySQL
+      summary: Obtiene todas las canciones
+      description: Obtiene todas las canciones en la base de datos.
+      responses:
+        '200':
+          description: Lista de canciones obtenida exitosamente.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+        '400':
+          description: No hay canciones en la base de datos.
+        '500':
+          description: Error de sistema.
+
+  /dmusic/search:
+    post:
+      tags:
+        - Interacciones MySQL
+      summary: Buscar canción
+      description: Buscar canción mediante su título.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - song
+              properties:
+                song:
+                  type: string
+                  description: Título de la canción
+      responses:
+        '200':
+          description: Canción obtenida exitosamente.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+        '400':
+          description: No hay canciones con este título.
+        '500':
+          description: Error de sistema.
+
+  /dmusic/playlists:
+    get:
+      tags:
+        - Interacciones Mongo
+      summary: Obtiene todas las playlists
+      description: Obtiene todas las playlists en la base de datos de MongoDB.
+      responses:
+        '200':
+          description: Lista de playlists obtenida exitosamente.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+        '400':
+          description: No hay playlists en la base de datos.
+        '500':
+          description: Error de sistema.
+
+  /dmusic/lopd:
+    get:
+      tags:
+        - Interacciones Mongo
+      summary: Obtiene los LOPD
+      description: Obtiene los registros de LOPD en la base de datos.
+      responses:
+        '200':
+          description: LOPD obtenidos exitosamente.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+        '500':
+          description: Error de sistema.
+
+  /dmusic/play-playlist:
+    post:
+      tags:
+        - Interacciones Mongo
+      summary: Reproducir playlist predeterminada.
+      description: Reproduce la playlist seleccionada por parte del usuario tramite su id.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - id
+              properties:
+                id:
+                  type: string
+                  description: id playlist
+      responses:
+        200:
+          description: Playlist reproduciendo exitosamente.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+        500:
+          description: Error de sistema.
+

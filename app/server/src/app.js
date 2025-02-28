@@ -1,8 +1,8 @@
 import express, {json, urlencoded} from 'express';
 import cors from 'cors';
 import { router } from './routes/routes.js';
-import { swaggerUi } from '../swaggerConfig.js';
-import { swaggerDocs } from '../swaggerConfig.js';
+import swaggerDocs from '../utils/swaggerConfig.js';
+import swaggerUi from "swagger-ui-express";
 import dotenv from 'dotenv';
 dotenv.config();
 

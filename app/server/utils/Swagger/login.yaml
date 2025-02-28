@@ -1,0 +1,126 @@
+openapi: 3.0.0
+info:
+  title: API de Login
+  version: 1.0.0
+
+paths:
+  /dmusic/login:
+    post:
+      tags: 
+        - Login
+      summary: Inicia sesión
+      description: Realiza la autenticación de un usuario con email y contraseña.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - email
+                - password 
+              properties:
+                email:
+                  type: string
+                  description: Email del usuario
+                password:
+                  type: string
+                  description: Contraseña del usuario
+                  format: password
+      responses:
+        '200':
+          description: Autenticación exitosa
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  token:
+                    type: string
+                    description: Token de autenticación
+        '400':
+          description: Faltan datos obligatorios
+        '401':
+          description: El usuario no está registrado
+        '402':
+          description: Contraseña incorrecta.
+        '500':
+          description: Error en la solicitud.
+
+  /dmusic/recovery-password:
+    post:
+      tags: 
+        - Login
+      summary: Recupera contraseña
+      description: Envía un correo con un token de recuperación de contraseña.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - email
+              properties:
+                email:
+                  type: string
+                  description: Email del usuario
+      responses:
+        '200':
+          description: Email enviado correctamente.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: Mensaje de respuesta.
+        '400':
+          description: Faltan datos obligatorios.
+        '401':
+          description: El usuario no existe.
+        '402':
+          description: Error al generar el token.
+        '500':
+          description: Error de sistema.
+
+  /dmusic/confirm-recovery/{token}:
+    patch:
+      tags: 
+        - Login
+      summary: Confirma recuperación de contraseña
+      description: Confirma recuperación de contraseña insertando nueva password.
+      parameters:
+        - in: path
+          name: token
+          required: true
+          description: Token de recuperación de contraseña.
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - pass
+              properties:
+                pass:
+                  type: string
+                  description: Nueva contraseña del usuario.
+                  format: password
+      responses:
+        '200':
+          description: Contraseña actualizada correctamente.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: Mensaje de respuesta.
+        '500':
+          description: Error de sistema.

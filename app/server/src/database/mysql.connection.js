@@ -13,7 +13,7 @@ export default {
 		const pool = mysql.createPool({
 			host: process.env.SQL_LOCALHOST,
 			user: process.env.SQL_USER,
-			password: process.env.SQL_MYPASS,
+			password: process.env.SQL_PASS,
 			database: process.env.SQL_DB,
 			waitForConnections: true,
 			connectionLimit: 20,

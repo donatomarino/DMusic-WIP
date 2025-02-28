@@ -1,0 +1,60 @@
+openapi: 3.0.0
+info:
+  title: API de Register
+  version: 1.0.0
+
+paths: 
+  /dmusic/register:
+    post:
+      tags: 
+        - Register
+      summary: Registración de nuevo usuario
+      description: Registración de un nuevo usuario en la aplicación.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - full_name
+                - password
+                - email
+                - birthdate
+                - gender
+              properties:
+                full_name:
+                  type: string
+                  description: Nombre completo del usuario.
+                email:
+                  type: string
+                  description: Email del usuario.
+                  format: email
+                password:
+                  type: string
+                  description: Password del usuario.
+                  format: password
+                birthdate:
+                  type: string
+                  description: Fecha de nacimiento del usuario.
+                gender:
+                  type: string
+                  description: Género del usuario.
+
+      responses:
+        '200':
+          description: Usuario registrado exitosamente.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: Usuario registrado correctamente.
+        '400':
+          description: Faltan datos obligatorios.
+        '401':
+          description: El usuario ya está registrado.
+        '500':
+          description: Error de sistema.

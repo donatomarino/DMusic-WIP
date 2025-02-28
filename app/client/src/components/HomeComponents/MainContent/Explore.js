@@ -2,6 +2,7 @@ import Button from '../../GeneralComponents/Button';
 import { useExplore } from '../../../utils/hooks/HomeHooks/MainHooks/useExplore';
 import { FaPlay, FaHeart } from "react-icons/fa";
 import '../../../styles/home/Content.css';
+import { ToastContainer } from 'react-toastify';
 
 export const Explore = () => {
     const {songs, handleSong, login, handleFavorite} = useExplore();
@@ -49,6 +50,7 @@ export const Explore = () => {
                             </div>
                         )
                     })}
+                    <ToastContainer />
             </div>
         </div>
     )
