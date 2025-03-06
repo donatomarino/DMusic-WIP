@@ -19,6 +19,8 @@ export const useExplore = () => {
                     endpoint: '/songs'
                 })
 
+                console.log(response);
+
                 response?.length > 0 ? setSongs(response) : console.log('Ha habido un problema en la solicitud de las playlist: ', fetchError);
 
             } catch (e) {

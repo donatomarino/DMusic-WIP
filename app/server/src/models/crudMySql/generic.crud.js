@@ -49,8 +49,8 @@ export default {
      */
     searchSong: async (values) => {
         // SELECT s.image, s.title, a.full_name FROM songs s JOIN artists a ON s.id_artist = a.id_artist WHERE title = 'Despacito';
-        const query = 'SELECT ??, ??, ??, ?? FROM ?? AS ?? JOIN ?? AS ?? ON ?? = ?? WHERE s.title = ?';
-        const result = await connection.query(query, [...values]);
+        const query = 'SELECT ??, ??, ??, ?? FROM ?? AS ?? JOIN ?? AS ?? ON ?? = ?? WHERE s.title LIKE ?';
+        const [result] = await connection.query(query, [...values]);
 
         return result;
     },

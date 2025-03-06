@@ -60,8 +60,8 @@ export default {
      */
     searchSong: async (req, res) => {
         try {
-            // SELECT s.image, s.title, a.full_name FROM songs s JOIN artists a ON s.id_artist = a.id_artist WHERE title = 'Despacito';
-            const values = ['s.image', 's.title', 'a.full_name', 's.id_song', process.env.TAB_SONGS, 's', process.env.TAB_ARTISTS, 'a', 's.id_artist', 'a.id_artist', req.body.song];
+            // SELECT s.image, s.title, a.full_name FROM songs s JOIN artists a ON s.id_artist = a.id_artist WHERE title LIKE "%desp%";
+            const values = ['s.image', 's.title', 'a.full_name', 's.id_song', process.env.TAB_SONGS, 's', process.env.TAB_ARTISTS, 'a', 's.id_artist', 'a.id_artist', `%${req.body.song}%`];
             const response = await genericCrudMySQL.searchSong(values);
 
             response ? res.status(200).json(response) : res.status(400).json({ error: 'No hay canciones con este titulo.' });

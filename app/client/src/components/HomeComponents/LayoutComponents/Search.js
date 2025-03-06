@@ -1,9 +1,10 @@
 import { useSearch } from '../../../utils/hooks/HomeHooks/LayoutHooks/useSearch';
 import '../../../styles/home/Layout.css';
+import { useEffect } from 'react';
 
 export const Search = () => {
     const { search, message, handleSong } = useSearch();
-    
+
     return (
         <div className="Explore__Container">
 
@@ -13,16 +14,16 @@ export const Search = () => {
             </div>
 
             <div className="Trends__ContainerCard">
-                {search.length > 0 &&
-
-                    <div className="ContentHome__Card Trends__Card" onClick={() => handleSong(search[0][0].id_song)}>
-                        <img className="ContentHome__Card--Image" src={search[0][0].image} alt="Card image cap" />
+                {search.map((e, i) => {
+                    return (
+                    <div className="ContentHome__Card Trends__Card" onClick={() => handleSong(e.id_song)}>
+                        <img className="ContentHome__Card--Image" src={e.image} alt="Card image cap" />
                         <div className="ContentHome__Card--Body">
-                            <p className='Trends__Card--NameArtist'>{search[0][0].full_name}</p>
-                            <p className="ContentHome__Card--Title Trends__Card--Title">{search[0][0].title}</p>
+                            <p className='Trends__Card--NameArtist'>{e.full_name}</p>
+                            <p className="ContentHome__Card--Title Trends__Card--Title">{e.title}</p>
                         </div>
-                    </div>
-                }
+                    </div>)
+                })}
             </div>
 
             {message &&

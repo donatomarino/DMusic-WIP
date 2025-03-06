@@ -14,7 +14,7 @@ export const HeaderHome = () => {
             </h1>
 
             <div className="HeaderHome__SearchBar">
-                <form className="HeaderHome__InputContainer" onSubmit={handleSong}>
+                <form className="HeaderHome__InputContainer" onChange={handleSong}>
                     <Input
                         className="HeaderHome__InputContainer--Input"
                         name="searchbar"

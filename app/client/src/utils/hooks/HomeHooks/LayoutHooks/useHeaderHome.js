@@ -41,8 +41,8 @@ export const useHeaderHome = () => {
                     method: 'POST',
                     body: { song }
                 });
-                console.log(response);
-                if (response[0].length > 0) {
+                
+                if (response.length !== 0) {
                     toggleSearch(response);
                     toggleMessage();
                 } else {
