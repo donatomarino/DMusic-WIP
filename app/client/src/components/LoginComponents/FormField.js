@@ -5,7 +5,7 @@ import Input from "../GeneralComponents/Input";
 import Button from "../GeneralComponents/Button";
 
 export default function FormField({ id, label, type, value, onChange, placeholder, minLength, name }) {
-        const [showPassword, setShowPassword] = useState(false);
+    const [showPassword, setShowPassword] = useState(false);
 
     return (
         <div className='Login__FieldContainer'>

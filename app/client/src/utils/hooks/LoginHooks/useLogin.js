@@ -44,11 +44,10 @@ export const useLogin = () => {
 
             if (response && response.length !== 0) {
                 const dataToSave = response.token.split(' ')[1]; // Cogemos el token del response
-
                 // Pintamos el token en el LocalStorage
                 localStorage.setItem('token', dataToSave);
 
-                toggleLogin(1);
+                toggleLogin(2);
                 navigate('/');
             } else {
                 toast.error('Email o password incorrectos', {

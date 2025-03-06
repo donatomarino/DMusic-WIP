@@ -29,11 +29,12 @@ export default {
 			const userFound = await userCrudMySQL.getUser(values);
 			if (!userFound) return res.status(401).json({ message: 'El usuario no está registrado' });
 
-			const isMatch = await bcrypt.compare(pass, userFound[0][0].pass);
+			const isMatch = await bcrypt.compare(pass, userFound[0].pass);
+			console.log(isMatch)
 			if (!isMatch) return res.status(402).json({ message: 'Contraseña incorrecta' });
 
 			// Si el usuario existe, se procede a generar el token
-			const tokenFrom = { ...userFound[0][0] };
+			const tokenFrom = { ...userFound[0] };
 			console.log(tokenFrom);
 
 			//Llamamos a la función para generar el token

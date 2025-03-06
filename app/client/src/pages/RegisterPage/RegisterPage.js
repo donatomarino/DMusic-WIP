@@ -2,10 +2,10 @@ import { useContext, useEffect } from "react";
 import { ComponentContext } from "../../utils/contexto/GeneralContext/ComponentContext";
 import { FirstRegister } from "../../components/RegistrationComponents/FirstRegister";
 import { SecondRegister } from "../../components/RegistrationComponents/SecondRegister";
-import "../../styles/login/login.css";
 import { ToastContainer } from "react-toastify";
 import Lopd from "../../components/RegistrationComponents/Lopd";
 import { LopdContext } from "../../utils/contexto/RegisterContext/LopdContext";
+import "../../styles/login/login.css";
 
 export const RegisterPage = () => {
     const { component, toggleComponent } = useContext(ComponentContext);

@@ -7,7 +7,7 @@ import '../../styles/login/login.css';
 import { ToastContainer } from 'react-toastify';
 
 export const LoginPage = () => {
-    const { email, navigate, pass, showPassword, setShowPassword, setEmail, setPassword, handleSubmit } = useLogin();
+    const { email, navigate, pass, showPassword, setEmail, setPassword, handleSubmit } = useLogin();
 
     return (
         <div className='Login__Container'>
@@ -43,7 +43,6 @@ export const LoginPage = () => {
                             required
                         />
                     </div>
-
 
                     <div>
                         <Button type='submit' className='Login__Button--Submit'>Iniciar sesión</Button>

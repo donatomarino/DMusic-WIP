@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { useNavigation } from "../GeneralHooks/useNavigation";
 import {toast} from 'react-toastify';
 import { Bounce } from "react-toastify";
+import { validatePassword } from "../../general/validatePsw";
 import useFetch from '../GeneralHooks/useFetch';
 
 export const useConfirmRecovery = () => {
@@ -17,7 +18,14 @@ export const useConfirmRecovery = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        if (pass === confirmPass) {
+        const formData = {
+            password: pass,
+            confirmPass: confirmPass
+        }
+
+        const isValid = validatePassword(formData);
+        
+        if (isValid) {
             try {
                 const response = await fetchData({
                     endpoint: `/confirm-recovery/${token}`,
@@ -44,18 +52,6 @@ export const useConfirmRecovery = () => {
             } catch (err) {
                 console.log('Error en la solicitud: ', err);
             }
-        } else {
-            toast.error('Las contraseñas no coinciden.', {
-                position: "top-right",
-                autoClose: 3000,
-                hideProgressBar: false,
-                closeOnClick: false,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "dark",
-                transition: Bounce,
-            });
         }
     };
 

@@ -19,7 +19,7 @@ export const useHeaderHome = () => {
 
     useEffect(() => {
         const user = localStorage.getItem('token');
-        console.log(user);
+
         // Sacamos el nombre completo desde el token para establecer la inicial
         if (user) setInit(jwtDecode(user).full_name);
     }, [])
