@@ -7,7 +7,7 @@ import { useFirstRegister } from "../../utils/hooks/RegisterHooks/useFirstRegist
 import "../../styles/login/login.css";
 
 export const FirstRegister = () => {
-    const { datos, navigate, toggleDatos, confirmPass, setConfirmPass, showPassword, setShowPassword, message, handleSubmit } = useFirstRegister();
+    const { datos, navigate, toggleDatos, confirmPass, setConfirmPass, showPassword, setShowPassword, handleSubmit } = useFirstRegister();
 
     return (
         <form onSubmit={handleSubmit} method='POST'>
@@ -43,7 +43,6 @@ export const FirstRegister = () => {
                     value={datos.password}
                     onChange={(e) => toggleDatos({ ...datos, password: e.target.value })}
                     required
-                    minLength={8}
                 />
 
                 <Button
@@ -63,18 +62,11 @@ export const FirstRegister = () => {
                     value={confirmPass}
                     onChange={(e) => setConfirmPass(e.target.value)}
                     required
-                    minLength={8}
                 />
 
                 <div>
                     <Button type='submit' className='Login__Button--Submit'>Siguiente</Button>
                 </div>
-
-                {message &&
-                    <div className='Login__Error-Confirma Register__Error-Confirma'>
-                        <p className="Login__Error-Confirma">{message}</p>
-                    </div>
-                }
             </div>
         </form>
     )

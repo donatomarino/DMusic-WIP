@@ -2,6 +2,7 @@ import { useState, useContext } from "react";
 import { useNavigation } from "../GeneralHooks/useNavigation";
 import { ComponentContext } from "../../contexto/GeneralContext/ComponentContext";
 import { DataContext } from '../../contexto/RegisterContext/DataContext';
+import { validatePassword } from '../../general/validatePsw';
 
 export const useFirstRegister = () => {
     const navigate = useNavigation();
@@ -9,19 +10,19 @@ export const useFirstRegister = () => {
     const [confirmPass, setConfirmPass] = useState('');
     const [showPassword, setShowPassword] = useState(false);
     const { toggleComponent } = useContext(ComponentContext);
-    const [message, setMessage] = useState('');
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        if (datos.password !== confirmPass) {
-            setMessage('Las contraseñas no coinciden');
-            return;
-        } else {
-            toggleComponent(1)
-            setMessage('');
+        const formData = {
+            password: datos.password,
+            confirmPass: confirmPass
         }
+
+        const isValid = validatePassword(formData);
+
+        isValid && toggleComponent(1);
     }
 
-    return {datos, navigate, toggleDatos, confirmPass, setConfirmPass, showPassword, setShowPassword, message, handleSubmit }
+    return { datos, navigate, toggleDatos, confirmPass, setConfirmPass, showPassword, setShowPassword, handleSubmit }
 }

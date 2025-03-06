@@ -3,6 +3,7 @@ import { ComponentContext } from "../../utils/contexto/GeneralContext/ComponentC
 import { FirstRegister } from "../../components/RegistrationComponents/FirstRegister";
 import { SecondRegister } from "../../components/RegistrationComponents/SecondRegister";
 import "../../styles/login/login.css";
+import { ToastContainer } from "react-toastify";
 
 export const RegisterPage = () => {
     const { component, toggleComponent} = useContext(ComponentContext);
@@ -20,6 +21,8 @@ export const RegisterPage = () => {
             {component === 1 &&
                 (<SecondRegister />)
             }
+
+            <ToastContainer />
         </div>
     )
 };
