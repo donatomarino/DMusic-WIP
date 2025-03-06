@@ -120,7 +120,7 @@ export default {
 			const verifyIfExist = await userCrudMySQL.getUser(values);
 
 			// Si el usuario ya existe, devuelve un error
-			if (verifyIfExist[0].length > 0) {
+			if (verifyIfExist.length > 0) {
 				return res.status(401).json({ message: "El usuario ya está registrado" });
 			} else {
 				// Incriptamos la password

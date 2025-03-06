@@ -7,9 +7,15 @@ import { FaChevronLeft } from "react-icons/fa";
 import { Header } from "../LoginComponents/Header";
 import { useSecondRegister } from "../../utils/hooks/RegisterHooks/useSecondRegister";
 import "../../styles/login/login.css";
+import { useEffect } from "react";
 
 export const SecondRegister = () => {
     const {datos, toggleDatos, message, handleSubmit, handlePage, toggleComponent, isRegistred} = useSecondRegister();
+
+    useEffect(() => {
+        console.log(datos)
+    }
+    ,[datos])
    
     return (
         <form onSubmit={handleSubmit} method='POST'>

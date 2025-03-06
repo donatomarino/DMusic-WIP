@@ -44,13 +44,6 @@ export const FirstRegister = () => {
                     onChange={(e) => toggleDatos({ ...datos, password: e.target.value })}
                     required
                 />
-
-                <Button
-                    onClick={() => setShowPassword(!showPassword)}
-                    className="Login__Button--togglePasswordVisibility--Register"
-                >
-                    {showPassword ? <FaEye color='#1668d4' size={28} /> : <FaEyeSlash color='#1668d4' size={28} />}
-                </Button>
             </div>
 
             <div className='Login__InputContainer--Register'>

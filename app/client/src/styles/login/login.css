@@ -66,7 +66,6 @@ body {
 .Login__FieldContainer input {
     height: 45px;
     padding: 5px;
-    padding-right: 50px;
     background-color: transparent;
     border: 3px solid #282828;
     font-size: 1rem;
@@ -84,10 +83,12 @@ body {
     border: none;
     position: absolute;
     cursor: pointer;
-    font-size: 20px;
+    font-size: 26px;
     color: #1a73e8;
     text-decoration: underline;
     padding: 0;
+    right: 1rem;
+    top: calc(50% - 0.1rem);
 }
 
 .Login__Error-Confirma {
@@ -121,11 +122,6 @@ body {
     cursor: pointer;
     margin-top: 30px;
     font-size: 1rem;
-}
-
-.Login__Span {
-    color: #9b9b9b;
-    cursor: pointer;
 }
 
 /* ----- Recovery Password Page ----- */

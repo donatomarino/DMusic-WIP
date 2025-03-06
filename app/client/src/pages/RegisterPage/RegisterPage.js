@@ -15,11 +15,11 @@ export const RegisterPage = () => {
         toggleComponent(0);
     }, [])
 
-    useEffect(() => {
-        if (component === 0) {
-            toggleLopd();
-        }
-    }, [ component, toggleLopd]);
+    // useEffect(() => {
+    //     if (component === 0) {
+    //         toggleLopd();
+    //     }
+    // }, [ component, toggleLopd]);
     
     return (
         <div className="Login__Form">

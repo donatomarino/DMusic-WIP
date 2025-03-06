@@ -42,16 +42,8 @@ export const LoginPage = () => {
                             onChange={(e) => setPassword(e.target.value)}
                             required
                         />
-
-                        <Button
-                            onClick={() => setShowPassword(!showPassword)}
-                            className="Login__Button--togglePasswordVisibility"
-                        >
-                            <div className='Login__Icon'>
-                                {showPassword ? <FaEye className='' color='#1668d4' size={28} /> : <FaEyeSlash color='#1668d4' size={28} />}
-                            </div>
-                        </Button>
                     </div>
+
 
                     <div>
                         <Button type='submit' className='Login__Button--Submit'>Iniciar sesión</Button>

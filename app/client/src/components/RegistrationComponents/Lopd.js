@@ -8,8 +8,6 @@ export default function Lopd() {
 
     const { toggleLopd, lopdData, acceptChecker } = useLopd();
 
-    useEffect(() => {console.log(lopdData)}, [lopdData])
-
     return (
         <div className="Lopd__Container">
             <form onSubmit={acceptChecker} >

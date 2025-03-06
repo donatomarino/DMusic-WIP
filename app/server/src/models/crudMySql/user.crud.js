@@ -10,9 +10,10 @@ export default {
 	  * @returns {Array}
 	  */
 	getUser: async (values) => {
-		const query = 'SELECT * FROM ?? WHERE ?? = ?';
-		const result = await connection.query(query, values)
-		return result || [];
+			const query = 'SELECT * FROM ?? WHERE ?? = ?;';
+			const [result] = await connection.query(query, [...values]);
+
+			return result;
 	},
 
     /**
