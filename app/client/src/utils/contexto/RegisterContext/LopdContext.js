@@ -8,7 +8,7 @@ export const LopdProvider = ({ children }) => {
 
   // Función para cambiar el tipo de vista
   const toggleLopd = () => {
-    setAcceptLopd((prevAcceptLopd) => (prevAcceptLopd === false ? true : false));
+    setAcceptLopd(prevAcceptLopd => !prevAcceptLopd);
   };
 
   return (

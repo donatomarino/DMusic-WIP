@@ -238,6 +238,7 @@ body {
     color: white;
     font-size: 18px;
     text-decoration: underline;
+    cursor: pointer;
 }
 
 .Register__Error-Confirma{

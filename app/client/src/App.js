@@ -11,17 +11,16 @@ import { SongProvider } from "./utils/contexto/HomeContext/SongContext.js";
 import { LoginProvider } from './utils/contexto/GeneralContext/LoginContext.js'
 import { ComponentProvider } from './utils/contexto/GeneralContext/ComponentContext.js'
 import { SearchProvider } from "./utils/contexto/HomeContext/SearchContext.js";
-import Lopd from "./pages/RegisterPage/LopdPage.js";
 import './styles/general/General.css';
 
 function App() {
   return (
     <Router>
-      <DataProvider>
-        <ComponentProvider>
-          <MessageProvider>
-            <LoginProvider>
-              <LopdProvider>
+      <LopdProvider>
+        <DataProvider>
+          <ComponentProvider>
+            <MessageProvider>
+              <LoginProvider>
                 <SongProvider>
                   <SearchProvider>
                     <Routes>
@@ -29,16 +28,15 @@ function App() {
                       <Route path='/user/forgot-password' element={<RecoveryPassPage />} />
                       <Route path='/user/confirm-recovery/:token' element={<ConfirmRecoveryPage />} />
                       <Route path='/user/register' element={<RegisterPage />} />
-                      <Route path='/user/lopd' element={<Lopd />} />
                       <Route path='/' element={<HomePage />} />
                     </Routes>
                   </SearchProvider>
                 </SongProvider>
-              </LopdProvider>
-            </LoginProvider>
-          </MessageProvider>
-        </ComponentProvider>
-      </DataProvider>
+              </LoginProvider>
+            </MessageProvider>
+          </ComponentProvider>
+        </DataProvider>
+      </LopdProvider>
     </Router>
   );
 }
