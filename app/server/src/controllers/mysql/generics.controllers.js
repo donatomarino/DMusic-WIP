@@ -5,9 +5,11 @@ dotenv.config();
 export default {
     /**
      * Sacar todos los artistas de la base de datos.
-     * @constructor
+     * @async
+	 * @function getArtists
      * @param {*} req 
      * @param {*} res 
+	 * @returns {Promise<void>}
      */
     getArtists: async (req, res) => {
         try {
@@ -20,9 +22,11 @@ export default {
     },
     /**
      * Sacar todas las canciones de la base de datos.
-     * @constructor
+	 * @async
+	 * @function getSongs
      * @param {*} req 
      * @param {*} res 
+	 * @returns {Promise<void>}
      */
     getSongs: async (req, res) => {
         try {
@@ -37,9 +41,11 @@ export default {
     },
     /**
      * Sacar todas las canciones favoritas de un usuario.
-     * @constructor
+	 * @async
+	 * @function getFavoritsSongs
      * @param {*} req 
      * @param {*} res 
+	 * @returns {Promise<void>}
      */
     getFavoritsSongs: async (req, res) => {
         try {
@@ -54,9 +60,11 @@ export default {
     },
     /**
      * Buscar una canción por su nombre.
-     * @constructor
+	 * @async
+	 * @function searchSong
      * @param {*} req 
      * @param {*} res 
+	 * @returns {Promise<void>}
      */
     searchSong: async (req, res) => {
         try {
@@ -71,9 +79,11 @@ export default {
     },
     /**
      * Reproducir una canción por su id.
-     * @constructor
+     * @async
+     * @function playSong
      * @param {*} req 
      * @param {*} res 
+	 * @returns {Promise<void>}
      */
     playSong: async (req, res) => {
         try {
@@ -91,9 +101,11 @@ export default {
     },
     /**
      * Reproducir canciones de un artista predeterminado tramite su id.
-     * @constructor
+     * @async
+     * @function playArtist
      * @param {*} req 
      * @param {*} res 
+	 * @returns {Promise<void>}
      */
     playArtist: async (req, res) => {
         try {
@@ -109,9 +121,11 @@ export default {
     },
     /**
      * Reproducir canciones de la biblioteca de un usuario.
-     * @constructor
+     * @async
+     * @function playLibrary
      * @param {*} req 
      * @param {*} res 
+	 * @returns {Promise<void>}
      */
     playLibrary: async (req, res) => {
         try {
@@ -127,9 +141,11 @@ export default {
     },
     /**
      * Añadir canción a favoritos tramite su id.
-     * @constructor
+     * @async
+     * @function addFavoritsSongs
      * @param {*} req 
      * @param {*} res 
+	 * @returns {Promise<void>}
      */
     addFavoritsSongs: async (req, res) => {
         try {
@@ -152,9 +168,11 @@ export default {
     },
     /**
      * Eliminar canción de libreria de un usuario tramite id_song y id_user.
-     * @constructor
+     * @async
+     * @function deleteFavoritsSongs
      * @param {*} req 
      * @param {*} res 
+	 * @returns {Promise<void>}
      */
     deleteFavoritsSongs: async (req, res) => {
         try {

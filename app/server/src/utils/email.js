@@ -15,6 +15,14 @@ const transporter = nodemailer.createTransport({
     }
 });
 
+/**
+ * Enviar mail de recupero contraseña a usuario registrado.
+ * @async
+ * @function mailToUser
+ * @param {*} email - email usuario 
+ * @param {*} token
+ * @returns {Promise<void>}
+ */
 export const mailToUser = (email, token) => {
     // Configurar el objeto mailOptions
     const mailOptions = {

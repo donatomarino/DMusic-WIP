@@ -10,7 +10,8 @@ const mydb = process.env.MONGO_DB;
 export default {
     /**
      * Obtener toda la colleción.
-     * @constructor
+     * @async
+     * @function getAll
      * @param {String} coll - Nombre de la colleción
      * @returns {Array}
      */
@@ -23,7 +24,8 @@ export default {
     },
     /**
      * Obtener una playlist tramite nombre colleción y id playlist.
-     * @constructor
+     * @async
+     * @function getOne
      * @param {String} coll - Nombre de la colleción
      * @param {Number} id - id de la playlist
      * @returns {Array}

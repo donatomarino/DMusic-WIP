@@ -5,7 +5,8 @@ const connection = await sql.mySQLConnection();
 export default {
     /**
      * Obtener todos los artistas de la base de datos.
-     * @constructor
+     * @async
+     * @function getArtists
      * @param {String} value  - Nombre tabla.
      * @returns {Array}
      */
@@ -17,7 +18,8 @@ export default {
     },
     /**
      * Obtener todas las canciones de la base de datos.
-     * @constructor
+     * @async
+     * @function getSongs
      * @param {Array} values - Datos para buscar canción.
      * @returns {Array}
      */
@@ -30,7 +32,8 @@ export default {
     },
     /**
      * Obtener todas las canciones favoritas de un usuario.
-     * @constructor
+     * @async
+     * @function getFavoritesSongs
      * @param {Array} values - Datos para buscar las canciones favoritas.
      * @returns {Array}
      */
@@ -43,7 +46,8 @@ export default {
     },
     /**
      * Buscar canción tramite su titulo.
-     * @constructor
+     * @async
+     * @function searchSong
      * @param {Array} values - Datos para buscar canción tramite título.
      * @returns {Array}
      */
@@ -63,7 +67,8 @@ export default {
     // }
     /**
      * Reproducir canción tramite su id.
-     * @constructor
+     * @async
+     * @function playSong
      * @param {Array} values - Datos para obtener canción.
      * @returns {Array} 
      */
@@ -76,7 +81,8 @@ export default {
     },
     /**
      * Reproducir canciones de la biblioteca del usuario.
-     * @constructor
+     * @async
+     * @function playLibrary
      * @param {Array} values - Datos para obtener canciones de la libreria.
      * @returns {Array}
      */
@@ -90,7 +96,8 @@ export default {
     },
     /**
      * Añadir canción a la biblioteca del usuario.
-     * @constructor
+     * @async
+     * @function addFavoritsSongs
      * @param {Array} values - Nombre tabla y valores para añadir canción a favoritos.
      * @returns {Array}
      */
@@ -103,7 +110,8 @@ export default {
     },
     /**
      * Obtener canción de la biblioteca del usuario tramite id usuario e id canción.
-     * @constructor
+     * @async
+     * @function getSong
      * @param {Array} values - Datos de usuario e cancion para obtener la canción.
      * @returns {Array}
      */
@@ -116,7 +124,8 @@ export default {
     },
     /**
      * Eliminar canción de la biblioteca del usuario tramite id usuario e id canción.
-     * @constructor
+     * @async
+     * @function deleteFavoritsSongs
      * @param {Array} values - Nombre tabla y campos para buscar la canción a eliminar.
      * @returns {Array}
      */

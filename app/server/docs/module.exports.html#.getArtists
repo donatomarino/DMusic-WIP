@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Class: getUser</title>
+    <title>JSDoc: Class: getArtists</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Class: getUser</h1>
+    <h1 class="page-title">Class: getArtists</h1>
 
     
 
@@ -28,7 +28,7 @@
 
 <header>
     
-        <h2><span class="attribs"><span class="type-signature"></span></span>getUser<span class="signature">(values)</span><span class="type-signature"> &rarr; {Array}</span></h2>
+        <h2><span class="attribs"><span class="type-signature"></span></span>getArtists<span class="signature">(value)</span><span class="type-signature"> &rarr; {Array}</span></h2>
         
     
 </header>
@@ -41,7 +41,7 @@
     
 
     
-    <h4 class="name" id="getUser"><span class="type-signature"></span>new getUser<span class="signature">(values)</span><span class="type-signature"> &rarr; {Array}</span></h4>
+    <h4 class="name" id=".getArtists"><span class="type-signature"></span>new getArtists<span class="signature">(value)</span><span class="type-signature"> &rarr; {Array}</span></h4>
     
 
     
@@ -49,7 +49,7 @@
 
 
 <div class="description">
-    Obtener todos los datos de un usuario.
+    Obtener todos los artistas de la base de datos.
 </div>
 
 
@@ -85,13 +85,13 @@
 
         <tr>
             
-                <td class="name"><code>values</code></td>
+                <td class="name"><code>value</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">Array</span>
+<span class="param-type">String</span>
 
 
             
@@ -101,7 +101,7 @@
 
             
 
-            <td class="description last">Nombre tabla y campo para buscar el usuario.</td>
+            <td class="description last">Nombre tabla.</td>
         </tr>
 
     
@@ -142,7 +142,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="models_crudMySql_user.crud.js.html">models/crudMySql/user.crud.js</a>, <a href="models_crudMySql_user.crud.js.html#line12">line 12</a>
+        <a href="models_crudMySql_generic.crud.js.html">models/crudMySql/generic.crud.js</a>, <a href="models_crudMySql_generic.crud.js.html#line12">line 12</a>
     </li></ul></dd>
     
 

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: models/crudMongo/generic.crud.js</title>
+    <title>JSDoc: Source: utils/email.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: models/crudMongo/generic.crud.js</h1>
+    <h1 class="page-title">Source: utils/email.js</h1>
 
     
 
@@ -26,44 +26,49 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import { ObjectId } from 'mongodb';
-import mongo from '../../database/mongo.connection.js';
+            <pre class="prettyprint source linenums"><code>import nodemailer from 'nodemailer';
 import dotenv from 'dotenv';
 dotenv.config();
 
-const client = await mongo.connectToMongo();
+const server = process.env.MAIL_ROUTE;
 
-const mydb = process.env.MONGO_DB;
-
-export default {
-    /**
-     * Obtener toda la colleción.
-     * @async
-     * @function getAll
-     * @param {String} coll - Nombre de la colleción
-     * @returns {Array}
-     */
-    getAll: async (coll) => {
-        const db = client.db(mydb)
-        const collection = db.collection(coll)
-        const result = await collection.find({}).toArray();
-
-        return result;
-    },
-    /**
-     * Obtener una playlist tramite nombre colleción y id playlist.
-     * @async
-     * @function getOne
-     * @param {String} coll - Nombre de la colleción
-     * @param {Number} id - id de la playlist
-     * @returns {Array}
-     */
-    getOne: async(coll, id) => {
-        const db = client.db(mydb);
-        return await db.collection(coll).find({'_id': new ObjectId(id)}).toArray();    
+// Crear un objeto de transporte
+const transporter = nodemailer.createTransport({
+    host: process.env.MAIL_SERVER,
+    port: process.env.MAIL_PORT,
+    secure: false,
+    auth: {
+        user: process.env.MAIL_USERNAME,
+        pass: process.env.MAIL_PASSWORD
     }
-}
-</code></pre>
+});
+
+/**
+ * Enviar mail de recupero contraseña a usuario registrado.
+ * @async
+ * @function mailToUser
+ * @param {*} email - email usuario 
+ * @param {*} token
+ * @returns {Promise&lt;void>}
+ */
+export const mailToUser = (email, token) => {
+    // Configurar el objeto mailOptions
+    const mailOptions = {
+        from: process.env.MAIL_USERNAME,
+        to: email,
+        subject: 'Recupera tu contraseña',
+        html: `&lt;p>Accedes a este link para recuperar la &lt;a href=${server}${token}>contraseña&lt;/a&lt;/p>`
+    };
+    
+    // Enviar el email
+    transporter.sendMail(mailOptions, function (error, info) {
+        if (error) {
+            console.log('Error:', error);
+        } else {
+            console.log('Email enviado:', info.response);
+        }
+    });
+}</code></pre>
         </article>
     </section>
 

@@ -33,28 +33,28 @@ dotenv.config();
 export default {
     /**
      * Sacar todos los artistas de la base de datos.
-     * @constructor
+     * @async
+	 * @function getArtists
      * @param {*} req 
      * @param {*} res 
+	 * @returns {Promise&lt;void>}
      */
     getArtists: async (req, res) => {
         try {
             const response = await genericCrudMySQL.getArtists(process.env.TAB_ARTISTS);
 
-            if (response.length === 0) {
-                res.status(400).json({ message: 'No hay artistas en la base de datos.' })
-            } else {
-                res.status(200).json(response);
-            }
+            response.length === 0 ? res.status(400).json({ message: 'No hay artistas en la base de datos.' }) : res.status(200).json(response);
         } catch (error) {
             res.status(500).json({ message: 'Error inesperado al obtener los artistas: ', error });
         }
     },
     /**
      * Sacar todas las canciones de la base de datos.
-     * @constructor
+	 * @async
+	 * @function getSongs
      * @param {*} req 
      * @param {*} res 
+	 * @returns {Promise&lt;void>}
      */
     getSongs: async (req, res) => {
         try {
@@ -62,20 +62,18 @@ export default {
             const values = ['a.full_name', 's.id_song', 's.title', 's.score', 's.image', 's.url', process.env.TAB_SONGS, 's', process.env.TAB_ARTISTS, 'a', 'a.id_artist', 's.id_artist'];
             const response = await genericCrudMySQL.getSongs(values);
 
-            if (response.length === 0) {
-                res.status(400).json({ message: 'No hay canciones en la base de datos.' })
-            } else {
-                res.status(200).json(response);
-            }
+            response.length === 0 ? res.status(400).json({ message: 'No hay canciones en la base de datos.' }) : res.status(200).json(response);
         } catch (e) {
             res.status(500).json({ message: 'Error inesperado al obtener las canciones: ', e });
         }
     },
     /**
      * Sacar todas las canciones favoritas de un usuario.
-     * @constructor
+	 * @async
+	 * @function getFavoritsSongs
      * @param {*} req 
      * @param {*} res 
+	 * @returns {Promise&lt;void>}
      */
     getFavoritsSongs: async (req, res) => {
         try {
@@ -83,41 +81,37 @@ export default {
             const values = ['us.id_user', 's.image', 's.title', 's.duration', 'duration', 's.id_song', 'a.full_name', process.env.TAB_US, 'us', process.env.TAB_USERS, 'u', 'u.id_user', 'us.id_user', process.env.TAB_SONGS, 's', 's.id_song', 'us.id_song', process.env.TAB_ARTISTS, 'a', 's.id_artist', 'a.id_artist', 'us.id_user', req.body.id];
             const response = await genericCrudMySQL.getFavoritesSongs(values);
 
-            if (response.length === 0) {
-                res.status(400).json({ message: 'No hay canciones favoritas en la base de datos.' })
-            } else {
-                res.status(200).json(response);
-            }
+            response.length === 0 ? res.status(400).json({ message: 'No hay canciones favoritas en la base de datos.' }) : res.status(200).json(response);
         } catch (e) {
             res.status(500).json({ message: 'Error inesperado al obtener las canciones favoritas: ', e });
         }
     },
     /**
      * Buscar una canción por su nombre.
-     * @constructor
+	 * @async
+	 * @function searchSong
      * @param {*} req 
      * @param {*} res 
+	 * @returns {Promise&lt;void>}
      */
     searchSong: async (req, res) => {
         try {
-            // SELECT s.image, s.title, a.full_name FROM songs s JOIN artists a ON s.id_artist = a.id_artist WHERE title = 'Despacito';
-            const values = ['s.image', 's.title', 'a.full_name', 's.id_song', process.env.TAB_SONGS, 's', process.env.TAB_ARTISTS, 'a', 's.id_artist', 'a.id_artist', req.body.song];
+            // SELECT s.image, s.title, a.full_name FROM songs s JOIN artists a ON s.id_artist = a.id_artist WHERE title LIKE "%desp%";
+            const values = ['s.image', 's.title', 'a.full_name', 's.id_song', process.env.TAB_SONGS, 's', process.env.TAB_ARTISTS, 'a', 's.id_artist', 'a.id_artist', `%${req.body.song}%`];
             const response = await genericCrudMySQL.searchSong(values);
 
-            if (response) {
-                res.status(200).json(response);
-            } else {
-                res.status(400).json({ error: 'No hay canciones con este titulo.' });
-            }
+            response ? res.status(200).json(response) : res.status(400).json({ error: 'No hay canciones con este titulo.' });
         } catch (e) {
             res.status(500).json({ message: 'Error en la busqueda: ', e })
         }
     },
     /**
      * Reproducir una canción por su id.
-     * @constructor
+     * @async
+     * @function playSong
      * @param {*} req 
      * @param {*} res 
+	 * @returns {Promise&lt;void>}
      */
     playSong: async (req, res) => {
         try {
@@ -135,9 +129,11 @@ export default {
     },
     /**
      * Reproducir canciones de un artista predeterminado tramite su id.
-     * @constructor
+     * @async
+     * @function playArtist
      * @param {*} req 
      * @param {*} res 
+	 * @returns {Promise&lt;void>}
      */
     playArtist: async (req, res) => {
         try {
@@ -153,14 +149,16 @@ export default {
     },
     /**
      * Reproducir canciones de la biblioteca de un usuario.
-     * @constructor
+     * @async
+     * @function playLibrary
      * @param {*} req 
      * @param {*} res 
+	 * @returns {Promise&lt;void>}
      */
     playLibrary: async (req, res) => {
         try {
             // SELECT s.url, CONCAT(a.full_name, ' - ', s.title) title from users_songs us JOIN songs s ON us.id_song = s.id_song JOIN artists a ON s.id_artist = a.id_artist WHERE id_user = 1 ORDER BY s.id_song = 3 DESC, s.id_song;
-            const values = ['s.url', 'a.full_name', 's.title', 'title', process.env.TAB_US, 'us', process.env.TAB_SONGS,, 's', 'us.id_song', 's.id_song', process.env.TAB_ARTISTS, 'a', 's.id_artist', 'a.id_artist', 'id_user', req.body.id_user, 's.id_song', req.body.id_song, 's.id_song'];
+            const values = ['s.url', 'a.full_name', 's.title', 'title', process.env.TAB_US, 'us', process.env.TAB_SONGS, 's', 'us.id_song', 's.id_song', process.env.TAB_ARTISTS, 'a', 's.id_artist', 'a.id_artist', 'id_user', req.body.id_user, 's.id_song', req.body.id_song, 's.id_song'];
             const response = await genericCrudMySQL.playLibrary(values);
 
             // No hay condiciones en cuanto se puede hacer esta solicitud solamente si el artista está en la base de datos y aparece en la app.
@@ -171,9 +169,11 @@ export default {
     },
     /**
      * Añadir canción a favoritos tramite su id.
-     * @constructor
+     * @async
+     * @function addFavoritsSongs
      * @param {*} req 
      * @param {*} res 
+	 * @returns {Promise&lt;void>}
      */
     addFavoritsSongs: async (req, res) => {
         try {
@@ -196,9 +196,11 @@ export default {
     },
     /**
      * Eliminar canción de libreria de un usuario tramite id_song y id_user.
-     * @constructor
+     * @async
+     * @function deleteFavoritsSongs
      * @param {*} req 
      * @param {*} res 
+	 * @returns {Promise&lt;void>}
      */
     deleteFavoritsSongs: async (req, res) => {
         try {
@@ -223,13 +225,13 @@ export default {
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="module.exports.addFavoritsSongs.html">addFavoritsSongs</a></li><li><a href="module.exports.closeClient.html">closeClient</a></li><li><a href="module.exports.confirmRecovery.html">confirmRecovery</a></li><li><a href="module.exports.connectToMongo.html">connectToMongo</a></li><li><a href="module.exports.createUser.html">createUser</a></li><li><a href="module.exports.deleteFavoritsSongs.html">deleteFavoritsSongs</a></li><li><a href="module.exports.getAll.html">getAll</a></li><li><a href="module.exports.getArtists.html">getArtists</a></li><li><a href="module.exports.getFavoritesSongs.html">getFavoritesSongs</a></li><li><a href="module.exports.getFavoritsSongs.html">getFavoritsSongs</a></li><li><a href="module.exports.getLopd.html">getLopd</a></li><li><a href="module.exports.getOne.html">getOne</a></li><li><a href="module.exports.getPlaylists.html">getPlaylists</a></li><li><a href="module.exports.getSong.html">getSong</a></li><li><a href="module.exports.getSongs.html">getSongs</a></li><li><a href="module.exports.getUser.html">getUser</a></li><li><a href="module.exports.login.html">login</a></li><li><a href="module.exports.playArtist.html">playArtist</a></li><li><a href="module.exports.playLibrary.html">playLibrary</a></li><li><a href="module.exports.playPlaylist.html">playPlaylist</a></li><li><a href="module.exports.playSong.html">playSong</a></li><li><a href="module.exports.recoveryPass.html">recoveryPass</a></li><li><a href="module.exports.register.html">register</a></li><li><a href="module.exports.searchSong.html">searchSong</a></li><li><a href="module.exports.updatePass.html">updatePass</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#addFavoritsSongs">addFavoritsSongs</a></li><li><a href="global.html#confirmRecovery">confirmRecovery</a></li><li><a href="global.html#createAccessToken">createAccessToken</a></li><li><a href="global.html#createUser">createUser</a></li><li><a href="global.html#deleteFavoritsSongs">deleteFavoritsSongs</a></li><li><a href="global.html#getAll">getAll</a></li><li><a href="global.html#getArtists">getArtists</a></li><li><a href="global.html#getFavoritesSongs">getFavoritesSongs</a></li><li><a href="global.html#getFavoritsSongs">getFavoritsSongs</a></li><li><a href="global.html#getLopd">getLopd</a></li><li><a href="global.html#getOne">getOne</a></li><li><a href="global.html#getPlaylists">getPlaylists</a></li><li><a href="global.html#getSong">getSong</a></li><li><a href="global.html#getSongs">getSongs</a></li><li><a href="global.html#getUser">getUser</a></li><li><a href="global.html#login">login</a></li><li><a href="global.html#mailToUser">mailToUser</a></li><li><a href="global.html#playArtist">playArtist</a></li><li><a href="global.html#playLibrary">playLibrary</a></li><li><a href="global.html#playPlaylist">playPlaylist</a></li><li><a href="global.html#playSong">playSong</a></li><li><a href="global.html#recoveryPass">recoveryPass</a></li><li><a href="global.html#register">register</a></li><li><a href="global.html#searchSong">searchSong</a></li><li><a href="global.html#updatePass">updatePass</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.4</a> on Tue Feb 25 2025 20:28:23 GMT+0100 (hora estándar de Europa central)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.4</a> on Fri Mar 07 2025 17:23:58 GMT+0100 (hora estándar de Europa central)
 </footer>
 
 <script> prettyPrint(); </script>

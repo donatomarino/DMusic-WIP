@@ -7,7 +7,6 @@ const url = process.env.MONGO_URL;
 export default {
   /**
    * Conneccion a la base de datos de mongo.
-   * @constructor
    * @returns {Promise<MongoClient>}
    */
   connectToMongo: async () => {
@@ -19,7 +18,6 @@ export default {
 
   /**
    * Cerrar la conneccion a la base de datos de mongo.
-   * @constructor
    * @returns {Promise<MongoClient>}
    */
   closeClient: async () => {

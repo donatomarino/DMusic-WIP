@@ -5,7 +5,8 @@ const connection = await sql.mySQLConnection();
 export default {
 	/**
 	  * Obtener todos los datos de un usuario.
-	  * @constructor
+	  * @async
+	  * @function getUser
 	  * @param {Array} values - Nombre tabla y campo para buscar el usuario.
 	  * @returns {Array}
 	  */
@@ -18,7 +19,8 @@ export default {
 
     /**
 	* Actualiza la password del usuario.
-	* @constructor
+	* @async
+	* @function updatePass
 	* @param {Array} values - Nombre tabla, campo a actualizar y campo para buscar el usuario.
 	* @returns {Array}
 	*/
@@ -29,7 +31,8 @@ export default {
 	},
     /**
 	* Registración nuevo usuario
-	* @constructor
+	* @async
+	* @function createUser
 	* @param {Array} values - Datos de registro.
 	* @returns {Array}
 	*/

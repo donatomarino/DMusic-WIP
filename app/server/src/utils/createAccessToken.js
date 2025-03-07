@@ -4,8 +4,10 @@ import { TOKEN_SECRET } from './config.js';
 export default {
     /**
      * Crear un token de acceso. 
-     * @param {Array} payload 
-     * @returns {Promise}
+     * @async
+     * @function createAccessToken
+     * @param {Array} payload - datos del usuario
+     * @returns {Promise<void>}
      */
     createAccessToken: async (payload) => {
         return new Promise((resolve, reject) => {

@@ -11,10 +11,11 @@ const { sign, verify } = jwt;
 export default {
 	/**
 	 * Login usuario y obtención de token.
-	 * @constructor
+	 * @async
+	 * @function login
 	 * @param {*} req 
 	 * @param {*} res 
-	 * @returns {Object}
+	 * @returns {Promise<void>}
 	 */
 	login: async (req, res) => {
 		try {
@@ -30,7 +31,7 @@ export default {
 			if (!userFound) return res.status(401).json({ message: 'El usuario no está registrado' });
 
 			const isMatch = await bcrypt.compare(pass, userFound[0].pass);
-			console.log(isMatch)
+			
 			if (!isMatch) return res.status(402).json({ message: 'Contraseña incorrecta' });
 
 			// Si el usuario existe, se procede a generar el token
@@ -46,10 +47,11 @@ export default {
 	},
 	/**
 	 * Pedir enlace para recuperar contraseña tramite email.
-	 * @constructor
+	 * @async
+	 * @function recoveryPass
 	 * @param {*} req 
 	 * @param {*} res 
-	 * @returns {Object} 
+	 * @returns {Promise<void>}
 	 */
 	recoveryPass: async (req, res) => {
 		try {
@@ -81,9 +83,11 @@ export default {
 	},
 	/**
 	 * Confirmar recuperación de contraseña.
-	 * @constructor
+	 * @async
+	 * @function confirmRecovery
 	 * @param {*} req 
 	 * @param {*} res 
+	 * @returns {Promise<void>}
 	 */
 	confirmRecovery: async (req, res) => {
 		try {
@@ -104,10 +108,11 @@ export default {
 	},
 	/**
 	 * Registración de nuevo usuario.
-	 * @constructor
+	 * @async
+	 * @function register
 	 * @param {*} req 
 	 * @param {*} res 
-	 * @returns {Object}
+	 * @returns {Promise<void>}
 	 */
 	register: async (req, res) => {
 		try {
