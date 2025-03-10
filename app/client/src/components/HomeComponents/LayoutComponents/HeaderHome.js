@@ -21,14 +21,20 @@ export const HeaderHome = () => {
                         placeholder="¿Qué quieres reproducir?"
                         onChange={(e) => setSong(e.target.value)}
                     />
+
+                    <Input
+                        className="HeaderHome__InputContainer--InputSmall"
+                        name="searchbar"
+                        onChange={(e) => setSong(e.target.value)}
+                    />
                     <Button type="submit" className="HeaderHome__InputContainer--Icon"><FaSearch size={18} color="#555" /></Button>
                 </form>
             </div>
 
             {login === 0 ? (
                 <div className="HeaderHome__Buttons">
-                    <Button onClick={() => navigate('/user/register')}>Registrate</Button>
-                    <Button onClick={() => navigate('/login')}>Iniciar Sesión</Button>
+                    <Button onClick={() => navigate('/user/register')} className="HeaderHome__Buttons--Register"></Button>
+                    <Button onClick={() => navigate('/login')} className="HeaderHome__Buttons--Login"></Button>
                 </div>
             ) : (
                 <div className="HeaderHome__Button--Profile" onClick={() => { toggleComponent(6) }}>{init[0]}</div>

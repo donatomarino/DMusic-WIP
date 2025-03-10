@@ -19,14 +19,14 @@ $csvFilePath = "C:\Users\Tardes\Documents\OK\Proyectos\DMusic-WIP\app\server\JMe
 $csvData = Import-Csv -Path $csvFilePath -Delimiter ','
 
 # Ejecutar inserts
-for ($i = 1; $i -le 50; $i++) {
+foreach ($linea in $csvData) {
     $query = "INSERT INTO users (full_name, email, pass, birthdate, gender) VALUES (@full_name, @email, @pass, @birthdate, @gender)"
     $command = New-Object MySql.Data.MySqlClient.MySqlCommand($query, $connection)
     
-    $command.Parameters.AddWithValue("@full_name", "Francesco Giovani")
-    $command.Parameters.AddWithValue("@email", $csvData.email)
-    $command.Parameters.AddWithValue("@pass", $csvData.pass)
-    $command.Parameters.AddWithValue("@birthdate", "2000-01-20")
+    $command.Parameters.AddWithValue("@full_name", $linea.full_name)
+    $command.Parameters.AddWithValue("@email", $linea.email)
+    $command.Parameters.AddWithValue("@pass", $linea.pass)
+    $command.Parameters.AddWithValue("@birthdate", "2000-01-12")
     $command.Parameters.AddWithValue("@gender", "hombre")
     
     Write-Host "Insertando usuario$i..."

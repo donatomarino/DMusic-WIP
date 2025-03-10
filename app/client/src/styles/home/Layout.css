@@ -110,6 +110,10 @@
 
 
 /* ----- HeaderHomeComponent -----*/
+.HeaderHome__InputContainer--InputSmall{
+  display: none;
+}
+
 .HeaderHome__Container {
   display: flex;
   justify-content: space-between;
@@ -198,6 +202,14 @@
   background-color: #022d66;
 }
 
+.HeaderHome__Buttons--Register::after{
+  content: "Registrate";
+}
+
+.HeaderHome__Buttons--Login::after{
+  content: "Login";
+}
+
 .HeaderHome__Buttons button:disabled {
   background-color: #b3b3b3;
   cursor: not-allowed;
@@ -214,6 +226,7 @@
   cursor: pointer;
 }
 
+/*
 @media screen and (max-width: 768px) {
   .HeaderHome__SearchBar {
     justify-content: flex-end;
@@ -246,6 +259,7 @@
     padding: 5px 15px;
   }
 }
+*/
 
 /* ----- SideMenuComponent ----- */
 .SideMenu__Container {
@@ -335,4 +349,66 @@
   font-size: 18px;
   color: #f04343;
   font-weight: bolder;
+}
+
+
+/* ------ MEDIA QUERIES ------ */
+@media screen and (max-width: 320px){
+  .SideMenu__Container, .HeaderHome__Logo{
+    display:none
+  }
+
+  .HomePage__Content{
+    margin-left: 0px;
+    text-align: center;
+  }
+
+  .ContentHome__Card{
+    min-width: 150px;
+  }
+
+  .ContentHome__ContainerCard{
+    width: 150px;
+    flex-wrap: wrap;
+  }
+
+  .ContentHome__Container{
+    justify-self: center;
+  }
+
+  .HeaderHome__Container{
+    padding: 20px 10px;
+  }
+
+  .HeaderHome__InputContainer {
+    width: 150px;
+  }
+
+  .HeaderHome__InputContainer--Input{
+    display: none;
+  }
+
+  .HeaderHome__InputContainer--InputSmall{
+    display:inline;
+  }
+
+  .HeaderHome__Buttons button {
+    width: 1px;
+    content: "";
+  }
+
+  .HeaderHome__Buttons--Register::after{
+    content:"R";
+  }
+
+  .HeaderHome__Buttons--Login::after{
+    content:"L";
+  }
+}
+
+@media screen and (max-width: 768px){
+  .SideMenu__Container{
+    min-width: 100px;
+    max-width: 200px;
+  }
 }
