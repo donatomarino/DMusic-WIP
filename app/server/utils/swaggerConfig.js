@@ -45,7 +45,8 @@ definition: {
   paths: {
     ...loginSwagger.paths,
     ...registerSwagger.paths,
-    // ...interactionsMySql.paths
+    ...interactionsMySql.paths,
+    ...interactionsMongo.paths
   },
 }});
 export default swaggerDocs;

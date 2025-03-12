@@ -1,5 +1,4 @@
-{
-  "playlists": [
+[
     {
       "_id": { "$oid": "67a3dbe8850ba6ce709c77ff" },
       "title": "Top 50 Italia",
@@ -36,4 +35,3 @@
       "image": "https://img.youtube.com/vi/9KNi8y3Vceo/maxresdefault.jpg"
     }
   ]
-}

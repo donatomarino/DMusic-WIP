@@ -354,17 +354,18 @@
 
 /* ------ MEDIA QUERIES ------ */
 @media screen and (max-width: 320px){
-  .SideMenu__Container, .HeaderHome__Logo{
+  .SideMenu__Container{
     display:none
+  }
+
+  .HeaderHome__Logo{
+    display:block;
+    text-align: center;
   }
 
   .HomePage__Content{
     margin-left: 0px;
     text-align: center;
-  }
-
-  .ContentHome__Card{
-    min-width: 150px;
   }
 
   .ContentHome__ContainerCard{
@@ -378,10 +379,14 @@
 
   .HeaderHome__Container{
     padding: 20px 10px;
+    width: 250px;
+    display: block;
   }
 
   .HeaderHome__InputContainer {
-    width: 150px;
+    width: 300px;
+    height: 30px;
+    margin: 10px 10px;
   }
 
   .HeaderHome__InputContainer--Input{
@@ -390,6 +395,7 @@
 
   .HeaderHome__InputContainer--InputSmall{
     display:inline;
+    height: 5px;
   }
 
   .HeaderHome__Buttons button {
@@ -407,8 +413,25 @@
 }
 
 @media screen and (max-width: 768px){
-  .SideMenu__Container{
+  .ContentHome__Container{
+    width: calc(768px-250px);
+  }
+
+  .ContentHome__ContainerCard{
+    flex-wrap: wrap;
+  }
+
+  .ContentHome__Card{
     min-width: 100px;
-    max-width: 200px;
+  }
+}
+
+@media screen and (max-width: 1200px){
+  .ContentHome__ContainerCard{
+    flex-wrap: wrap;
+  }
+
+  .ContentHome__Card{
+    min-width: 220px;
   }
 }

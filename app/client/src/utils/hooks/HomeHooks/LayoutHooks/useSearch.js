@@ -1,4 +1,4 @@
-import { useContext, useEffect } from 'react';
+import { useContext } from 'react';
 import { SearchContext } from '../../../contexto/HomeContext/SearchContext';
 import { MessageContext } from '../../../contexto/GeneralContext/MessageContext';
 import { SongContext } from '../../../contexto/HomeContext/SongContext';
@@ -6,6 +6,7 @@ import { LoginContext } from '../../../contexto/GeneralContext/LoginContext';
 import { toast } from 'react-toastify';
 import { Bounce } from "react-toastify";
 import useFetch from '../../GeneralHooks/useFetch';
+import { jwtDecode } from 'jwt-decode';
 
 export const useSearch = () => {
     const { search } = useContext(SearchContext);
@@ -55,5 +56,51 @@ export const useSearch = () => {
         }
     }
 
-    return { search, message, handleSong }
+    const handleFavorite = async (id) => {
+        try {
+            const user = localStorage.getItem('token');
+            const id_u = jwtDecode(user).id_user;
+            const formData = {
+                id_user: id_u,
+                id_song: id
+            }
+
+            const response = await fetchData({
+                endpoint: '/add-favoritesongs',
+                method: 'POST',
+                body: formData
+            });
+
+            if (response.length === 0) {
+                toast.error('La canción ya está en tus favoritos!', {
+                    position: "top-right",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: false,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "dark",
+                    transition: Bounce,
+                });
+            } else {
+                toast.success('Canción añadida a favoritos!', {
+                    position: "bottom-right",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: false,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                    transition: Bounce,
+                });
+            }
+        } catch (e) {
+            console.log('Ha habido un problema en la solicitud: ', e);
+        }
+    }
+
+
+    return { search, message, handleSong, login, handleFavorite }
 }

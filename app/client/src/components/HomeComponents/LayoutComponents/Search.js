@@ -1,9 +1,10 @@
 import { useSearch } from '../../../utils/hooks/HomeHooks/LayoutHooks/useSearch';
 import '../../../styles/home/Layout.css';
-import { useEffect } from 'react';
+import Button from '../../GeneralComponents/Button';
+import { FaPlay, FaHeart } from "react-icons/fa";
 
 export const Search = () => {
-    const { search, message, handleSong } = useSearch();
+    const { search, message, handleSong, login, handleFavorite } = useSearch();
 
     return (
         <div className="Explore__Container">
@@ -16,15 +17,34 @@ export const Search = () => {
             <div className="Trends__ContainerCard">
                 {search.map((e, i) => {
                     return (
-                    <div className="ContentHome__Card Trends__Card" onClick={() => handleSong(e.id_song)}>
-                        <img className="ContentHome__Card--Image" src={e.image} alt="Card image cap" />
-                        <div className="ContentHome__Card--Body">
-                            <p className='Trends__Card--NameArtist'>{e.full_name}</p>
-                            <p className="ContentHome__Card--Title Trends__Card--Title">{e.title}</p>
-                        </div>
-                    </div>)
+                        <div className="ContentHome__Card Trends__Card" onClick={() => handleSong(e.id_song)}>
+                            <img className="ContentHome__Card--Image" src={e.image} alt="Card image cap" />
+                            <div className="ContentHome__Card--Body">
+                                <p className='Trends__Card--NameArtist'>{e.full_name}</p>
+                                <p className="ContentHome__Card--Title Trends__Card--Title">{e.title}</p>
+
+                                {login === 1 &&
+                                    <div className="Trends__Card--Buttons">
+                                        <Button
+                                            className="Trends__Card--PlayButton"
+                                            onClick={() => handleSong(e.id_song)}
+                                        >
+                                            <FaPlay />
+                                        </Button>
+
+                                        <Button
+                                            className="Trends__Card--FavButton"
+                                            onClick={() => handleFavorite(e.id_song)}
+                                        >
+                                            <FaHeart />
+                                        </Button>
+                                    </div>
+                                }
+                            </div>
+                        </div>)
                 })}
             </div>
+
 
             {message &&
                 <div className='Search__Error'>{message}</div>

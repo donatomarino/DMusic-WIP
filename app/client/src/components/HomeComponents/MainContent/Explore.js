@@ -6,6 +6,7 @@ import { ToastContainer } from 'react-toastify';
 
 export const Explore = () => {
     const {songs, handleSong, login, handleFavorite} = useExplore();
+    
     return (
         <div className="Explore__Container">
             <div className='Explore__Section'>
